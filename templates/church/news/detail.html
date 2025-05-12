@@ -1,0 +1,82 @@
+{% extends "church/base.html" %}
+{% load i18n %}
+
+{% block title %}{{ news.title }}{% endblock %}
+
+{% block content %}
+<div class="container-fluid">
+    <div class="row mb-4">
+        <div class="col">
+            <h1 class="mb-0">{{ news.title }}</h1>
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="{% url 'church:dashboard' %}">{% trans "Dashboard" %}</a></li>
+                    <li class="breadcrumb-item"><a href="{% url 'church:news_list' %}">{% trans "News" %}</a></li>
+                    <li class="breadcrumb-item active" aria-current="page">{% trans "Details" %}</li>
+                </ol>
+            </nav>
+        </div>
+        {% if user == news.author or user.is_superuser or user.role == 'ADMIN' %}
+        <div class="col-auto">
+            <a href="{% url 'church:news_edit' news.pk %}" class="btn btn-outline-primary">
+                <i class="bi bi-pencil"></i> {% trans "Edit" %}
+            </a>
+        </div>
+        {% endif %}
+    </div>
+
+    <div class="row justify-content-center">
+        <div class="col-lg-8">
+            <div class="card shadow-sm">
+                <div class="card-header" style="background-color: #191970; color: white;">
+                    <div class="d-flex justify-content-between align-items-center">
+                        <h3 class="card-title mb-0">{{ news.title }}</h3>
+                        <span class="badge 
+                            {% if news.target_audience == 'ALL' %}bg-primary
+                            {% elif news.target_audience == 'REVERENDS' %}bg-info
+                            {% else %}bg-secondary
+                            {% endif %}">
+                            {{ news.get_target_audience_display }}
+                        </span>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <div class="d-flex justify-content-between mb-4">
+                        <div>
+                            <span class="text-muted">
+                                <i class="bi bi-person"></i> {{ news.author.get_full_name }}
+                            </span>
+                        </div>
+                        <div>
+                            <span class="text-muted">
+                                <i class="bi bi-calendar"></i> {{ news.created_at|date:"DATETIME_FORMAT" }}
+                            </span>
+                            {% if news.updated_at != news.created_at %}
+                            <br>
+                            <small class="text-muted">
+                                <i class="bi bi-arrow-repeat"></i> {% trans "Updated" %} {{ news.updated_at|date:"DATETIME_FORMAT" }}
+                            </small>
+                            {% endif %}
+                        </div>
+                    </div>
+
+                    <div class="news-content mb-4">
+                        {{ news.content|linebreaks }}
+                    </div>
+
+                    <div class="mt-4 pt-3 border-top">
+                        <a href="{% url 'church:news_list' %}" class="btn btn-outline-secondary">
+                            <i class="bi bi-arrow-left"></i> {% trans "Back to News" %}
+                        </a>
+                        {% if user == news.author or user.is_superuser or user.role == 'ADMIN' %}
+                        <a href="{% url 'church:news_delete' news.pk %}" class="btn btn-outline-danger float-end">
+                            <i class="bi bi-trash"></i> {% trans "Delete" %}
+                        </a>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

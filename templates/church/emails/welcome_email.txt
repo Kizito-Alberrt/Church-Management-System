@@ -1,0 +1,13 @@
+{% load i18n %}
+{% trans "Welcome, {{ user_name }}!" %}
+
+{% blocktrans with role=user_role %}We are delighted to welcome you to the {{ system_name }} as a {{ role }}.{% endblocktrans %}
+
+{% trans "You can now access our platform to manage and engage with our community. Please visit {{ login_url }} to log in." %}
+
+{% trans "If you have any questions, feel free to contact our support team." %}
+
+{% trans "Blessings," %}
+{% blocktrans %}The {{ system_name }} Team{% endblocktrans %}
+
+{% trans "This is an automated email, please do not reply directly." %}

@@ -1,0 +1,63 @@
+{% extends "church/base.html" %}
+{% load i18n crispy_forms_tags %}
+
+{% block title %}{% trans "Create News" %}{% endblock %}
+
+{% block content %}
+<div class="container-fluid">
+    <div class="row mb-4">
+        <div class="col">
+            <h1 class="mb-0">{% trans "Create News" %}</h1>
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="{% url 'church:dashboard' %}">{% trans "Dashboard" %}</a></li>
+                    <li class="breadcrumb-item"><a href="{% url 'church:news_list' %}">{% trans "News" %}</a></li>
+                    <li class="breadcrumb-item active" aria-current="page">{% trans "Create" %}</li>
+                </ol>
+            </nav>
+        </div>
+    </div>
+
+    <div class="row justify-content-center">
+        <div class="col-lg-8">
+            {% if user.is_superuser or user.role == 'ADMIN' or user.role == 'MAIN_REVEREND' %}
+            <div class="card shadow-sm">
+                <div class="card-header" style="background-color: #191970; color: white;">
+                    <h3 class="card-title mb-0">{% trans "New Announcement" %}</h3>
+                </div>
+                <div class="card-body">
+                    <form method="post">
+                        {% csrf_token %}
+                        {{ form|crispy }}
+                        
+                        <div class="d-flex justify-content-between mt-4">
+                            <a href="{% url 'church:news_list' %}" class="btn btn-outline-secondary">
+                                <i class="bi bi-arrow-left"></i> {% trans "Cancel" %}
+                            </a>
+                            <button type="submit" class="btn" style="background-color: #B22222; color: white;">
+                                <i class="bi bi-save"></i> {% trans "Publish News" %}
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            {% else %}
+            <div class="alert alert-danger">
+                <i class="bi bi-exclamation-triangle"></i>
+                {% trans "You don't have permission to create news." %}
+            </div>
+            {% endif %}
+
+            {% if form.errors %}
+<div class="alert alert-danger">
+    {% for field, errors in form.errors.items %}
+        {% for error in errors %}
+            <p>{{ error }}</p>
+        {% endfor %}
+    {% endfor %}
+</div>
+{% endif %}
+        </div>
+    </div>
+</div>
+{% endblock %}

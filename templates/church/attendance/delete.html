@@ -1,0 +1,63 @@
+{% extends "church/base.html" %}
+{% load i18n %}
+
+{% block title %}{% trans "Delete Attendance Record" %}{% endblock %}
+
+{% block content %}
+<div class="container-fluid">
+    <div class="row mb-4">
+        <div class="col">
+            <h1 class="mb-0">{% trans "Delete Record" %}</h1>
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="{% url 'church:dashboard' %}">{% trans "Dashboard" %}</a></li>
+                    <li class="breadcrumb-item"><a href="{% url 'church:attendance_list' %}">{% trans "Attendance" %}</a></li>
+                    <li class="breadcrumb-item active" aria-current="page">{% trans "Delete" %}</li>
+                </ol>
+            </nav>
+        </div>
+    </div>
+
+    <div class="row justify-content-center">
+        <div class="col-lg-6">
+            <div class="card shadow-sm border-danger">
+                <div class="card-header bg-danger text-white">
+                    <h3 class="card-title mb-0">{% trans "Confirm Deletion" %}</h3>
+                </div>
+                <div class="card-body">
+                    <div class="alert alert-danger">
+                        <i class="bi bi-exclamation-triangle-fill"></i>
+                        <strong>{% trans "Warning!" %}</strong>
+                        {% trans "You are about to permanently delete this attendance record." %}
+                    </div>
+
+                    <div class="mb-4 p-3 bg-light rounded">
+                        <h5>{% trans "Record Details" %}</h5>
+                        <p class="mb-1">
+                            <strong>{% trans "Date:" %}</strong> {{ object.date|date:"SHORT_DATE_FORMAT" }}
+                        </p>
+                        <p class="mb-1">
+                            <strong>{% trans "Church:" %}</strong> {{ object.church.name }}
+                        </p>
+                        <p class="mb-1">
+                            <strong>{% trans "Total Attendance:" %}</strong> {{ object.total_attendance }}
+                        </p>
+                    </div>
+
+                    <form method="post">
+                        {% csrf_token %}
+                        <div class="d-flex justify-content-between">
+                            <a href="{% url 'church:attendance_list' %}" class="btn btn-outline-secondary">
+                                <i class="bi bi-arrow-left"></i> {% trans "Cancel" %}
+                            </a>
+                            <button type="submit" class="btn btn-danger">
+                                <i class="bi bi-trash"></i> {% trans "Confirm Delete" %}
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

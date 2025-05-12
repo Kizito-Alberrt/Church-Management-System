@@ -1,0 +1,59 @@
+{% extends "church/base.html" %}
+{% load i18n %}
+
+{% block title %}{% trans "Confirm Pastor Deletion" %}{% endblock %}
+
+{% block content %}
+<div class="container-fluid">
+    <div class="row mb-4">
+        <div class="col">
+            <h1 class="mb-0">{% trans "Confirm Pastor Deletion" %}</h1>
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="{% url 'church:dashboard' %}">{% trans "Dashboard" %}</a></li>
+                    <li class="breadcrumb-item"><a href="{% url 'church:pastor_list' %}">{% trans "Pastors" %}</a></li>
+                    <li class="breadcrumb-item active" aria-current="page">{% trans "Delete" %}</li>
+                </ol>
+            </nav>
+        </div>
+    </div>
+
+    <div class="row justify-content-center">
+        <div class="col-lg-8">
+            <div class="card shadow-sm">
+                <div class="card-header" style="background-color: #191970; color: white;">
+                    <h3 class="card-title mb-0">{% trans "Confirm Deletion" %}</h3>
+                </div>
+                <div class="card-body">
+                    <p>
+                        {% trans "Are you sure you want to delete the pastor" %}
+                        <strong>{{ pastor.get_full_name|default:pastor.username }}</strong>?
+                        {% trans "This action cannot be undone." %}
+                    </p>
+                    {% if pastor.churches.exists %}
+                        <p>
+                            {% trans "This pastor is assigned to the following churches, which will have their pastor set to none:" %}
+                        </p>
+                        <ul>
+                            {% for church in pastor.churches.all %}
+                                <li>{{ church.name }} ({{ church.district }})</li>
+                            {% endfor %}
+                        </ul>
+                    {% endif %}
+                    <form method="post">
+                        {% csrf_token %}
+                        <div class="d-flex justify-content-between mt-4">
+                            <a href="{% url 'church:pastor_list' %}" class="btn btn-outline-secondary">
+                                <i class="bi bi-arrow-left"></i> {% trans "Cancel" %}
+                            </a>
+                            <button type="submit" class="btn btn-danger">
+                                <i class="bi bi-trash"></i> {% trans "Delete Pastor" %}
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

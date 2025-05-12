@@ -1,0 +1,74 @@
+{% extends "church/base.html" %}
+{% load i18n crispy_forms_tags %}
+
+{% block title %}{% trans "Add New Worshiper" %}{% endblock %}
+
+{% block content %}
+<div class="container-fluid">
+    <div class="row mb-4">
+        <div class="col">
+            <h1 class="mb-0">{% trans "Add New Worshiper" %}</h1>
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="{% url 'church:dashboard' %}">{% trans "Dashboard" %}</a></li>
+                    <li class="breadcrumb-item"><a href="{% url 'church:worshiper_list' %}">{% trans "Worshipers" %}</a></li>
+                    <li class="breadcrumb-item active" aria-current="page">{% trans "Add New" %}</li>
+                </ol>
+            </nav>
+        </div>
+    </div>
+
+    <div class="row justify-content-center">
+        <div class="col-lg-8">
+            <div class="card shadow-sm">
+                <div class="card-header" style="background-color: #191970; color: white;">
+                    <h3 class="card-title mb-0">{% trans "Worshiper Information" %}</h3>
+                </div>
+                <div class="card-body">
+                    <form method="post" enctype="multipart/form-data">
+                        {% csrf_token %}
+                        {{ form|crispy }}
+                        
+                        <div class="d-flex justify-content-between mt-4">
+                            <a href="{% url 'church:worshiper_list' %}" class="btn btn-outline-secondary">
+                                <i class="bi bi-arrow-left"></i> {% trans "Cancel" %}
+                            </a>
+                            <button type="submit" class="btn" style="background-color: #B22222; color: white;">
+                                <i class="bi bi-save"></i> {% trans "Save Worshiper" %}
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    // Initialize date pickers
+    const dateFields = document.querySelectorAll('input[type="date"]');
+    dateFields.forEach(field => {
+        if (!field.value) {
+            field.type = 'text';
+            field.addEventListener('focus', function() {
+                this.type = 'date';
+            });
+        }
+    });
+
+    // Show baptism date field only when baptized is checked
+    const baptizedField = document.querySelector('#id_baptized');
+    const baptismDateField = document.querySelector('#div_id_baptism_date');
+    
+    function toggleBaptismDate() {
+        baptismDateField.style.display = baptizedField.checked ? 'block' : 'none';
+    }
+    
+    baptizedField.addEventListener('change', toggleBaptismDate);
+    toggleBaptismDate(); // Initial check
+});
+</script>
+{% endblock %}

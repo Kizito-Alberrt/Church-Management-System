@@ -1,0 +1,167 @@
+{% extends "church/base.html" %}
+{% load i18n static crispy_forms_tags %}
+{% load i18n static %}
+
+{% block title %}{% trans "My Profile" %}{% endblock %}
+
+{% block content %}
+<div class="container-fluid">
+    <div class="row mb-4">
+        <div class="col">
+            <h1 class="mb-0">{% trans "My Profile" %}</h1>
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="{% url 'church:dashboard' %}">{% trans "Dashboard" %}</a></li>
+                    <li class="breadcrumb-item active" aria-current="page">{% trans "Profile" %}</li>
+                </ol>
+            </nav>
+        </div>
+    </div>
+
+    <div class="row justify-content-center">
+        <div class="col-lg-8">
+            <div class="card shadow-sm">
+                <div class="card-header" style="background-color: #191970; color: white;">
+                    <h3 class="card-title mb-0">{% trans "Profile Information" %}</h3>
+                </div>
+                <div class="card-body">
+                    <div class="row mb-4">
+                        <div class="col-md-4 text-center">
+                            <div class="position-relative">
+                                {% if user.profile_picture %}
+                                <img src="{{ user.profile_picture.url }}" alt="Profile Picture" 
+                                     class="rounded-circle profile-picture mb-3" width="150" height="150">
+                                {% else %}
+                                <div class="rounded-circle d-flex align-items-center justify-content-center mb-3" 
+                                     style="width: 150px; height: 150px; background-color: #f0f0f0; margin: 0 auto;">
+                                    <i class="bi bi-person-fill" style="font-size: 3rem; color: #777;"></i>
+                                </div>
+                                {% endif %}
+                                <button class="btn btn-sm btn-primary position-absolute bottom-0 end-0 rounded-circle"
+                                        style="width: 40px; height: 40px;"
+                                        onclick="document.getElementById('id_profile_picture').click()">
+                                    <i class="bi bi-camera"></i>
+                                </button>
+                            </div>
+                            <h4>{{ user.get_full_name|default:user.username }}</h4>
+                            <span class="badge 
+                                {% if user.role == 'ADMIN' %}bg-danger
+                                {% elif user.role == 'MAIN_REVEREND' %}bg-primary
+                                {% else %}bg-secondary
+                                {% endif %}">
+                                {{ user.get_role_display }}
+                            </span>
+                        </div>
+                        <div class="col-md-8">
+                            <form method="post" enctype="multipart/form-data">
+                                {% csrf_token %}
+                                
+                                <div class="row mb-3">
+                                    <div class="col-md-6">
+                                        {{ form.first_name|as_crispy_field }}
+                                    </div>
+                                    <div class="col-md-6">
+                                        {{ form.last_name|as_crispy_field }}
+                                    </div>
+                                </div>
+                                
+                                <div class="row mb-3">
+                                    <div class="col-md-6">
+                                        {{ form.email|as_crispy_field }}
+                                    </div>
+                                    <div class="col-md-6">
+                                        {{ form.phone_number|as_crispy_field }}
+                                    </div>
+                                </div>
+                                
+                                <div class="mb-3">
+                                    {{ form.date_of_birth|as_crispy_field }}
+                                </div>
+                                
+                                <div class="mb-3">
+                                    {{ form.address|as_crispy_field }}
+                                </div>
+                                
+                                <div class="mb-3 d-none">
+                                    {{ form.profile_picture|as_crispy_field }}
+                                </div>
+                                
+                                <div class="d-flex justify-content-between mt-4">
+                                    <a href="{% url 'church:dashboard' %}" class="btn btn-outline-secondary">
+                                        <i class="bi bi-arrow-left"></i> {% trans "Back to Dashboard" %}
+                                    </a>
+                                    <button type="submit" class="btn" style="background-color: #B22222; color: white;">
+                                        <i class="bi bi-save"></i> {% trans "Save Changes" %}
+                                    </button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Change Password Section -->
+            <div class="card shadow-sm mt-4">
+                <div class="card-header" style="background-color: #191970; color: white;">
+                    <h3 class="card-title mb-0">{% trans "Change Password" %}</h3>
+                </div>
+                <div class="card-body">
+                    <a href="{% url 'church:password_change' %}" class="btn btn-outline-primary">
+                        <i class="bi bi-shield-lock"></i> {% trans "Change Password" %}
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    // Preview profile picture before upload
+    const profilePictureInput = document.getElementById('id_profile_picture');
+    const profilePicturePreview = document.querySelector('.profile-picture');
+    
+    if (profilePictureInput) {
+        profilePictureInput.addEventListener('change', function(event) {
+            const file = event.target.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    if (profilePicturePreview) {
+                        profilePicturePreview.src = e.target.result;
+                    } else {
+                        // Handle case where no existing profile picture exists
+                        const placeholder = document.querySelector('.bi-person-fill').closest('div');
+                        placeholder.innerHTML = `<img src="${e.target.result}" class="rounded-circle profile-picture mb-3" width="150" height="150">`;
+                    }
+                }
+                reader.readAsDataURL(file);
+            }
+        });
+    }
+
+    // Initialize date picker
+    const dateOfBirthField = document.querySelector('#id_date_of_birth');
+    if (dateOfBirthField && !dateOfBirthField.value) {
+        dateOfBirthField.type = 'text';
+        dateOfBirthField.addEventListener('focus', function() {
+            this.type = 'date';
+        });
+    }
+});
+</script>
+
+<style>
+.profile-picture {
+    object-fit: cover;
+    border: 3px solid #B22222;
+}
+
+/* Custom styling for the file input button */
+.d-none input[type="file"] {
+    display: none;
+}
+</style>
+{% endblock %}

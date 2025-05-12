@@ -1,0 +1,401 @@
+{% extends "church/base.html" %}
+{% load i18n %}
+
+{% block title %}{% trans "IMUM" %}{% endblock %}
+
+{% block content %}
+<div class="container-fluid">
+    <div class="row mb-4">
+        <div class="col">
+            <h1 class="mb-0">{% trans "Church Dashboard" %}</h1>
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item active" aria-current="page">{% trans "Dashboard" %}</li>
+                </ol>
+            </nav>
+        </div>
+        <div class="col-auto">
+            <div class="dropdown">
+                <button class="btn btn-secondary dropdown-toggle" type="button" id="downloadReports" data-bs-toggle="dropdown" aria-expanded="false">
+                    <i class="bi bi-download"></i> {% trans "Download Reports" %}
+                </button>
+                <ul class="dropdown-menu" aria-labelledby="downloadReports">
+                    <li><a class="dropdown-item" href="{% url 'church:download_reports' %}?format=pdf">{% trans "PDF Report" %}</a></li>
+                    <li><a class="dropdown-item" href="{% url 'church:download_reports' %}?format=word">{% trans "Word Report" %}</a></li>
+                    <li><hr class="dropdown-divider"></li>
+                    <li><a class="dropdown-item" href="{% url 'church:download_reports' %}?format=pdf&type=attendance">{% trans "Attendance PDF" %}</a></li>
+                    <li><a class="dropdown-item" href="{% url 'church:download_reports' %}?format=word&type=attendance">{% trans "Attendance Word" %}</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- Tabs for Overview and Quick Stats -->
+    <ul class="nav nav-tabs mb-4">
+        <li class="nav-item">
+            <a class="nav-link active" id="overview-tab" data-bs-toggle="tab" href="#overview">{% trans "Overview" %}</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" id="quick-stats-tab" data-bs-toggle="tab" href="#quick-stats">{% trans "Quick Stats" %}</a>
+        </li>
+    </ul>
+
+    <div class="tab-content">
+        <!-- Overview Tab -->
+        <div class="tab-pane fade show active" id="overview">
+            <div class="row">
+                {% if user.is_superuser or user.role == 'ADMIN' %}
+                    <!-- Admin Dashboard -->
+                    <div class="col-md-4 mb-4">
+                        <div class="card h-100 border-primary">
+                            <div class="card-header bg-primary text-white">
+                                <h5 class="card-title mb-0">{% trans "Provinces" %}</h5>
+                            </div>
+                            <div class="card-body text-center">
+                                <h2 class="display-4">{{ provinces }}</h2>
+                                <p class="card-text">{% trans "Total provinces" %}</p>
+                                <a href="{% url 'church:province_list' %}" class="btn btn-outline-primary btn-sm">{% trans "View" %}</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4 mb-4">
+                        <div class="card h-100 border-success">
+                            <div class="card-header bg-success text-white">
+                                <h5 class="card-title mb-0">{% trans "Districts" %}</h5>
+                            </div>
+                            <div class="card-body text-center">
+                                <h2 class="display-4">{{ districts }}</h2>
+                                <p class="card-text">{% trans "Total districts" %}</p>
+                                <a href="{% url 'church:district_list' %}" class="btn btn-outline-primary btn-sm">{% trans "View" %}</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4 mb-4">
+                        <div class="card h-100 border-info">
+                            <div class="card-header bg-info text-white">
+                                <h5 class="card-title mb-0">{% trans "Churches" %}</h5>
+                            </div>
+                            <div class="card-body text-center">
+                                <h2 class="display-4">{{ churches }}</h2>
+                                <p class="card-text">{% trans "Total churches" %}</p>
+                                <a href="{% url 'church:church_list' %}" class="btn btn-outline-primary btn-sm">{% trans "View" %}</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4 mb-4">
+                        <div class="card h-100 border-warning">
+                            <div class="card-header bg-warning text-white">
+                                <h5 class="card-title mb-0">{% trans "Main Reverends" %}</h5>
+                            </div>
+                            <div class="card-body text-center">
+                                <h2 class="display-4">{{ main_reverends }}</h2>
+                                <p class="card-text">{% trans "Total District superintendentes " %}</p>
+                                <a href="{% url 'church:user_list' %}" class="btn btn-outline-primary btn-sm">{% trans "View" %}</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4 mb-4">
+                        <div class="card h-100 border-danger">
+                            <div class="card-header bg-danger text-white">
+                                <h5 class="card-title mb-0">{% trans "Pastors" %}</h5>
+                            </div>
+                            <div class="card-body text-center">
+                                <h2 class="display-4">{{ pastors }}</h2>
+                                <p class="card-text">{% trans "Total pastors" %}</p>
+                                <a href="{% url 'church:pastor_list' %}" class="btn btn-outline-primary btn-sm">{% trans "View" %}</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4 mb-4">
+                        <div class="card h-100 border-secondary">
+                            <div class="card-header bg-secondary text-white">
+                                <h5 class="card-title mb-0">{% trans "Worshipers" %}</h5>
+                            </div>
+                            <div class="card-body text-center">
+                                <h2 class="display-4">{{ worshipers }}</h2>
+                                <p class="card-text">{% trans "Total worshipers" %}</p>
+                                <a href="{% url 'church:worshiper_list' %}" class="btn btn-outline-primary btn-sm">{% trans "View" %}</a>
+                            </div>
+                        </div>
+                    </div>
+                {% elif user.role == 'MAIN_REVEREND' %}
+                    <!-- Main Reverend Dashboard -->
+                    <div class="col-md-6 mb-4">
+                        <div class="card h-100 border-primary">
+                            <div class="card-header bg-primary text-white">
+                                <h5 class="card-title mb-0">{% trans "District" %}</h5>
+                            </div>
+                            <div class="card-body">
+                                <h3>{{ district.name }}</h3>
+                                <p class="card-text">{{ district.province.name }}</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6 mb-4">
+                        <div class="card h-100 border-success">
+                            <div class="card-header bg-success text-white">
+                                <h5 class="card-title mb-0">{% trans "Churches" %}</h5>
+                            </div>
+                            <div class="card-body text-center">
+                                <h2 class="display-4">{{ churches }}</h2>
+                                <p class="card-text">{% trans "Total churches in district" %}</p>
+                                <a href="{% url 'church:church_list' %}" class="btn btn-outline-primary btn-sm">{% trans "View" %}</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6 mb-4">
+                        <div class="card h-100 border-info">
+                            <div class="card-header bg-info text-white">
+                                <h5 class="card-title mb-0">{% trans "Pastors" %}</h5>
+                            </div>
+                            <div class="card-body text-center">
+                                <h2 class="display-4">{{ pastors }}</h2>
+                                <p class="card-text">{% trans "Total pastors in district" %}</p>
+                                <a href="{% url 'church:pastor_list' %}" class="btn btn-outline-primary btn-sm">{% trans "View" %}</a>
+                            </div>
+                        </div>
+                    </div>
+         
+                    <div class="col-md-6 mb-4">
+                        <div class="card h-100 border-warning">
+                            <div class="card-header bg-warning text-white">
+                                <h5 class="card-title mb-0">{% trans "Worshipers" %}</h5>
+                            </div>
+                            <div class="card-body text-center">
+                                <h2 class="display-4">{{ worshipers }}</h2>
+                                <p class="card-text">{% trans "Total worshipers in district" %}</p>
+                                <a href="{% url 'church:worshiper_list' %}" class="btn btn-outline-primary btn-sm">{% trans "View" %}</a>
+                            </div>
+                        </div>
+                    </div>
+                {% elif user.role == 'PASTOR' %}
+                    <!-- Pastor Dashboard -->
+                    <div class="col-md-6 mb-4">
+                        <div class="card h-100 border-primary">
+                            <div class="card-header bg-primary text-white">
+                                <h5 class="card-title mb-0">{% trans "Church" %}</h5>
+                            </div>
+                            <div class="card-body">
+                                <h3>{{ church.name }}</h3>
+                                <p class="card-text">{{ church.district.name }}, {{ church.district.province.name }}</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6 mb-4">
+                        <div class="card h-100 border-success">
+                            <div class="card-header bg-success text-white">
+                                <h5 class="card-title mb-0">{% trans "Worshipers" %}</h5>
+                            </div>
+                            <div class="card-body text-center">
+                                <h2 class="display-4">{{ worshipers }}</h2>
+                                <p class="card-text">{% trans "Total worshipers in church" %}</p>
+                                <a href="{% url 'church:worshiper_list' %}" class="btn btn-outline-primary btn-sm">{% trans "View" %}</a>
+                            </div>
+                        </div>
+                    </div>
+                {% endif %}
+            </div>
+            <div class="row mt-4">
+                <div class="col-md-8">
+                    <div class="card">
+                        <div class="card-header">
+                            <h5 class="card-title mb-0">{% trans "Attendance Trend" %}</h5>
+                        </div>
+                        <div class="card-body">
+                            {% if attendance_data %}
+                                <canvas id="attendanceChart" height="300"></canvas>
+                            {% else %}
+                                <p class="text-muted">{% trans "No attendance data available." %}</p>
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card">
+                        <div class="card-header">
+                            <h5 class="card-title mb-0">{% trans "Latest News" %}</h5>
+                        </div>
+                        <div class="card-body">
+                            {% if news %}
+                                <div class="list-group">
+                                    {% for item in news %}
+                                        <a href="{% url 'church:news_detail' item.id %}" class="list-group-item list-group-item-action">
+                                            <div class="d-flex w-100 justify-content-between">
+                                                <h6 class="mb-1">{{ item.title }}</h6>
+                                                <small>{{ item.created_at|date:"SHORT_DATE_FORMAT" }}</small>
+                                            </div>
+                                            <p class="mb-1 text-truncate">{{ item.content|truncatewords:10 }}</p>
+                                            <small>{% trans "By" %} {{ item.author.get_full_name }}</small>
+                                        </a>
+                                    {% endfor %}
+                                </div>
+                                <a href="{% url 'church:news_list' %}" class="btn btn-sm btn-outline-primary mt-3">{% trans "View All News" %}</a>
+                            {% else %}
+                                <p class="text-muted">{% trans "No news available." %}</p>
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Quick Stats Tab -->
+        <div class="tab-pane fade" id="quick-stats">
+            <div class="row">
+                <div class="col-md-4 mb-4">
+                    <div class="card h-100 border-primary">
+                        <div class="card-header bg-primary text-white">
+                            <h5 class="card-title mb-0">{% trans "Baptized Members" %}</h5>
+                        </div>
+                        <div class="card-body text-center">
+                            <h2 class="display-4">{{ baptized_count }}</h2>
+                            <p class="card-text">{% trans "Total baptized members" %}</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 mb-4">
+                    <div class="card h-100 border-success">
+                        <div class="card-header bg-success text-white">
+                            <h5 class="card-title mb-0">{% trans "Average Attendance" %}</h5>
+                        </div>
+                        <div class="card-body text-center">
+                            <h2 class="display-4">{{ avg_attendance|floatformat:0 }}</h2>
+                            <p class="card-text">{% trans "Average attendance per service" %}</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 mb-4">
+                    <div class="card h-100 border-info">
+                        <div class="card-header bg-info text-white">
+                            <h5 class="card-title mb-0">{% trans "New Members" %}</h5>
+                        </div>
+                        <div class="card-body text-center">
+                            <h2 class="display-4">{{ new_members }}</h2>
+                            <p class="card-text">{% trans "Members added in the last year" %}</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 mb-4">
+                    <div class="card">
+                        <div class="card-header">
+                            <h5 class="card-title mb-0">{% trans "Gender Distribution" %}</h5>
+                        </div>
+                        <div class="card-body">
+                            {% if gender_distribution %}
+                                <canvas id="genderChart" height="200"></canvas>
+                            {% else %}
+                                <p class="text-muted">{% trans "No gender data available." %}</p>
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    // Attendance Chart
+    {% if attendance_data %}
+    const attendanceCtx = document.getElementById('attendanceChart').getContext('2d');
+    const attendanceChart = new Chart(attendanceCtx, {
+        type: 'line',
+        data: {
+            labels: [
+                {% for record in attendance_data %}
+                    "{{ record.date|date:'Y-m-d' }}"{% if not forloop.last %},{% endif %}
+                {% endfor %}
+            ],
+            datasets: [{
+                label: '{% trans "Total Attendance" %}',
+                data: [
+                    {% for record in attendance_data %}
+                        {{ record.total }}{% if not forloop.last %},{% endif %}
+                    {% endfor %}
+                ],
+                backgroundColor: 'rgba(178, 34, 34, 0.2)',
+                borderColor: 'rgba(178, 34, 34, 1)',
+                borderWidth: 2,
+                tension: 0.1
+            }]
+        },
+        options: {
+            responsive: true,
+            plugins: {
+                legend: { position: 'top' },
+                tooltip: { mode: 'index', intersect: false }
+            },
+            scales: {
+                y: {
+                    beginAtZero: true,
+                    title: { display: true, text: '{% trans "Number of People" %}' }
+                },
+                x: {
+                    title: { display: true, text: '{% trans "Date" %}' }
+                }
+            }
+        }
+    });
+    {% endif %}
+
+    // Gender Distribution Pie Chart
+    {% if gender_distribution %}
+    const genderCtx = document.getElementById('genderChart').getContext('2d');
+    const genderChart = new Chart(genderCtx, {
+        type: 'pie',
+        data: {
+            labels: [
+                {% for item in gender_distribution %}
+                    {% if item.gender == 'M' %}'{% trans "Male" %}'
+                    {% elif item.gender == 'F' %}'{% trans "Female" %}'
+                    {% elif item.gender == 'O' %}'{% trans "Other" %}'
+                    {% else %}'{% trans "Unknown" %}'{% endif %}
+                    {% if not forloop.last %},{% endif %}
+                {% endfor %}
+            ],
+            datasets: [{
+                data: [
+                    {% for item in gender_distribution %}
+                        {{ item.count }}{% if not forloop.last %},{% endif %}
+                    {% endfor %}
+                ],
+                backgroundColor: [
+                    'rgba(54, 162, 235, 0.8)',
+                    'rgba(255, 99, 132, 0.8)',
+                    'rgba(255, 206, 86, 0.8)',
+                    'rgba(75, 192, 192, 0.8)'
+                ],
+                borderColor: [
+                    'rgba(54, 162, 235, 1)',
+                    'rgba(255, 99, 132, 1)',
+                    'rgba(255, 206, 86, 1)',
+                    'rgba(75, 192, 192, 1)'
+                ],
+                borderWidth: 1
+            }]
+        },
+        options: {
+            responsive: true,
+            plugins: {
+                legend: { position: 'top' },
+                tooltip: {
+                    callbacks: {
+                        label: function(context) {
+                            let label = context.label || '';
+                            let value = context.raw || 0;
+                            let total = context.dataset.data.reduce((a, b) => a + b, 0);
+                            let percentage = ((value / total) * 100).toFixed(1);
+                            return `${label}: ${value} (${percentage}%)`;
+                        }
+                    }
+                }
+            }
+        }
+    });
+    {% endif %}
+});
+</script>
+{% endblock %}

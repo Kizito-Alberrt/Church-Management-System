@@ -1,0 +1,27 @@
+{% load i18n %}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>{% trans "Welcome to the Church Management System" %}</title>
+</head>
+<body style="font-family: Arial, sans-serif; line-height: 1.6; color: #333;">
+    <div style="max-width: 600px; margin: 0 auto; padding: 20px; border: 1px solid #ddd;">
+        <h2 style="color: #191970;">{% trans "Welcome!" %}</h2>
+        <p>{% blocktrans with role=user_role %}We are delighted to welcome you to the {{ system_name }} as a {{ role }}.{% endblocktrans %}</p>
+        <p>{% trans "You can now access our platform to manage and engage with our community. Please use the following link to log in:" %}</p>
+        <p>
+            <a href="{{ church:login_url }}" 
+               style="display: inline-block; padding: 10px 20px; background-color: #B22222; color: white; text-decoration: none; border-radius: 5px;">
+                {% trans "Log In Now" %}
+            </a>
+        </p>
+        <p>{% trans "If you have any questions, feel free to contact our support team." %}</p>
+        <p>{% trans "Blessings," %}<br>{% blocktrans %}The {{ system_name }} Team{% endblocktrans %}</p>
+        <hr style="border-top: 1px solid #eee;">
+        <p style="font-size: 12px; color: #777;">
+            {% trans "This is an automated email, please do not reply directly." %}
+        </p>
+    </div>
+</body>
+</html>

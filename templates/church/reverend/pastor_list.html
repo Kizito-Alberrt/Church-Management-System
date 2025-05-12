@@ -1,0 +1,150 @@
+{% extends "church/base.html" %}
+{% load i18n static %}
+
+{% block title %}{% trans "Pastor Management" %}{% endblock %}
+
+{% block content %}
+<div class="container-fluid">
+    <div class="row mb-4">
+        <div class="col">
+            <h1 class="mb-0">{% trans "Pastor Management" %}</h1>
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="{% url 'church:dashboard' %}">{% trans "Dashboard" %}</a></li>
+                    <li class="breadcrumb-item active" aria-current="page">{% trans "Pastors" %}</li>
+                </ol>
+            </nav>
+        </div>
+        {% if user.is_superuser or user.role == 'ADMIN' or user.role == 'MAIN_REVEREND' %}
+        <div class="col-auto">
+            <a href="{% url 'church:pastor_create' %}" class="btn" style="background-color: #B22222; color: white;">
+                <i class="bi bi-plus-lg"></i> {% trans "Add Pastor" %}
+            </a>
+        </div>
+
+        <div class="mb-3">
+            <a href="{% url 'church:download_reports' %}?type=pastors" class="btn btn-primary">{% trans "Download Pastors List" %}</a>
+        </div>
+        {% endif %}
+    </div>
+
+    <div class="card shadow-sm">
+        <div class="card-header" style="background-color: #191970; color: white;">
+            <div class="d-flex justify-content-between align-items-center">
+                <h3 class="card-title mb-0">
+                    {% if district %}
+                        {% trans "Pastors in" %} {{ district.name }}
+                    {% else %}
+                        {% trans "All Pastors" %}
+                    {% endif %}
+                </h3>
+                <span class="badge bg-white text-dark">
+                    {% trans "Total" %}: {{ pastors.count }}
+                </span>
+            </div>
+        </div>
+        <div class="card-body">
+            {% if messages %}
+                {% for message in messages %}
+                <div class="alert alert-{{ message.tags }} alert-dismissible fade show">
+                    {{ message }}
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+                {% endfor %}
+            {% endif %}
+
+            {% if pastors %}
+            <div class="table-responsive">
+                <table class="table table-hover">
+                    <thead>
+                        <tr>
+                            <th>{% trans "Photo" %}</th>
+                            <th>{% trans "Name" %}</th>
+                            <th>{% trans "Church" %}</th>
+                            <th>{% trans "Contact" %}</th>
+                            <th>{% trans "Actions" %}</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for pastor in pastors %}
+                        <tr>
+                            <td>
+                                {% if pastor.profile_picture %}
+                                <img src="{{ pastor.profile_picture.url }}" alt="{{ pastor.get_full_name }}" 
+                                     class="rounded-circle" width="40" height="40">
+                                {% else %}
+                                <div class="rounded-circle d-inline-flex align-items-center justify-content-center" 
+                                     style="width: 40px; height: 40px; background-color: #f0f0f0;">
+                                    <i class="bi bi-person-fill" style="color: #777;"></i>
+                                </div>
+                                {% endif %}
+                            </td>
+                            <td>
+                                <strong>{{ pastor.get_full_name|default:pastor.username }}</strong>
+                            </td>
+                            <td>
+                                {% if pastor.churches.exists %}
+                                    {% for church in pastor.churches.all %}
+                                        {{ church.name }}
+                                        <small class="text-muted d-block">{{ church.district.name }}</small>
+                                    {% endfor %}
+                                {% else %}
+                                    <span class="text-muted">
+                                        {% trans "Not assigned" %}
+                                        {% if user.role == 'MAIN_REVEREND' and pastor.created_by == user %}
+                                            <small class="text-info">({% trans "Pending assignment" %})</small>
+                                        {% endif %}
+                                    </span>
+                                {% endif %}
+                            </td>
+                            <td>
+                                {% if pastor.phone_number %}
+                                <a href="tel:{{ pastor.phone_number }}">{{ pastor.phone_number }}</a><br>
+                                {% endif %}
+                                {% if pastor.email %}
+                                <a href="mailto:{{ pastor.email }}">{{ pastor.email }}</a>
+                                {% endif %}
+                            </td>
+                            <td>
+                                <div class="btn-group btn-group-sm">
+                                    <a href="{% url 'church:user_edit' pastor.pk %}" class="btn btn-outline-primary" title="{% trans 'Edit' %}">
+                                        <i class="bi bi-pencil"></i>
+                                    </a>
+                                    {% if user.is_superuser or user.role == 'ADMIN' or user.role == 'MAIN_REVEREND' %}
+                                        {% if not pastor.churches.exists and pastor.created_by == user or pastor.has_district_churches %}
+                                            <a href="{% url 'church:pastor_assign_church' pastor.pk %}" class="btn btn-outline-success" title="{% trans 'Assign Church' %}">
+                                                <i class="bi bi-house-add"></i>
+                                            </a>
+                                        {% endif %}
+                                        <a href="{% url 'church:pastor_delete' pastor.pk %}" class="btn btn-outline-danger" title="{% trans 'Delete' %}">
+                                            <i class="bi bi-trash"></i>
+                                        </a>
+                                    {% endif %}
+                                </div>
+                            </td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+            {% else %}
+            <div class="text-center py-5">
+                <i class="bi bi-people" style="font-size: 3rem; color: #6c757d;"></i>
+                <h4 class="mt-3">
+                    {% if district %}
+                        {% trans "No pastors found in your district" %}
+                    {% else %}
+                        {% trans "No pastors found" %}
+                    {% endif %}
+                </h4>
+                {% if user.is_superuser or user.role == 'ADMIN' or user.role == 'MAIN_REVEREND' %}
+                <a href="{% url 'church:pastor_create' %}" class="btn mt-3" style="background-color: #B22222; color: white;">
+                    <i class="bi bi-plus-lg"></i> {% trans "Add First Pastor" %}
+                </a>
+                {% endif %}
+            </div>
+            {% endif %}
+        </div>
+    </div>
+</div>
+{% endblock %}

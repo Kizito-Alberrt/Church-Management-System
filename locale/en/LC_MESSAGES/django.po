@@ -1,0 +1,1568 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2025-04-21 13:21+0200\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+#: .\church\admin.py:23
+msgid "Personal info"
+msgstr ""
+
+#: .\church\admin.py:25
+msgid "Permissions"
+msgstr ""
+
+#: .\church\admin.py:28
+msgid "Important dates"
+msgstr ""
+
+#: .\church\forms.py:67
+msgid "Send email notification to users"
+msgstr ""
+
+#: .\church\forms.py:68
+msgid "Uncheck if you don't want to send emails about this news"
+msgstr ""
+
+#: .\church\forms.py:101 .\templates\church\admin\user_list.html:36
+msgid "Email"
+msgstr ""
+
+#: .\church\forms.py:108 .\templates\church\auth\password_reset_confirm.html:22
+msgid "New password"
+msgstr ""
+
+#: .\church\forms.py:113
+msgid "New password confirmation"
+msgstr ""
+
+#: .\church\models.py:8
+msgid "Admin"
+msgstr ""
+
+#: .\church\models.py:9 .\templates\church\location\district_form.html:38
+#: .\templates\church\location\district_list.html:42
+msgid "Main Reverend"
+msgstr ""
+
+#: .\church\models.py:10 .\templates\church\location\church_form.html:38
+#: .\templates\church\location\church_list.html:65
+msgid "Pastor"
+msgstr ""
+
+#: .\church\models.py:22
+msgid "groups"
+msgstr ""
+
+#: .\church\models.py:25
+msgid ""
+"The groups this user belongs to. A user will get all permissions granted to "
+"each of their groups."
+msgstr ""
+
+#: .\church\models.py:33
+msgid "user permissions"
+msgstr ""
+
+#: .\church\models.py:35
+msgid "Specific permissions for this user."
+msgstr ""
+
+#: .\church\models.py:41
+msgid "user"
+msgstr ""
+
+#: .\church\models.py:42
+msgid "users"
+msgstr ""
+
+#: .\church\models.py:52 .\templates\church\location\district_form.html:34
+#: .\templates\church\location\district_list.html:41
+msgid "Province"
+msgstr ""
+
+#: .\church\models.py:53 .\templates\church\dashboard.html:47
+#: .\templates\church\dashboard.html:69
+#: .\templates\church\location\province_list.html:4
+#: .\templates\church\location\province_list.html:10
+#: .\templates\church\location\province_list.html:14
+msgid "Provinces"
+msgstr ""
+
+#: .\church\models.py:66 .\templates\church\dashboard.html:146
+#: .\templates\church\location\church_form.html:34
+#: .\templates\church\location\church_list.html:64
+msgid "District"
+msgstr ""
+
+#: .\church\models.py:67 .\templates\church\dashboard.html:50
+#: .\templates\church\dashboard.html:83
+#: .\templates\church\location\church_list.html:21
+#: .\templates\church\location\district_list.html:4
+#: .\templates\church\location\district_list.html:10
+#: .\templates\church\location\district_list.html:14
+msgid "Districts"
+msgstr ""
+
+#: .\church\models.py:83 .\templates\church\attendance\list.html:36
+#: .\templates\church\dashboard.html:196
+#: .\templates\church\reverend\pastor_list.html:60
+msgid "Church"
+msgstr ""
+
+#: .\church\models.py:84 .\templates\church\dashboard.html:53
+#: .\templates\church\dashboard.html:96 .\templates\church\dashboard.html:158
+#: .\templates\church\location\church_list.html:4
+#: .\templates\church\location\church_list.html:24
+#: .\templates\church\location\district_list.html:43
+msgid "Churches"
+msgstr ""
+
+#: .\church\models.py:92 .\church\views.py:871 .\church\views.py:911
+#: .\templates\church\pastor\worshiper_delete.html:48
+#: .\templates\church\pastor\worshiper_list.html:79
+msgid "Male"
+msgstr ""
+
+#: .\church\models.py:93 .\church\views.py:871 .\church\views.py:911
+#: .\templates\church\pastor\worshiper_delete.html:50
+#: .\templates\church\pastor\worshiper_list.html:81
+msgid "Female"
+msgstr ""
+
+#: .\church\models.py:94 .\church\models.py:124 .\church\views.py:871
+#: .\church\views.py:911 .\templates\church\pastor\worshiper_delete.html:52
+#: .\templates\church\pastor\worshiper_list.html:83
+msgid "Other"
+msgstr ""
+
+#: .\church\models.py:111
+msgid "Worshiper"
+msgstr ""
+
+#: .\church\models.py:112 .\templates\church\base.html:35
+#: .\templates\church\dashboard.html:132 .\templates\church\dashboard.html:182
+#: .\templates\church\dashboard.html:208
+#: .\templates\church\location\church_list.html:67
+#: .\templates\church\pastor\worshiper_create.html:14
+#: .\templates\church\pastor\worshiper_delete.html:14
+#: .\templates\church\pastor\worshiper_edit.html:14
+#: .\templates\church\pastor\worshiper_list.html:14
+msgid "Worshipers"
+msgstr ""
+
+#: .\church\models.py:120
+msgid "Spouse"
+msgstr ""
+
+#: .\church\models.py:121
+msgid "Parent"
+msgstr ""
+
+#: .\church\models.py:122
+msgid "Child"
+msgstr ""
+
+#: .\church\models.py:123
+msgid "Sibling"
+msgstr ""
+
+#: .\church\models.py:135 .\church\models.py:136
+msgid "Next of Kin"
+msgstr ""
+
+#: .\church\models.py:149
+msgid "Medical History"
+msgstr ""
+
+#: .\church\models.py:150
+msgid "Medical Histories"
+msgstr ""
+
+#: .\church\models.py:166
+msgid "Attendance Record"
+msgstr ""
+
+#: .\church\models.py:167 .\templates\church\attendance\list.html:4
+#: .\templates\church\attendance\list.html:10
+msgid "Attendance Records"
+msgstr ""
+
+#: .\church\models.py:187 .\templates\church\news\news_detail.html:59
+msgid "All Users"
+msgstr ""
+
+#: .\church\models.py:188 .\templates\church\news\news_detail.html:61
+msgid "Main Reverends and Pastors"
+msgstr ""
+
+#: .\church\models.py:189 .\templates\church\news\news_detail.html:63
+msgid "Pastors Only"
+msgstr ""
+
+#: .\church\models.py:193 .\church\models.py:194
+#: .\templates\church\base.html:42 .\templates\church\news\create.html:14
+#: .\templates\church\news\delete.html:14
+#: .\templates\church\news\detail.html:14 .\templates\church\news\edit.html:14
+#: .\templates\church\news\list.html:14
+#: .\templates\church\news\news_detail.html:14
+msgid "News"
+msgstr ""
+
+#: .\church\views.py:32 .\church\views.py:57 .\church\views.py:359
+#: .\church\views.py:368 .\church\views.py:385 .\church\views.py:403
+#: .\church\views.py:418 .\church\views.py:451 .\church\views.py:482
+#: .\church\views.py:504 .\church\views.py:528 .\church\views.py:555
+#: .\church\views.py:576 .\church\views.py:600 .\church\views.py:617
+#: .\church\views.py:644 .\church\views.py:680 .\church\views.py:723
+#: .\church\views.py:798 .\church\views.py:836
+msgid "You do not have permission to access this page."
+msgstr ""
+
+#: .\church\views.py:51 .\church\views.py:79
+msgid "Invalid format requested"
+msgstr ""
+
+#: .\church\views.py:217
+msgid "Profile updated successfully!"
+msgstr ""
+
+#: .\church\views.py:235
+#, python-format
+msgid "Welcome back, %(name)s!"
+msgstr ""
+
+#: .\church\views.py:238
+msgid "Invalid username or password."
+msgstr ""
+
+#: .\church\views.py:245
+msgid "You have been logged out successfully."
+msgstr ""
+
+#: .\church\views.py:304
+msgid "You are not assigned to any district. Please contact the administrator."
+msgstr ""
+
+#: .\church\views.py:324
+msgid ""
+"You are not assigned to any church. Please contact your district reverend."
+msgstr ""
+
+#: .\church\views.py:328
+msgid "An error occurred while loading the dashboard."
+msgstr ""
+
+#: .\church\views.py:375
+msgid "User created successfully!"
+msgstr ""
+
+#: .\church\views.py:393
+msgid "User updated successfully!"
+msgstr ""
+
+#: .\church\views.py:409
+msgid "User deleted successfully!"
+msgstr ""
+
+#: .\church\views.py:426
+msgid "You are not assigned to any district."
+msgstr ""
+
+#: .\church\views.py:445
+msgid "An error occurred while loading pastors."
+msgstr ""
+
+#: .\church\views.py:471 .\church\views.py:992 .\church\views.py:1212
+msgid "Pastor created successfully!"
+msgstr ""
+
+#: .\church\views.py:514
+msgid "Worshiper added successfully!"
+msgstr ""
+
+#: .\church\views.py:535
+msgid "You can only edit worshipers in your church."
+msgstr ""
+
+#: .\church\views.py:542
+msgid "Worshiper updated successfully!"
+msgstr ""
+
+#: .\church\views.py:562
+msgid "You can only delete worshipers in your church."
+msgstr ""
+
+#: .\church\views.py:567
+msgid "Worshiper deleted successfully!"
+msgstr ""
+
+#: .\church\views.py:607
+msgid "Attendance record created successfully!"
+msgstr ""
+
+#: .\church\views.py:624
+msgid "You can only edit records from your church."
+msgstr ""
+
+#: .\church\views.py:627
+msgid "You can only edit records from your district."
+msgstr ""
+
+#: .\church\views.py:634
+msgid "Attendance record updated successfully!"
+msgstr ""
+
+#: .\church\views.py:651
+msgid "You can only delete records from your church."
+msgstr ""
+
+#: .\church\views.py:654
+msgid "You can only delete records from your district."
+msgstr ""
+
+#: .\church\views.py:659
+msgid "Attendance record deleted successfully!"
+msgstr ""
+
+#: .\church\views.py:695 .\templates\church\news\create.html:47
+msgid "You don't have permission to create news."
+msgstr ""
+
+#: .\church\views.py:710
+msgid "News created successfully!"
+msgstr ""
+
+#: .\church\views.py:714
+msgid "An error occurred while creating the news."
+msgstr ""
+
+#: .\church\views.py:729
+msgid "You can only edit your own news items."
+msgstr ""
+
+#: .\church\views.py:742
+msgid "News item updated successfully!"
+msgstr ""
+
+#: .\church\views.py:805
+msgid "You can only delete your own news items."
+msgstr ""
+
+#: .\church\views.py:810
+msgid "News item deleted successfully!"
+msgstr ""
+
+#: .\church\views.py:821 .\church\views.py:824
+msgid "You do not have permission to view this news item."
+msgstr ""
+
+#: .\church\views.py:862 .\church\views.py:902
+#: .\templates\church\reports\dashboard.html:53
+msgid "Baptized"
+msgstr ""
+
+#: .\church\views.py:862 .\church\views.py:902
+msgid "Not Baptized"
+msgstr ""
+
+#: .\church\views.py:968 .\church\views.py:985 .\church\views.py:1205
+msgid "Permission denied"
+msgstr ""
+
+#: .\church\views.py:975
+msgid "Main Reverend created successfully!"
+msgstr ""
+
+#: .\church\views.py:1003 .\church\views.py:1062 .\church\views.py:1126
+msgid "You do not have permission to view this page."
+msgstr ""
+
+#: .\church\views.py:1012 .\church\views.py:1029 .\church\views.py:1047
+#: .\church\views.py:1071 .\church\views.py:1088 .\church\views.py:1106
+#: .\church\views.py:1140 .\church\views.py:1165 .\church\views.py:1188
+msgid "You do not have permission to perform this action."
+msgstr ""
+
+#: .\church\views.py:1019
+msgid "Province created successfully!"
+msgstr ""
+
+#: .\church\views.py:1037
+msgid "Province updated successfully!"
+msgstr ""
+
+#: .\church\views.py:1053
+msgid "Province deleted successfully!"
+msgstr ""
+
+#: .\church\views.py:1078
+msgid "District created successfully!"
+msgstr ""
+
+#: .\church\views.py:1096
+msgid "District updated successfully!"
+msgstr ""
+
+#: .\church\views.py:1112
+msgid "District deleted successfully!"
+msgstr ""
+
+#: .\church\views.py:1147
+msgid "Church created successfully!"
+msgstr ""
+
+#: .\church\views.py:1160
+msgid "You can only edit churches in your district."
+msgstr ""
+
+#: .\church\views.py:1172
+msgid "Church updated successfully!"
+msgstr ""
+
+#: .\church\views.py:1185
+msgid "You can only delete churches in your district."
+msgstr ""
+
+#: .\church\views.py:1193
+msgid "Church deleted successfully!"
+msgstr ""
+
+#: .\church_ms\settings.py:126
+msgid "English"
+msgstr ""
+
+#: .\church_ms\settings.py:127
+msgid "Portuguese"
+msgstr ""
+
+#: .\templates\church\admin\main_reverend_create.html:4
+#: .\templates\church\admin\main_reverend_create.html:10
+#: .\templates\church\admin\main_reverend_create.html:15
+#: .\templates\church\base.html:85
+msgid "Add Main Reverend"
+msgstr ""
+
+#: .\templates\church\admin\main_reverend_create.html:13
+#: .\templates\church\admin\pastor_create.html:13
+#: .\templates\church\admin\user_create.html:13
+#: .\templates\church\admin\user_delete.html:13
+#: .\templates\church\admin\user_edit.html:13
+#: .\templates\church\admin\user_list.html:13
+#: .\templates\church\attendance\create.html:13
+#: .\templates\church\attendance\delete.html:13
+#: .\templates\church\attendance\edit.html:13
+#: .\templates\church\attendance\list.html:13
+#: .\templates\church\dashboard.html:4 .\templates\church\dashboard.html:9
+#: .\templates\church\dashboard.html:17
+#: .\templates\church\location\church_form.html:13
+#: .\templates\church\location\church_list.html:19
+#: .\templates\church\location\district_form.html:13
+#: .\templates\church\location\district_list.html:13
+#: .\templates\church\location\province_form.html:13
+#: .\templates\church\location\province_list.html:13
+#: .\templates\church\news\create.html:13
+#: .\templates\church\news\delete.html:13
+#: .\templates\church\news\detail.html:13 .\templates\church\news\edit.html:13
+#: .\templates\church\news\list.html:13
+#: .\templates\church\news\news_detail.html:13
+#: .\templates\church\pastor\worshiper_create.html:13
+#: .\templates\church\pastor\worshiper_delete.html:13
+#: .\templates\church\pastor\worshiper_edit.html:13
+#: .\templates\church\pastor\worshiper_list.html:13
+#: .\templates\church\profile.html:14
+#: .\templates\church\reports\dashboard.html:13
+#: .\templates\church\reverend\pastor_list.html:13
+msgid "Dashboard"
+msgstr ""
+
+#: .\templates\church\admin\main_reverend_create.html:14
+#: .\templates\church\admin\user_create.html:14
+#: .\templates\church\admin\user_delete.html:14
+#: .\templates\church\admin\user_edit.html:14
+#: .\templates\church\admin\user_list.html:14 .\templates\church\base.html:25
+msgid "Users"
+msgstr ""
+
+#: .\templates\church\admin\main_reverend_create.html:25
+msgid "Main Reverend Information"
+msgstr ""
+
+#: .\templates\church\admin\main_reverend_create.html:34
+#: .\templates\church\admin\pastor_create.html:34
+#: .\templates\church\admin\user_create.html:34
+#: .\templates\church\admin\user_delete.html:63
+#: .\templates\church\admin\user_edit.html:58
+#: .\templates\church\attendance\create.html:33
+#: .\templates\church\attendance\delete.html:51
+#: .\templates\church\attendance\edit.html:35
+#: .\templates\church\location\church_form.html:52
+#: .\templates\church\location\district_form.html:44
+#: .\templates\church\location\province_form.html:39
+#: .\templates\church\news\create.html:35
+#: .\templates\church\news\delete.html:49 .\templates\church\news\edit.html:42
+#: .\templates\church\pastor\worshiper_create.html:34
+#: .\templates\church\pastor\worshiper_delete.html:65
+#: .\templates\church\pastor\worshiper_edit.html:59
+msgid "Cancel"
+msgstr ""
+
+#: .\templates\church\admin\main_reverend_create.html:37
+msgid "Save Main Reverend"
+msgstr ""
+
+#: .\templates\church\admin\pastor_create.html:4
+#: .\templates\church\admin\pastor_create.html:10
+#: .\templates\church\admin\pastor_create.html:15
+#: .\templates\church\reverend\pastor_list.html:21
+msgid "Add Pastor"
+msgstr ""
+
+#: .\templates\church\admin\pastor_create.html:14
+#: .\templates\church\base.html:30 .\templates\church\dashboard.html:120
+#: .\templates\church\dashboard.html:170
+#: .\templates\church\reverend\pastor_list.html:14
+msgid "Pastors"
+msgstr ""
+
+#: .\templates\church\admin\pastor_create.html:25
+msgid "Pastor Information"
+msgstr ""
+
+#: .\templates\church\admin\pastor_create.html:37
+msgid "Save Pastor"
+msgstr ""
+
+#: .\templates\church\admin\user_create.html:4
+msgid "Create User"
+msgstr ""
+
+#: .\templates\church\admin\user_create.html:10
+msgid "Create New User"
+msgstr ""
+
+#: .\templates\church\admin\user_create.html:15
+#: .\templates\church\news\create.html:15
+msgid "Create"
+msgstr ""
+
+#: .\templates\church\admin\user_create.html:25
+msgid "User Information"
+msgstr ""
+
+#: .\templates\church\admin\user_create.html:37
+msgid "Save User"
+msgstr ""
+
+#: .\templates\church\admin\user_delete.html:4
+#: .\templates\church\admin\user_delete.html:10
+msgid "Delete User"
+msgstr ""
+
+#: .\templates\church\admin\user_delete.html:15
+#: .\templates\church\admin\user_list.html:78
+#: .\templates\church\attendance\delete.html:15
+#: .\templates\church\attendance\edit.html:42
+#: .\templates\church\location\church_list.html:90
+#: .\templates\church\location\district_list.html:65
+#: .\templates\church\location\province_list.html:51
+#: .\templates\church\news\delete.html:15
+#: .\templates\church\news\detail.html:73 .\templates\church\news\edit.html:49
+#: .\templates\church\news\news_detail.html:83
+#: .\templates\church\pastor\worshiper_delete.html:15
+#: .\templates\church\pastor\worshiper_list.html:109
+#: .\templates\church\reverend\pastor_list.html:103
+msgid "Delete"
+msgstr ""
+
+#: .\templates\church\admin\user_delete.html:25
+#: .\templates\church\attendance\delete.html:25
+#: .\templates\church\news\delete.html:25
+#: .\templates\church\pastor\worshiper_delete.html:25
+msgid "Confirm Deletion"
+msgstr ""
+
+#: .\templates\church\admin\user_delete.html:30
+#: .\templates\church\attendance\delete.html:30
+#: .\templates\church\news\delete.html:30
+#: .\templates\church\pastor\worshiper_delete.html:30
+msgid "Warning!"
+msgstr ""
+
+#: .\templates\church\admin\user_delete.html:31
+msgid ""
+"You are about to permanently delete this user account. This action cannot be "
+"undone."
+msgstr ""
+
+#: .\templates\church\admin\user_delete.html:66
+#: .\templates\church\attendance\delete.html:54
+#: .\templates\church\news\delete.html:52
+#: .\templates\church\pastor\worshiper_delete.html:68
+msgid "Confirm Delete"
+msgstr ""
+
+#: .\templates\church\admin\user_edit.html:4
+#: .\templates\church\admin\user_edit.html:10
+msgid "Edit User"
+msgstr ""
+
+#: .\templates\church\admin\user_edit.html:15
+#: .\templates\church\admin\user_list.html:75
+#: .\templates\church\attendance\edit.html:15
+#: .\templates\church\location\church_list.html:87
+#: .\templates\church\location\district_list.html:62
+#: .\templates\church\location\province_list.html:48
+#: .\templates\church\news\detail.html:22 .\templates\church\news\edit.html:15
+#: .\templates\church\news\news_detail.html:80
+#: .\templates\church\pastor\worshiper_edit.html:15
+#: .\templates\church\pastor\worshiper_list.html:106
+#: .\templates\church\reverend\pastor_list.html:100
+msgid "Edit"
+msgstr ""
+
+#: .\templates\church\admin\user_edit.html:25
+msgid "Edit User Information"
+msgstr ""
+
+#: .\templates\church\admin\user_edit.html:61
+#: .\templates\church\attendance\edit.html:39
+#: .\templates\church\news\edit.html:46
+#: .\templates\church\pastor\worshiper_edit.html:62
+#: .\templates\church\profile.html:94
+msgid "Save Changes"
+msgstr ""
+
+#: .\templates\church\admin\user_list.html:4
+#: .\templates\church\admin\user_list.html:10
+msgid "User Management"
+msgstr ""
+
+#: .\templates\church\admin\user_list.html:20
+msgid "Add User"
+msgstr ""
+
+#: .\templates\church\admin\user_list.html:27
+msgid "User List"
+msgstr ""
+
+#: .\templates\church\admin\user_list.html:34
+#: .\templates\church\location\church_list.html:63
+#: .\templates\church\location\district_list.html:40
+#: .\templates\church\location\province_list.html:35
+#: .\templates\church\pastor\worshiper_list.html:53
+#: .\templates\church\reverend\pastor_list.html:59
+msgid "Name"
+msgstr ""
+
+#: .\templates\church\admin\user_list.html:35
+#: .\templates\church\auth\login.html:38
+msgid "Username"
+msgstr ""
+
+#: .\templates\church\admin\user_list.html:37
+msgid "Role"
+msgstr ""
+
+#: .\templates\church\admin\user_list.html:38
+msgid "Status"
+msgstr ""
+
+#: .\templates\church\admin\user_list.html:39
+#: .\templates\church\attendance\list.html:41
+#: .\templates\church\location\church_list.html:68
+#: .\templates\church\location\district_list.html:44
+#: .\templates\church\location\province_list.html:37
+#: .\templates\church\pastor\worshiper_list.html:58
+#: .\templates\church\reverend\pastor_list.html:62
+msgid "Actions"
+msgstr ""
+
+#: .\templates\church\admin\user_list.html:68
+msgid "Active"
+msgstr ""
+
+#: .\templates\church\admin\user_list.html:70
+msgid "Inactive"
+msgstr ""
+
+#: .\templates\church\admin\user_list.html:86
+msgid "No users found"
+msgstr ""
+
+#: .\templates\church\attendance\create.html:4
+msgid "Create Attendance Record"
+msgstr ""
+
+#: .\templates\church\attendance\create.html:10
+msgid "New Attendance Record"
+msgstr ""
+
+#: .\templates\church\attendance\create.html:14
+#: .\templates\church\attendance\delete.html:14
+#: .\templates\church\attendance\edit.html:14
+#: .\templates\church\attendance\list.html:14 .\templates\church\base.html:38
+msgid "Attendance"
+msgstr ""
+
+#: .\templates\church\attendance\create.html:15
+msgid "New"
+msgstr ""
+
+#: .\templates\church\attendance\create.html:25
+msgid "Attendance Details"
+msgstr ""
+
+#: .\templates\church\attendance\create.html:36
+msgid "Save Record"
+msgstr ""
+
+#: .\templates\church\attendance\delete.html:4
+msgid "Delete Attendance Record"
+msgstr ""
+
+#: .\templates\church\attendance\delete.html:10
+msgid "Delete Record"
+msgstr ""
+
+#: .\templates\church\attendance\delete.html:31
+msgid "You are about to permanently delete this attendance record."
+msgstr ""
+
+#: .\templates\church\attendance\delete.html:35
+msgid "Record Details"
+msgstr ""
+
+#: .\templates\church\attendance\delete.html:37
+msgid "Date:"
+msgstr "Data"
+
+#: .\templates\church\attendance\delete.html:40
+msgid "Church:"
+msgstr ""
+
+#: .\templates\church\attendance\delete.html:43
+msgid "Total Attendance:"
+msgstr ""
+
+#: .\templates\church\attendance\edit.html:4
+msgid "Edit Attendance Record"
+msgstr ""
+
+#: .\templates\church\attendance\edit.html:10
+msgid "Edit Attendance"
+msgstr ""
+
+#: .\templates\church\attendance\edit.html:26
+msgid "Editing record for"
+msgstr ""
+
+#: .\templates\church\attendance\list.html:20
+msgid "New Record"
+msgstr ""
+
+#: .\templates\church\attendance\list.html:27
+msgid "Attendance History"
+msgstr ""
+
+#: .\templates\church\attendance\list.html:35
+#: .\templates\church\dashboard.html:306
+#: .\templates\church\reports\dashboard.html:144
+msgid "Date"
+msgstr ""
+
+#: .\templates\church\attendance\list.html:37
+msgid "Men"
+msgstr ""
+
+#: .\templates\church\attendance\list.html:38
+msgid "Women"
+msgstr ""
+
+#: .\templates\church\attendance\list.html:39
+msgid "Children"
+msgstr ""
+
+#: .\templates\church\attendance\list.html:40
+#: .\templates\church\location\church_list.html:53
+#: .\templates\church\location\district_list.html:30
+#: .\templates\church\news\list.html:32
+#: .\templates\church\pastor\worshiper_list.html:43
+#: .\templates\church\reverend\pastor_list.html:39
+msgid "Total"
+msgstr ""
+
+#: .\templates\church\attendance\list.html:99
+msgid "No attendance records found"
+msgstr ""
+
+#: .\templates\church\attendance\list.html:101
+msgid "Create First Record"
+msgstr ""
+
+#: .\templates\church\auth\login.html:4 .\templates\church\auth\login.html:58
+#: .\templates\church\base.html:72
+msgid "Login"
+msgstr ""
+
+#: .\templates\church\auth\login.html:12
+#: .\templates\church\auth\password_reset_email.html:27
+#: .\templates\church\base.html:116
+msgid "Church Management System"
+msgstr ""
+
+#: .\templates\church\auth\login.html:13 .\templates\church\base.html:117
+msgid "Mozambique"
+msgstr ""
+
+#: .\templates\church\auth\login.html:18
+msgid "Your username and password didn't match. Please try again."
+msgstr ""
+
+#: .\templates\church\auth\login.html:25
+msgid ""
+"Your account doesn't have access to this page. To proceed, please login with "
+"an account that has access."
+msgstr ""
+
+#: .\templates\church\auth\login.html:29
+msgid "Please login to access the system."
+msgstr ""
+
+#: .\templates\church\auth\login.html:43
+msgid "Password"
+msgstr ""
+
+#: .\templates\church\auth\login.html:50
+msgid "Remember me"
+msgstr ""
+
+#: .\templates\church\auth\login.html:53
+msgid "Forgot password?"
+msgstr ""
+
+#: .\templates\church\auth\login.html:65
+msgid "Need help?"
+msgstr ""
+
+#: .\templates\church\auth\login.html:65
+msgid "Contact support"
+msgstr ""
+
+#: .\templates\church\auth\password_reset.html:4
+msgid "Password Reset"
+msgstr ""
+
+#: .\templates\church\auth\password_reset.html:12
+#: .\templates\church\auth\password_reset_email.html:39
+msgid "Reset Password"
+msgstr ""
+
+#: .\templates\church\auth\password_reset.html:16
+msgid ""
+"Forgotten your password? Enter your email address below, and we'll email "
+"instructions for setting a new one."
+msgstr ""
+
+#: .\templates\church\auth\password_reset.html:23
+msgid "Email address"
+msgstr ""
+
+#: .\templates\church\auth\password_reset.html:28
+msgid "Reset my password"
+msgstr ""
+
+#: .\templates\church\auth\password_reset.html:34
+msgid "Back to login"
+msgstr ""
+
+#: .\templates\church\auth\password_reset_complete.html:4
+#: .\templates\church\auth\password_reset_complete.html:12
+msgid "Password Reset Complete"
+msgstr ""
+
+#: .\templates\church\auth\password_reset_complete.html:17
+msgid "Your password has been set. You may go ahead and log in now."
+msgstr ""
+
+#: .\templates\church\auth\password_reset_complete.html:22
+msgid "Log in"
+msgstr ""
+
+#: .\templates\church\auth\password_reset_confirm.html:4
+msgid "Enter New Password"
+msgstr ""
+
+#: .\templates\church\auth\password_reset_confirm.html:12
+msgid "Set New Password"
+msgstr ""
+
+#: .\templates\church\auth\password_reset_confirm.html:16
+msgid ""
+"Please enter your new password twice so we can verify you typed it in "
+"correctly."
+msgstr ""
+
+#: .\templates\church\auth\password_reset_confirm.html:26
+msgid ""
+"Your password must contain at least 8 characters and can't be entirely "
+"numeric."
+msgstr ""
+
+#: .\templates\church\auth\password_reset_confirm.html:32
+msgid "Confirm password"
+msgstr ""
+
+#: .\templates\church\auth\password_reset_confirm.html:37
+msgid "Change my password"
+msgstr ""
+
+#: .\templates\church\auth\password_reset_confirm.html:43
+msgid ""
+"The password reset link was invalid, possibly because it has already been "
+"used. Please request a new password reset."
+msgstr ""
+
+#: .\templates\church\auth\password_reset_confirm.html:48
+msgid "Request new reset"
+msgstr ""
+
+#: .\templates\church\auth\password_reset_done.html:4
+#: .\templates\church\auth\password_reset_done.html:12
+msgid "Password Reset Sent"
+msgstr ""
+
+#: .\templates\church\auth\password_reset_done.html:17
+msgid ""
+"We've emailed you instructions for setting your password, if an account "
+"exists with the email you entered. You should receive them shortly."
+msgstr ""
+
+#: .\templates\church\auth\password_reset_done.html:21
+msgid ""
+"If you don't receive an email, please make sure you've entered the address "
+"you registered with, and check your spam folder."
+msgstr ""
+
+#: .\templates\church\auth\password_reset_done.html:26
+msgid "Return to login"
+msgstr "Voltar para login"
+
+#: .\templates\church\auth\password_reset_email.html:31
+msgid "Hello,"
+msgstr "Ola"
+
+#: .\templates\church\auth\password_reset_email.html:33
+msgid ""
+"You're receiving this email because you requested a password reset for your "
+"account at Church Management System - Mozambique."
+msgstr ""
+
+#: .\templates\church\auth\password_reset_email.html:35
+msgid "Please go to the following page and choose a new password:"
+msgstr ""
+
+#: .\templates\church\auth\password_reset_email.html:43
+msgid "Your username, in case you've forgotten:"
+msgstr ""
+
+#: .\templates\church\auth\password_reset_email.html:45
+msgid "If you didn't request this password reset, please ignore this email."
+msgstr ""
+
+#: .\templates\church\auth\password_reset_email.html:47
+msgid "Thanks for using our system!"
+msgstr ""
+
+#: .\templates\church\auth\password_reset_email.html:51
+#: .\templates\church\news\email_notification.html:53
+msgid "This is an automated message, please do not reply."
+msgstr ""
+
+#: .\templates\church\auth\password_reset_email.html:52
+msgid "Church Management System - Mozambique"
+msgstr ""
+
+#: .\templates\church\auth\password_reset_subject.txt:2
+msgid "Password reset on Church Management System"
+msgstr ""
+
+#: .\templates\church\base.html:45 .\templates\church\dashboard.html:18
+#: .\templates\church\reports\dashboard.html:14
+msgid "Reports"
+msgstr ""
+
+#: .\templates\church\base.html:56 .\templates\church\profile.html:15
+msgid "Profile"
+msgstr ""
+
+#: .\templates\church\base.html:58
+msgid "Logout"
+msgstr ""
+
+#: .\templates\church\base.html:78
+msgid "Locations"
+msgstr ""
+
+#: .\templates\church\base.html:81
+#: .\templates\church\location\province_form.html:4
+#: .\templates\church\location\province_form.html:14
+#: .\templates\church\location\province_list.html:20
+msgid "Add Province"
+msgstr "Adicionar Provincia"
+
+#: .\templates\church\base.html:82
+#: .\templates\church\location\district_form.html:4
+#: .\templates\church\location\district_form.html:14
+#: .\templates\church\location\district_list.html:20
+#: .\templates\church\location\district_list.html:84
+msgid "Add District"
+msgstr "Adicionar Distrito"
+
+#: .\templates\church\base.html:83
+#: .\templates\church\location\church_form.html:4
+#: .\templates\church\location\church_form.html:14
+#: .\templates\church\location\church_list.html:32
+#: .\templates\church\location\church_list.html:36
+#: .\templates\church\location\church_list.html:114
+msgid "Add Church"
+msgstr "Adicionar Igreja"
+
+#: .\templates\church\base.html:120
+msgid "All rights reserved"
+msgstr ""
+
+#: .\templates\church\dashboard.html:14
+#: .\templates\church\reports\dashboard.html:10
+msgid "Church Reports"
+msgstr ""
+
+#: .\templates\church\dashboard.html:25
+msgid "Download Reports"
+msgstr ""
+
+#: .\templates\church\dashboard.html:28
+msgid "PDF Report"
+msgstr ""
+
+#: .\templates\church\dashboard.html:29
+msgid "Word Report"
+msgstr ""
+
+#: .\templates\church\dashboard.html:31
+msgid "Attendance PDF"
+msgstr ""
+
+#: .\templates\church\dashboard.html:32
+msgid "Attendance Word"
+msgstr ""
+
+#: .\templates\church\dashboard.html:42
+msgid "Locations Management"
+msgstr ""
+
+#: .\templates\church\dashboard.html:73
+msgid "Total provinces"
+msgstr ""
+
+#: .\templates\church\dashboard.html:87
+msgid "Total districts"
+msgstr ""
+
+#: .\templates\church\dashboard.html:100
+msgid "Total churches"
+msgstr ""
+
+#: .\templates\church\dashboard.html:108
+msgid "Main Reverends"
+msgstr ""
+
+#: .\templates\church\dashboard.html:112
+msgid "Total main reverends"
+msgstr ""
+
+#: .\templates\church\dashboard.html:124
+msgid "Total pastors"
+msgstr ""
+
+#: .\templates\church\dashboard.html:136
+msgid "Total worshipers"
+msgstr ""
+
+#: .\templates\church\dashboard.html:162
+msgid "Total churches in district"
+msgstr ""
+
+#: .\templates\church\dashboard.html:174
+msgid "Total pastors in district"
+msgstr ""
+
+#: .\templates\church\dashboard.html:186
+msgid "Total worshipers in district"
+msgstr ""
+
+#: .\templates\church\dashboard.html:212
+msgid "Total worshipers in church"
+msgstr ""
+
+#: .\templates\church\dashboard.html:223
+msgid "Attendance Trend"
+msgstr ""
+
+#: .\templates\church\dashboard.html:233 .\templates\church\news\list.html:30
+msgid "Latest News"
+msgstr ""
+
+#: .\templates\church\dashboard.html:245
+msgid "By"
+msgstr ""
+
+#: .\templates\church\dashboard.html:249
+msgid "View All News"
+msgstr ""
+
+#: .\templates\church\dashboard.html:251
+msgid "No news available."
+msgstr ""
+
+#: .\templates\church\dashboard.html:272
+#: .\templates\church\reports\dashboard.html:118
+msgid "Total Attendance"
+msgstr ""
+
+#: .\templates\church\dashboard.html:300
+#: .\templates\church\reports\dashboard.html:138
+msgid "Number of People"
+msgstr ""
+
+#: .\templates\church\location\church_form.html:10
+msgid "Add New Church"
+msgstr ""
+
+#: .\templates\church\location\church_form.html:24
+msgid "Church Details"
+msgstr ""
+
+#: .\templates\church\location\church_form.html:30
+msgid "Church Name"
+msgstr ""
+
+#: .\templates\church\location\church_form.html:40
+#: .\templates\church\location\district_form.html:40
+msgid "Leave blank if not assigned yet"
+msgstr ""
+
+#: .\templates\church\location\church_form.html:43
+msgid "Address"
+msgstr ""
+
+#: .\templates\church\location\church_form.html:47
+msgid "Established Date"
+msgstr ""
+
+#: .\templates\church\location\church_form.html:55
+msgid "Save Church"
+msgstr ""
+
+#: .\templates\church\location\church_list.html:12
+#: .\templates\church\location\church_list.html:47
+msgid "Churches in"
+msgstr ""
+
+#: .\templates\church\location\church_list.html:14
+#: .\templates\church\location\church_list.html:49
+msgid "All Churches"
+msgstr ""
+
+#: .\templates\church\location\church_list.html:66
+msgid "Established"
+msgstr ""
+
+#: .\templates\church\location\church_list.html:80
+#: .\templates\church\location\district_list.html:56
+#: .\templates\church\reverend\pastor_list.html:87
+msgid "Not assigned"
+msgstr ""
+
+#: .\templates\church\location\church_list.html:93
+msgid "View Worshipers"
+msgstr ""
+
+#: .\templates\church\location\church_list.html:108
+msgid "No churches found in this district"
+msgstr ""
+
+#: .\templates\church\location\church_list.html:110
+msgid "No churches found"
+msgstr ""
+
+#: .\templates\church\location\district_form.html:10
+msgid "Add New District"
+msgstr ""
+
+#: .\templates\church\location\district_form.html:24
+msgid "District Details"
+msgstr ""
+
+#: .\templates\church\location\district_form.html:30
+msgid "District Name"
+msgstr ""
+
+#: .\templates\church\location\district_form.html:47
+msgid "Save District"
+msgstr ""
+
+#: .\templates\church\location\district_list.html:28
+msgid "District List"
+msgstr ""
+
+#: .\templates\church\location\district_list.html:68
+msgid "View Churches"
+msgstr ""
+
+#: .\templates\church\location\district_list.html:81
+msgid "No districts found"
+msgstr ""
+
+#: .\templates\church\location\district_list.html:82
+msgid "Start by adding your first district"
+msgstr ""
+
+#: .\templates\church\location\province_form.html:10
+msgid "Add New Province"
+msgstr ""
+
+#: .\templates\church\location\province_form.html:24
+msgid "Province Details"
+msgstr ""
+
+#: .\templates\church\location\province_form.html:30
+msgid "Province Name"
+msgstr ""
+
+#: .\templates\church\location\province_form.html:34
+msgid "Province Code"
+msgstr ""
+
+#: .\templates\church\location\province_form.html:42
+msgid "Save Province"
+msgstr ""
+
+#: .\templates\church\location\province_list.html:27
+msgid "Province List"
+msgstr ""
+
+#: .\templates\church\location\province_list.html:36
+msgid "Code"
+msgstr ""
+
+#: .\templates\church\location\province_list.html:63
+msgid "No provinces found"
+msgstr ""
+
+#: .\templates\church\location\province_list.html:65
+msgid "Add First Province"
+msgstr ""
+
+#: .\templates\church\news\create.html:4 .\templates\church\news\create.html:10
+msgid "Create News"
+msgstr ""
+
+#: .\templates\church\news\create.html:26
+msgid "New Announcement"
+msgstr ""
+
+#: .\templates\church\news\create.html:38
+msgid "Publish News"
+msgstr ""
+
+#: .\templates\church\news\delete.html:4 .\templates\church\news\delete.html:10
+msgid "Delete News"
+msgstr ""
+
+#: .\templates\church\news\delete.html:31
+msgid ""
+"You are about to permanently delete this news item. This action cannot be "
+"undone."
+msgstr ""
+
+#: .\templates\church\news\delete.html:38
+msgid "Published on"
+msgstr ""
+
+#: .\templates\church\news\delete.html:40
+msgid "updated"
+msgstr ""
+
+#: .\templates\church\news\detail.html:15
+msgid "Details"
+msgstr ""
+
+#: .\templates\church\news\detail.html:57
+msgid "Updated"
+msgstr ""
+
+#: .\templates\church\news\detail.html:69
+#: .\templates\church\news\news_detail.html:76
+msgid "Back to News"
+msgstr ""
+
+#: .\templates\church\news\edit.html:4 .\templates\church\news\edit.html:10
+msgid "Edit News"
+msgstr ""
+
+#: .\templates\church\news\edit.html:25
+msgid "Edit Announcement"
+msgstr ""
+
+#: .\templates\church\news\edit.html:29
+msgid "Created on"
+msgstr ""
+
+#: .\templates\church\news\edit.html:32
+msgid "Last updated on"
+msgstr ""
+
+#: .\templates\church\news\email_notification.html:32
+msgid "Published:"
+msgstr ""
+
+#: .\templates\church\news\email_notification.html:40
+#: .\templates\church\news\email_notification.html:45
+msgid "View Full Announcement"
+msgstr ""
+
+#: .\templates\church\news\email_notification.html:52
+msgid ""
+"You're receiving this email because you're subscribed to announcements from"
+msgstr ""
+
+#: .\templates\church\news\list.html:4 .\templates\church\news\list.html:10
+msgid "News & Announcements"
+msgstr ""
+
+#: .\templates\church\news\list.html:21 .\templates\church\news\list.html:98
+msgid "Add News"
+msgstr ""
+
+#: .\templates\church\news\list.html:94
+msgid "No news available"
+msgstr ""
+
+#: .\templates\church\news\news_detail.html:15
+msgid "Detail"
+msgstr ""
+
+#: .\templates\church\news\news_detail.html:28
+msgid "Published"
+msgstr ""
+
+#: .\templates\church\news\news_detail.html:30
+msgid "Draft"
+msgstr ""
+
+#: .\templates\church\news\news_detail.html:38
+msgid "Author"
+msgstr ""
+
+#: .\templates\church\news\news_detail.html:48
+msgid "Notification sent to users on"
+msgstr ""
+
+#: .\templates\church\pastor\worshiper_create.html:4
+#: .\templates\church\pastor\worshiper_create.html:10
+msgid "Add New Worshiper"
+msgstr ""
+
+#: .\templates\church\pastor\worshiper_create.html:15
+msgid "Add New"
+msgstr ""
+
+#: .\templates\church\pastor\worshiper_create.html:25
+msgid "Worshiper Information"
+msgstr ""
+
+#: .\templates\church\pastor\worshiper_create.html:37
+msgid "Save Worshiper"
+msgstr ""
+
+#: .\templates\church\pastor\worshiper_delete.html:4
+#: .\templates\church\pastor\worshiper_delete.html:10
+msgid "Delete Worshiper"
+msgstr ""
+
+#: .\templates\church\pastor\worshiper_delete.html:31
+msgid ""
+"You are about to permanently delete this worshiper record. This action "
+"cannot be undone."
+msgstr ""
+
+#: .\templates\church\pastor\worshiper_delete.html:56
+#: .\templates\church\pastor\worshiper_edit.html:48
+msgid "Member since"
+msgstr ""
+
+#: .\templates\church\pastor\worshiper_edit.html:4
+#: .\templates\church\pastor\worshiper_edit.html:10
+msgid "Edit Worshiper"
+msgstr ""
+
+#: .\templates\church\pastor\worshiper_edit.html:25
+msgid "Edit Worshiper Information"
+msgstr ""
+
+#: .\templates\church\pastor\worshiper_list.html:4
+#: .\templates\church\pastor\worshiper_list.html:10
+msgid "Worshipers Management"
+msgstr ""
+
+#: .\templates\church\pastor\worshiper_list.html:20
+msgid "Add Worshiper"
+msgstr ""
+
+#: .\templates\church\pastor\worshiper_list.html:26
+msgid "Download"
+msgstr ""
+
+#: .\templates\church\pastor\worshiper_list.html:29
+msgid "PDF"
+msgstr ""
+
+#: .\templates\church\pastor\worshiper_list.html:30
+msgid "Word"
+msgstr ""
+
+#: .\templates\church\pastor\worshiper_list.html:31
+msgid "CSV"
+msgstr ""
+
+#: .\templates\church\pastor\worshiper_list.html:41
+msgid "Worshipers List"
+msgstr ""
+
+#: .\templates\church\pastor\worshiper_list.html:52
+#: .\templates\church\reverend\pastor_list.html:58
+msgid "Photo"
+msgstr ""
+
+#: .\templates\church\pastor\worshiper_list.html:54
+msgid "Gender"
+msgstr ""
+
+#: .\templates\church\pastor\worshiper_list.html:55
+msgid "Age"
+msgstr ""
+
+#: .\templates\church\pastor\worshiper_list.html:56
+msgid "Baptism"
+msgstr ""
+
+#: .\templates\church\pastor\worshiper_list.html:57
+msgid "Joined"
+msgstr ""
+
+#: .\templates\church\pastor\worshiper_list.html:95
+msgid "Yes"
+msgstr ""
+
+#: .\templates\church\pastor\worshiper_list.html:98
+msgid "No"
+msgstr ""
+
+#: .\templates\church\pastor\worshiper_list.html:119
+msgid "No worshipers found"
+msgstr ""
+
+#: .\templates\church\pastor\worshiper_list.html:121
+msgid "Add First Worshiper"
+msgstr ""
+
+#: .\templates\church\profile.html:5 .\templates\church\profile.html:11
+msgid "My Profile"
+msgstr ""
+
+#: .\templates\church\profile.html:25
+msgid "Profile Information"
+msgstr ""
+
+#: .\templates\church\profile.html:91
+msgid "Back to Dashboard"
+msgstr ""
+
+#: .\templates\church\profile.html:106 .\templates\church\profile.html:110
+msgid "Change Password"
+msgstr ""
+
+#: .\templates\church\reports\dashboard.html:4
+msgid "Reports Dashboard"
+msgstr ""
+
+#: .\templates\church\reports\dashboard.html:25
+msgid "Attendance Trends"
+msgstr ""
+
+#: .\templates\church\reports\dashboard.html:37
+msgid "Quick Stats"
+msgstr ""
+
+#: .\templates\church\reports\dashboard.html:45
+msgid "Total Worshipers"
+msgstr ""
+
+#: .\templates\church\reports\dashboard.html:61
+msgid "Avg. Attendance"
+msgstr ""
+
+#: .\templates\church\reports\dashboard.html:69
+msgid "New Members"
+msgstr ""
+
+#: .\templates\church\reports\dashboard.html:84
+msgid "Gender Distribution"
+msgstr ""
+
+#: .\templates\church\reports\dashboard.html:96
+msgid "Baptism Status"
+msgstr ""
+
+#: .\templates\church\reverend\pastor_list.html:4
+#: .\templates\church\reverend\pastor_list.html:10
+msgid "Pastor Management"
+msgstr ""
+
+#: .\templates\church\reverend\pastor_list.html:33
+msgid "Pastors in"
+msgstr ""
+
+#: .\templates\church\reverend\pastor_list.html:35
+msgid "All Pastors"
+msgstr ""
+
+#: .\templates\church\reverend\pastor_list.html:61
+msgid "Contact"
+msgstr ""
+
+#: .\templates\church\reverend\pastor_list.html:118
+msgid "No pastors found in your district"
+msgstr ""
+
+#: .\templates\church\reverend\pastor_list.html:120
+msgid "No pastors found"
+msgstr ""
+
+#: .\templates\church\reverend\pastor_list.html:125
+msgid "Add First Pastor"
+msgstr ""

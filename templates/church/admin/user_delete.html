@@ -1,0 +1,75 @@
+{% extends "church/base.html" %}
+{% load i18n %}
+
+{% block title %}{% trans "Delete User" %}{% endblock %}
+
+{% block content %}
+<div class="container-fluid">
+    <div class="row mb-4">
+        <div class="col">
+            <h1 class="mb-0">{% trans "Delete User" %}</h1>
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="{% url 'church:dashboard' %}">{% trans "Dashboard" %}</a></li>
+                    <li class="breadcrumb-item"><a href="{% url 'church:user_list' %}">{% trans "Users" %}</a></li>
+                    <li class="breadcrumb-item active" aria-current="page">{% trans "Delete" %}</li>
+                </ol>
+            </nav>
+        </div>
+    </div>
+
+    <div class="row justify-content-center">
+        <div class="col-lg-6">
+            <div class="card shadow-sm border-danger">
+                <div class="card-header bg-danger text-white">
+                    <h3 class="card-title mb-0">{% trans "Confirm Deletion" %}</h3>
+                </div>
+                <div class="card-body">
+                    <div class="alert alert-danger">
+                        <i class="bi bi-exclamation-triangle-fill"></i>
+                        <strong>{% trans "Warning!" %}</strong>
+                        {% trans "You are about to permanently delete this user account. This action cannot be undone." %}
+                    </div>
+
+                    <div class="d-flex align-items-center mb-4">
+                        <div class="me-3">
+                            {% if user.profile_picture %}
+                            <img src="{{ user.profile_picture.url }}" alt="Profile Picture" class="rounded-circle" width="60" height="60">
+                            {% else %}
+                            <div class="rounded-circle d-flex align-items-center justify-content-center" style="width: 60px; height: 60px; background-color: #f0f0f0;">
+                                <i class="bi bi-person-fill" style="font-size: 1.5rem; color: #777;"></i>
+                            </div>
+                            {% endif %}
+                        </div>
+                        <div>
+                            <h5 class="mb-1">{{ user.get_full_name|default:user.username }}</h5>
+                            <p class="text-muted mb-1">
+                                <span class="badge 
+                                    {% if user.role == 'ADMIN' %}bg-danger
+                                    {% elif user.role == 'MAIN_REVEREND' %}bg-primary
+                                    {% else %}bg-secondary
+                                    {% endif %}">
+                                    {{ user.get_role_display }}
+                                </span>
+                            </p>
+                            <p class="text-muted mb-0">{{ user.email|default:"No email" }}</p>
+                        </div>
+                    </div>
+
+                    <form method="post">
+                        {% csrf_token %}
+                        <div class="d-flex justify-content-between">
+                            <a href="{% url 'church:user_list' %}" class="btn btn-outline-secondary">
+                                <i class="bi bi-arrow-left"></i> {% trans "Cancel" %}
+                            </a>
+                            <button type="submit" class="btn btn-danger">
+                                <i class="bi bi-trash"></i> {% trans "Confirm Delete" %}
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

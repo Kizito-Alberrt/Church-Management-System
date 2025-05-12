@@ -1,0 +1,93 @@
+{% extends "church/base.html" %}
+{% load i18n %}
+
+{% block title %}{% trans "Add New Church" %}{% endblock %}
+
+{% block content %}
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card shadow-sm">
+                <div class="card-header text-white" style="background-color: #191970;">
+                    <h3 class="card-title mb-0">
+                        {% if form.instance.pk %}
+                            {% trans "Edit Church" %}
+                        {% else %}
+                            {% trans "Add New Church" %}
+                        {% endif %}
+                    </h3>
+                </div>
+                <div class="card-body">
+                    <form method="post">
+                        {% csrf_token %}
+                        
+                        {% if form.non_field_errors %}
+                            <div class="alert alert-danger">
+                                {{ form.non_field_errors }}
+                            </div>
+                        {% endif %}
+                        
+                        <div class="mb-3">
+                            <label for="id_name" class="form-label">{% trans "Church Name" %}</label>
+                            {{ form.name }}
+                            {% if form.name.errors %}
+                                <div class="text-danger">{{ form.name.errors }}</div>
+                            {% endif %}
+                        </div>
+                        
+                        {% if form.district.field.widget.input_type != 'hidden' %}
+                        <div class="mb-3">
+                            <label for="id_district" class="form-label">{% trans "District" %}</label>
+                            {{ form.district }}
+                            {% if form.district.errors %}
+                                <div class="text-danger">{{ form.district.errors }}</div>
+                            {% endif %}
+                        </div>
+                        {% else %}
+                            {{ form.district }}
+                        {% endif %}
+                        
+                        <div class="mb-3">
+                            <label for="id_pastor" class="form-label">{% trans "Pastor (Optional)" %}</label>
+                            {{ form.pastor }}
+                            {% if form.pastor.errors %}
+                                <div class="text-danger">{{ form.pastor.errors }}</div>
+                            {% endif %}
+                            <small class="form-text text-muted">{% trans "You can assign a pastor later if needed." %}</small>
+                        </div>
+                        
+                        <div class="mb-3">
+                            <label for="id_address" class="form-label">{% trans "Address" %}</label>
+                            {{ form.address }}
+                            {% if form.address.errors %}
+                                <div class="text-danger">{{ form.address.errors }}</div>
+                            {% endif %}
+                        </div>
+                        
+                        <div class="mb-3">
+                            <label for="id_established_date" class="form-label">{% trans "Established Date" %}</label>
+                            {{ form.established_date }}
+                            {% if form.established_date.errors %}
+                                <div class="text-danger">{{ form.established_date.errors }}</div>
+                            {% endif %}
+                        </div>
+                        
+                        <div class="d-grid gap-2">
+                            <button type="submit" class="btn" style="background-color: #B22222; color: white;">
+                                {% if form.instance.pk %}
+                                    {% trans "Update Church" %}
+                                {% else %}
+                                    {% trans "Add Church" %}
+                                {% endif %}
+                            </button>
+                            <a href="{% url 'church:church_list' %}" class="btn btn-outline-secondary">
+                                {% trans "Cancel" %}
+                            </a>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

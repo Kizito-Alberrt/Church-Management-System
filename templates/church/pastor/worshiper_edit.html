@@ -1,0 +1,88 @@
+{% extends "church/base.html" %}
+{% load i18n crispy_forms_tags %}
+
+{% block title %}{% trans "Edit Worshiper" %}{% endblock %}
+
+{% block content %}
+<div class="container-fluid">
+    <div class="row mb-4">
+        <div class="col">
+            <h1 class="mb-0">{% trans "Edit Worshiper" %}</h1>
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="{% url 'church:dashboard' %}">{% trans "Dashboard" %}</a></li>
+                    <li class="breadcrumb-item"><a href="{% url 'church:worshiper_list' %}">{% trans "Worshipers" %}</a></li>
+                    <li class="breadcrumb-item active" aria-current="page">{% trans "Edit" %}</li>
+                </ol>
+            </nav>
+        </div>
+    </div>
+
+    <div class="row justify-content-center">
+        <div class="col-lg-8">
+            <div class="card shadow-sm">
+                <div class="card-header" style="background-color: #191970; color: white;">
+                    <h3 class="card-title mb-0">{% trans "Edit Worshiper Information" %}</h3>
+                </div>
+                <div class="card-body">
+                    <div class="row mb-4">
+                        <div class="col-auto">
+                            {% if worshiper.photo %}
+                            <img src="{{ worshiper.photo.url }}" alt="Worshiper Photo" class="rounded-circle" width="100" height="100">
+                            {% else %}
+                            <div class="rounded-circle d-flex align-items-center justify-content-center" style="width: 100px; height: 100px; background-color: #f0f0f0;">
+                                <i class="bi bi-person-fill" style="font-size: 3rem; color: #777;"></i>
+                            </div>
+                            {% endif %}
+                        </div>
+                        <div class="col">
+                            <h4>{{ worshiper.first_name }} {{ worshiper.last_name }}</h4>
+                            <p class="text-muted mb-1">
+                                <i class="bi bi-gender-{% if worshiper.gender == 'M' %}male{% elif worshiper.gender == 'F' %}female{% else %}trans{% endif %}"></i>
+                                {{ worshiper.get_gender_display }}
+                            </p>
+                            <p class="text-muted mb-1">
+                                <i class="bi bi-telephone"></i> {{ worshiper.phone_number|default:"No phone" }}
+                            </p>
+                            <p class="text-muted">
+                                <i class="bi bi-calendar"></i> {% trans "Member since" %} {{ worshiper.joined_date|date:"SHORT_DATE_FORMAT" }}
+                            </p>
+                        </div>
+                    </div>
+
+                    <form method="post" enctype="multipart/form-data">
+                        {% csrf_token %}
+                        {{ form|crispy }}
+                        
+                        <div class="d-flex justify-content-between mt-4">
+                            <a href="{% url 'church:worshiper_list' %}" class="btn btn-outline-secondary">
+                                <i class="bi bi-arrow-left"></i> {% trans "Cancel" %}
+                            </a>
+                            <button type="submit" class="btn" style="background-color: #B22222; color: white;">
+                                <i class="bi bi-save"></i> {% trans "Save Changes" %}
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    // Show baptism date field only when baptized is checked
+    const baptizedField = document.querySelector('#id_baptized');
+    const baptismDateField = document.querySelector('#div_id_baptism_date');
+    
+    function toggleBaptismDate() {
+        baptismDateField.style.display = baptizedField.checked ? 'block' : 'none';
+    }
+    
+    baptizedField.addEventListener('change', toggleBaptismDate);
+    toggleBaptismDate(); // Initial check
+});
+</script>
+{% endblock %}

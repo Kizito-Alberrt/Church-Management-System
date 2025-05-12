@@ -1,0 +1,64 @@
+{% extends "church/base.html" %}
+{% load i18n %}
+
+{% block title %}{% trans "Add Church" %}{% endblock %}
+
+{% block content %}
+<div class="container-fluid">
+    <div class="row mb-4">
+        <div class="col">
+            <h1 class="mb-0">{% trans "Add New Church" %}</h1>
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="{% url 'church:dashboard' %}">{% trans "Dashboard" %}</a></li>
+                    <li class="breadcrumb-item active" aria-current="page">{% trans "Add Church" %}</li>
+                </ol>
+            </nav>
+        </div>
+    </div>
+
+    <div class="row justify-content-center">
+        <div class="col-lg-6">
+            <div class="card shadow-sm">
+                <div class="card-header" style="background-color: #191970; color: white;">
+                    <h3 class="card-title mb-0">{% trans "Church Details" %}</h3>
+                </div>
+                <div class="card-body">
+                    <form method="post">
+                        {% csrf_token %}
+                        <div class="mb-3">
+                            <label for="{{ form.name.id_for_label }}" class="form-label">{% trans "Church Name" %}</label>
+                            {{ form.name }}
+                        </div>
+                        <div class="mb-3">
+                            <label for="{{ form.district.id_for_label }}" class="form-label">{% trans "District" %}</label>
+                            {{ form.district }}
+                        </div>
+                        <div class="mb-3">
+                            <label for="{{ form.pastor.id_for_label }}" class="form-label">{% trans "Pastor" %}</label>
+                            {{ form.pastor }}
+                            <small class="text-muted">{% trans "Leave blank if not assigned yet" %}</small>
+                        </div>
+                        <div class="mb-3">
+                            <label for="{{ form.address.id_for_label }}" class="form-label">{% trans "Address" %}</label>
+                            {{ form.address }}
+                        </div>
+                        <div class="mb-3">
+                            <label for="{{ form.established_date.id_for_label }}" class="form-label">{% trans "Established Date" %}</label>
+                            {{ form.established_date }}
+                        </div>
+                        <div class="d-flex justify-content-between">
+                            <a href="{% url 'church:dashboard' %}" class="btn btn-outline-secondary">
+                                <i class="bi bi-arrow-left"></i> {% trans "Cancel" %}
+                            </a>
+                            <button type="submit" class="btn" style="background-color: #B22222; color: white;">
+                                <i class="bi bi-save"></i> {% trans "Save Church" %}
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

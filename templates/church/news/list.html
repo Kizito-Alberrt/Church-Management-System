@@ -1,0 +1,107 @@
+{% extends "church/base.html" %}
+{% load i18n %}
+
+{% block title %}{% trans "News & Announcements" %}{% endblock %}
+
+{% block content %}
+<div class="container-fluid">
+    <div class="row mb-4">
+        <div class="col">
+            <h1 class="mb-0">{% trans "News & Announcements" %}</h1>
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="{% url 'church:dashboard' %}">{% trans "Dashboard" %}</a></li>
+                    <li class="breadcrumb-item active" aria-current="page">{% trans "News" %}</li>
+                </ol>
+            </nav>
+        </div>
+        {% if user.is_superuser or user.role == 'ADMIN' or user.role == 'MAIN_REVEREND' %}
+        <div class="col-auto">
+            <a href="{% url 'church:news_create' %}" class="btn" style="background-color: #B22222; color: white;">
+                <i class="bi bi-plus-lg"></i> {% trans "Add News" %}
+            </a>
+        </div>
+        {% endif %}
+    </div>
+
+    <div class="card shadow-sm">
+        <div class="card-header" style="background-color: #191970; color: white;">
+            <div class="d-flex justify-content-between align-items-center">
+                <h3 class="card-title mb-0">{% trans "Latest News" %}</h3>
+                <span class="badge bg-white text-dark">
+                    {% trans "Total" %}: {{ page_obj.paginator.count }}
+                </span>
+            </div>
+        </div>
+        <div class="card-body">
+            {% if page_obj %}
+            <div class="list-group">
+                {% for news in page_obj %}
+                <a href="{% url 'church:news_detail' news.pk %}" class="list-group-item list-group-item-action">
+                    <div class="d-flex w-100 justify-content-between">
+                        <h5 class="mb-1">{{ news.title }}</h5>
+                        <small class="text-muted">{{ news.created_at|date:"SHORT_DATE_FORMAT" }}</small>
+                    </div>
+                    <p class="mb-1">{{ news.content|truncatewords:30 }}</p>
+                    <div class="d-flex justify-content-between align-items-center">
+                        <small class="text-muted">
+                            <i class="bi bi-person"></i> {{ news.author.get_full_name }}
+                        </small>
+                        <span class="badge 
+                            {% if news.target_audience == 'ALL' %}bg-primary
+                            {% elif news.target_audience == 'REVERENDS' %}bg-info
+                            {% else %}bg-secondary
+                            {% endif %}">
+                            {{ news.get_target_audience_display }}
+                        </span>
+                    </div>
+                </a>
+                {% endfor %}
+            </div>
+
+            {% if page_obj.paginator.num_pages > 1 %}
+            <nav aria-label="Page navigation" class="mt-4">
+                <ul class="pagination justify-content-center">
+                    {% if page_obj.has_previous %}
+                    <li class="page-item">
+                        <a class="page-link" href="?page={{ page_obj.previous_page_number }}" aria-label="Previous">
+                            <span aria-hidden="true">&laquo;</span>
+                        </a>
+                    </li>
+                    {% endif %}
+
+                    {% for num in page_obj.paginator.page_range %}
+                    {% if page_obj.number == num %}
+                    <li class="page-item active"><a class="page-link" href="#">{{ num }}</a></li>
+                    {% else %}
+                    <li class="page-item"><a class="page-link" href="?page={{ num }}">{{ num }}</a></li>
+                    {% endif %}
+                    {% endfor %}
+
+                    {% if page_obj.has_next %}
+                    <li class="page-item">
+                        <a class="page-link" href="?page={{ page_obj.next_page_number }}" aria-label="Next">
+                            <span aria-hidden="true">&raquo;</span>
+                        </a>
+                    </li>
+                    {% endif %}
+                </ul>
+            </nav>
+            {% endif %}
+            {% else %}
+            <div class="text-center py-5">
+                <i class="bi bi-newspaper" style="font-size: 3rem; color: #6c757d;"></i>
+                <h4 class="mt-3">{% trans "No news available" %}</h4>
+                {% if user.is_superuser or user.role == 'ADMIN' or user.role == 'MAIN_REVEREND' %}
+<div class="col-auto">
+    <a href="{% url 'church:news_create' %}" class="btn" style="background-color: #B22222; color: white;">
+        <i class="bi bi-plus-lg"></i> {% trans "Add News" %}
+    </a>
+</div>
+{% endif %}
+            </div>
+            {% endif %}
+        </div>
+    </div>
+</div>
+{% endblock %}

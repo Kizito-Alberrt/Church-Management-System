@@ -1,0 +1,77 @@
+{% extends "church/base.html" %}
+{% load i18n %}
+
+{% block title %}{% trans "Delete Worshiper" %}{% endblock %}
+
+{% block content %}
+<div class="container-fluid">
+    <div class="row mb-4">
+        <div class="col">
+            <h1 class="mb-0">{% trans "Delete Worshiper" %}</h1>
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="{% url 'church:dashboard' %}">{% trans "Dashboard" %}</a></li>
+                    <li class="breadcrumb-item"><a href="{% url 'church:worshiper_list' %}">{% trans "Worshipers" %}</a></li>
+                    <li class="breadcrumb-item active" aria-current="page">{% trans "Delete" %}</li>
+                </ol>
+            </nav>
+        </div>
+    </div>
+
+    <div class="row justify-content-center">
+        <div class="col-lg-6">
+            <div class="card shadow-sm border-danger">
+                <div class="card-header bg-danger text-white">
+                    <h3 class="card-title mb-0">{% trans "Confirm Deletion" %}</h3>
+                </div>
+                <div class="card-body">
+                    <div class="alert alert-danger">
+                        <i class="bi bi-exclamation-triangle-fill"></i>
+                        <strong>{% trans "Warning!" %}</strong>
+                        {% trans "You are about to permanently delete this worshiper record. This action cannot be undone." %}
+                    </div>
+
+                    <div class="d-flex align-items-center mb-4">
+                        <div class="me-3">
+                            {% if worshiper.photo %}
+                            <img src="{{ worshiper.photo.url }}" alt="Worshiper Photo" class="rounded-circle" width="60" height="60">
+                            {% else %}
+                            <div class="rounded-circle d-flex align-items-center justify-content-center" style="width: 60px; height: 60px; background-color: #f0f0f0;">
+                                <i class="bi bi-person-fill" style="font-size: 1.5rem; color: #777;"></i>
+                            </div>
+                            {% endif %}
+                        </div>
+                        <div>
+                            <h5 class="mb-1">{{ worshiper.first_name }} {{ worshiper.last_name }}</h5>
+                            <p class="text-muted mb-1">
+                                {% if worshiper.gender == 'M' %}
+                                <span class="badge bg-primary">{% trans "Male" %}</span>
+                                {% elif worshiper.gender == 'F' %}
+                                <span class="badge bg-pink">{% trans "Female" %}</span>
+                                {% else %}
+                                <span class="badge bg-secondary">{% trans "Other" %}</span>
+                                {% endif %}
+                            </p>
+                            <p class="text-muted mb-0">
+                                {% trans "Member since" %} {{ worshiper.joined_date|date:"SHORT_DATE_FORMAT" }}
+                            </p>
+                        </div>
+                    </div>
+
+                    <form method="post">
+                        {% csrf_token %}
+                        <div class="d-flex justify-content-between">
+                            <a href="{% url 'church:worshiper_list' %}" class="btn btn-outline-secondary">
+                                <i class="bi bi-arrow-left"></i> {% trans "Cancel" %}
+                            </a>
+                            <button type="submit" class="btn btn-danger">
+                                <i class="bi bi-trash"></i> {% trans "Confirm Delete" %}
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

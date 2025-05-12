@@ -1,0 +1,133 @@
+{% extends "church/base.html" %}
+{% load i18n %}
+
+{% block title %}{% trans "Reverend Search" %}{% endblock %}
+
+{% block content %}
+<div class="container-fluid">
+    <h1>{% trans "Reverend Search" %}</h1>
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="{% url 'church:dashboard' %}">{% trans "Dashboard" %}</a></li>
+            <li class="breadcrumb-item active">{% trans "Reverend Search" %}</li>
+        </ol>
+    </nav>
+
+    <!-- Church Search -->
+    <h2>{% trans "Search Churches" %}</h2>
+    <form method="get" class="mb-4">
+        <div class="row">
+            {% for field in church_form %}
+            <div class="col-md-4 mb-3">
+                <label for="{{ field.id_for_label }}" class="form-label">{{ field.label }}</label>
+                {{ field }}
+            </div>
+            {% endfor %}
+            <div class="col-md-4 mb-3 align-self-end">
+                <button type="submit" class="btn btn-primary">{% trans "Search" %}</button>
+            </div>
+        </div>
+    </form>
+    <div class="table-responsive">
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>{% trans "Name" %}</th>
+                    <th>{% trans "District" %}</th>
+                    <th>{% trans "Pastor" %}</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for church in churches %}
+                <tr>
+                    <td>{{ church.name }}</td>
+                    <td>{{ church.district.name }}</td>
+                    <td>{{ church.pastor|default:_("None") }}</td>
+                </tr>
+                {% empty %}
+                <tr>
+                    <td colspan="3" class="text-center">{% trans "No churches found." %}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    {% if churches.has_other_pages %}
+    <nav aria-label="Church pagination">
+        <ul class="pagination">
+            {% if churches.has_previous %}
+            <li class="page-item"><a class="page-link" href="?church_page={{ churches.previous_page_number }}">{% trans "Previous" %}</a></li>
+            {% endif %}
+            {% for num in churches.paginator.page_range %}
+            <li class="page-item {% if churches.number == num %}active{% endif %}">
+                <a class="page-link" href="?church_page={{ num }}">{{ num }}</a>
+            </li>
+            {% endfor %}
+            {% if churches.has_next %}
+            <li class="page-item"><a class="page-link" href="?church_page={{ churches.next_page_number }}">{% trans "Next" %}</a>tr
+            </li>
+            {% endif %}
+        </ul>
+    </nav>
+    {% endif %}
+
+    <!-- Pastor Search -->
+    <h2>{% trans "Search Pastors" %}</h2>
+    <form method="get" class="mb-4">
+        <div class="row">
+            {% for field in pastor_form %}
+            <div class="col-md-4 mb-3">
+                <label for="{{ field.id_for_label }}" class="form-label">{{ field.label }}</label>
+                {{ field }}
+            </div>
+            {% endfor %}
+            <div class="col-md-4 mb-3 align-self-end">
+                <button type="submit" class="btn btn-primary">{% trans "Search" %}</button>
+            </div>
+        </div>
+    </form>
+    <div class="table-responsive">
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>{% trans "First Name" %}</th>
+                    <th>{% trans "Last Name" %}</th>
+                    <th>{% trans "Gender" %}</th>
+                    <th>{% trans "Churches" %}</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for pastor in pastors %}
+                <tr>
+                    <td>{{ pastor.first_name }}</td>
+                    <td>{{ pastor.last_name }}</td>
+                    <td>{{ pastor.get_gender_display }}</td>
+                    <td>{{ pastor.churches.all|join:", " }}</td>
+                </tr>
+                {% empty %}
+                <tr>
+                    <td colspan="4" class="text-center">{% trans "No pastors found." %}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    {% if pastors.has_other_pages %}
+    <nav aria-label="Pastor pagination">
+        <ul class="pagination">
+            {% if pastors.has_previous %}
+            <li class="page-item"><a class="page-link" href="?pastor_page={{ pastors.previous_page_number }}">{% trans "Previous" %}</a></li>
+            {% endif %}
+            {% for num in pastors.paginator.page_range %}
+            <li class="page-item {% if pastors.number == num %}active{% endif %}">
+                <a class="page-link" href="?pastor_page={{ num }}">{{ num }}</a>
+            </li>
+            {% endfor %}
+            {% if pastors.has_next %}
+            <li class="page-item"><a class="page-link" href="?pastor_page={{ pastors.next_page_number }}">{% trans "Next" %}</a></li>
+            {% endif %}
+        </ul>
+    </nav>
+    {% endif %}
+</div>
+{% endblock %}

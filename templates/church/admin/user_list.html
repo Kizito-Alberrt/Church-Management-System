@@ -1,0 +1,130 @@
+{% extends "church/base.html" %}
+{% load i18n static %}
+
+{% block title %}{% trans "User Management" %}{% endblock %}
+
+{% block content %}
+<div class="container-fluid">
+    <div class="row mb-4">
+        <div class="col">
+            <h1 class="mb-0">{% trans "User Management" %}</h1>
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="{% url 'church:dashboard' %}">{% trans "Dashboard" %}</a></li>
+                    <li class="breadcrumb-item active" aria-current="page">{% trans "Users" %}</li>
+                </ol>
+            </nav>
+        </div>
+        <div class="col-auto">
+            <a href="{% url 'church:user_create' %}" class="btn" style="background-color: #B22222; color: white;">
+                <i class="bi bi-plus-lg"></i> {% trans "Add User" %}
+            </a>
+        </div>
+    </div>
+    <div class="mb-3">
+        <a href="{% url 'church:download_reports' %}?type=users" class="btn btn-primary">{% trans "Download Users List" %}</a>
+    </div>
+
+    <div class="card shadow-sm">
+        <div class="card-header" style="background-color: #191970; color: white;">
+            <h3 class="card-title mb-0">{% trans "User List" %}</h3>
+        </div>
+
+     
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class="table table-hover table-striped">
+                    <thead>
+                        <tr>
+                            <th>{% trans "Name" %}</th>
+                            <th>{% trans "Username" %}</th>
+                            <th>{% trans "Email" %}</th>
+                            <th>{% trans "Role" %}</th>
+                            <th>{% trans "Status" %}</th>
+                            <th>{% trans "Actions" %}</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for user in users %}
+                        <tr>
+                            <td>
+                                {% if user.profile_picture %}
+                                <img src="{{ user.profile_picture.url }}" alt="{{ user.get_full_name }}" class="rounded-circle me-2" width="30" height="30">
+                                {% else %}
+                                <div class="rounded-circle d-inline-flex align-items-center justify-content-center me-2" style="width: 30px; height: 30px; background-color: #f0f0f0;">
+                                    <i class="bi bi-person-fill" style="color: #777;"></i>
+                                </div>
+                                {% endif %}
+                                {{ user.get_full_name|default:user.username }}
+                            </td>
+                            <td>{{ user.username }}</td>
+                            <td>{{ user.email|default:"-" }}</td>
+                            <td>
+                                <span class="badge 
+                                    {% if user.role == 'ADMIN' %}bg-danger
+                                    {% elif user.role == 'MAIN_REVEREND' %}bg-primary
+                                    {% else %}bg-secondary
+                                    {% endif %}">
+                                    {{ user.get_role_display }}
+                                </span>
+                            </td>
+                            <td>
+                                {% if user.is_active %}
+                                <span class="badge bg-success">{% trans "Active" %}</span>
+                                {% else %}
+                                <span class="badge bg-warning text-dark">{% trans "Inactive" %}</span>
+                                {% endif %}
+                            </td>
+                            <td>
+                                <div class="btn-group btn-group-sm">
+                                    <a href="{% url 'church:user_edit' user.pk %}" class="btn btn-outline-primary" title="{% trans 'Edit' %}">
+                                        <i class="bi bi-pencil"></i>
+                                    </a>
+                                    <a href="{% url 'church:user_delete' user.pk %}" class="btn btn-outline-danger" title="{% trans 'Delete' %}">
+                                        <i class="bi bi-trash"></i>
+                                    </a>
+                                </div>
+                            </td>
+                        </tr>
+                        {% empty %}
+                        <tr>
+                            <td colspan="6" class="text-center text-muted py-4">{% trans "No users found" %}</td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+
+            {% if is_paginated %}
+            <nav aria-label="Page navigation">
+                <ul class="pagination justify-content-center mt-4">
+                    {% if page_obj.has_previous %}
+                    <li class="page-item">
+                        <a class="page-link" href="?page={{ page_obj.previous_page_number }}" aria-label="Previous">
+                            <span aria-hidden="true">&laquo;</span>
+                        </a>
+                    </li>
+                    {% endif %}
+
+                    {% for num in page_obj.paginator.page_range %}
+                    {% if page_obj.number == num %}
+                    <li class="page-item active"><a class="page-link" href="#">{{ num }}</a></li>
+                    {% else %}
+                    <li class="page-item"><a class="page-link" href="?page={{ num }}">{{ num }}</a></li>
+                    {% endif %}
+                    {% endfor %}
+
+                    {% if page_obj.has_next %}
+                    <li class="page-item">
+                        <a class="page-link" href="?page={{ page_obj.next_page_number }}" aria-label="Next">
+                            <span aria-hidden="true">&raquo;</span>
+                        </a>
+                    </li>
+                    {% endif %}
+                </ul>
+            </nav>
+            {% endif %}
+        </div>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,201 @@
+{% extends "church/base.html" %}
+{% load i18n static %}
+
+{% block title %}{% trans "Reports Dashboard" %}{% endblock %}
+
+{% block content %}
+<div class="container-fluid">
+    <div class="row mb-4">
+        <div class="col">
+            <h1 class="mb-0">{% trans "Church Reports" %}</h1>
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="{% url 'church:dashboard' %}">{% trans "Dashboard" %}</a></li>
+                    <li class="breadcrumb-item active" aria-current="page">{% trans "Reports" %}</li>
+                </ol>
+            </nav>
+        </div>
+    </div>
+
+    <div class="row">
+        <!-- Attendance Trends Card -->
+        <div class="col-lg-8 mb-4">
+            <div class="card shadow-sm h-100">
+                <div class="card-header" style="background-color: #191970; color: white;">
+                    <h3 class="card-title mb-0">{% trans "Attendance Trends" %}</h3>
+                </div>
+                <div class="card-body">
+                    <canvas id="attendanceChart" height="250"></canvas>
+                </div>
+            </div>
+        </div>
+
+        <!-- Quick Stats Card -->
+        <div class="col-lg-4 mb-4">
+            <div class="card shadow-sm h-100">
+                <div class="card-header" style="background-color: #191970; color: white;">
+                    <h3 class="card-title mb-0">{% trans "Quick Stats" %}</h3>
+                </div>
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-6 mb-3">
+                            <div class="card bg-primary text-white text-center">
+                                <div class="card-body">
+                                    <h2 class="mb-0">{{ total_worshipers }}</h2>
+                                    <small>{% trans "Total Worshipers" %}</small>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-6 mb-3">
+                            <div class="card bg-success text-white text-center">
+                                <div class="card-body">
+                                    <h2 class="mb-0">{{ baptized_count }}</h2>
+                                    <small>{% trans "Baptized" %}</small>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-6">
+                            <div class="card bg-info text-white text-center">
+                                <div class="card-body">
+                                    <h2 class="mb-0">{{ avg_attendance }}</h2>
+                                    <small>{% trans "Avg. Attendance" %}</small>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-6">
+                            <div class="card bg-warning text-dark text-center">
+                                <div class="card-body">
+                                    <h2 class="mb-0">{{ new_members }}</h2>
+                                    <small>{% trans "New Members" %}</small>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <!-- Gender Distribution -->
+        <div class="col-md-6 mb-4">
+            <div class="card shadow-sm h-100">
+                <div class="card-header" style="background-color: #191970; color: white;">
+                    <h3 class="card-title mb-0">{% trans "Gender Distribution" %}</h3>
+                </div>
+                <div class="card-body">
+                    <canvas id="genderChart" height="250"></canvas>
+                </div>
+            </div>
+        </div>
+
+        <!-- Baptism Status -->
+        <div class="col-md-6 mb-4">
+            <div class="card shadow-sm h-100">
+                <div class="card-header" style="background-color: #191970; color: white;">
+                    <h3 class="card-title mb-0">{% trans "Baptism Status" %}</h3>
+                </div>
+                <div class="card-body">
+                    <canvas id="baptismChart" height="250"></canvas>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    // Attendance Trends Chart
+    const attendanceCtx = document.getElementById('attendanceChart').getContext('2d');
+    new Chart(attendanceCtx, {
+        type: 'line',
+        data: {
+            labels: {{ attendance_labels|safe }},
+            datasets: [{
+                label: '{% trans "Total Attendance" %}',
+                data: {{ attendance_values|safe }},
+                borderColor: '#B22222',
+                backgroundColor: 'rgba(178, 34, 34, 0.1)',
+                tension: 0.1,
+                fill: true
+            }]
+        },
+        options: {
+            responsive: true,
+            plugins: {
+                legend: {
+                    position: 'top',
+                }
+            },
+            scales: {
+                y: {
+                    beginAtZero: true,
+                    title: {
+                        display: true,
+                        text: '{% trans "Number of People" %}'
+                    }
+                },
+                x: {
+                    title: {
+                        display: true,
+                        text: '{% trans "Date" %}'
+                    }
+                }
+            }
+        }
+    });
+
+    // Gender Distribution Chart
+    const genderCtx = document.getElementById('genderChart').getContext('2d');
+    new Chart(genderCtx, {
+        type: 'doughnut',
+        data: {
+            labels: {{ gender_labels|safe }},
+            datasets: [{
+                data: {{ gender_values|safe }},
+                backgroundColor: [
+                    '#007bff', // Male
+                    '#ff6b9d', // Female
+                    '#6c757d'  // Other
+                ]
+            }]
+        },
+        options: {
+            responsive: true,
+            plugins: {
+                legend: {
+                    position: 'right',
+                }
+            }
+        }
+    });
+
+    // Baptism Status Chart
+    const baptismCtx = document.getElementById('baptismChart').getContext('2d');
+    new Chart(baptismCtx, {
+        type: 'pie',
+        data: {
+            labels: {{ baptism_labels|safe }},
+            datasets: [{
+                data: {{ baptism_values|safe }},
+                backgroundColor: [
+                    '#28a745', // Baptized
+                    '#ffc107'  // Not Baptized
+                ]
+            }]
+        },
+        options: {
+            responsive: true,
+            plugins: {
+                legend: {
+                    position: 'right',
+                }
+            }
+        }
+    });
+});
+</script>
+{% endblock %}
