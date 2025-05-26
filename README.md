@@ -179,7 +179,5 @@ Open a Pull Request.
 Please ensure your code follows PEP 8 style guidelines and includes tests where applicable.
 License
 This project is licensed under the MIT License. See the LICENSE file for details.
-Contact
-For questions or support, contact:
 
 
