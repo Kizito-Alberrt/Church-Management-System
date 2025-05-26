@@ -49,7 +49,7 @@ Installation
 Follow these steps to set up the project locally:
 
 Clone the Repository:
-git clone https://github.com/yourusername/church_ms.git
+git clone (https://github.com/Kizito-Alberrt/Church-Management-System.git)
 cd church_ms
 
 
