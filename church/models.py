@@ -15,6 +15,12 @@ class User(AbstractUser):
         ('F', _('Female')),
         ('O', _('Other')),
     )
+
+    PASTOR_CATEGORY_CHOICES = (
+        ('DEACON', _('Deacon')),
+        ('PROBATIONARY', _('Probationary')),
+        ('PRESBYTER', _('Presbyter')),
+    )
     
     role = models.CharField(max_length=20, choices=ROLE_CHOICES, default='PASTOR')
     phone_number = models.CharField(max_length=20, blank=True, null=True)
@@ -50,6 +56,14 @@ class User(AbstractUser):
         help_text=_('Specific permissions for this user.'),
         related_name="church_user_set",
         related_query_name="church_user",
+    )
+
+    pastor_category = models.CharField(
+        max_length=20,
+        choices=PASTOR_CATEGORY_CHOICES,
+        null=True,
+        blank=True,
+        verbose_name=_('Pastor Category')
     )
     
     class Meta:
@@ -114,6 +128,7 @@ class Worshiper(models.Model):
     phone_number = models.CharField(max_length=20, blank=True, null=True, verbose_name=_('Phone Number'))
     email = models.EmailField(blank=True, null=True, verbose_name=_('Email'))
     is_baptized = models.BooleanField(default=False, verbose_name=_('Is Baptized'))
+    is_deceased = models.BooleanField(default=False)
     gender = models.CharField(max_length=1, choices=GENDER_CHOICES, blank=True, null=True, verbose_name=_('Gender'))
     date_of_birth = models.DateField(blank=True, null=True, verbose_name=_('Date of Birth'))
     created_at = models.DateTimeField(auto_now_add=True, verbose_name=_('Created At'))
@@ -130,6 +145,7 @@ class Worshiper(models.Model):
         verbose_name_plural = _('Worshipers')
         indexes = [
             models.Index(fields=['is_baptized']),
+            models.Index(fields=['is_deceased']),
             models.Index(fields=['gender']),
             models.Index(fields=['date_of_birth']),
             models.Index(fields=['email']),

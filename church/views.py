@@ -33,6 +33,22 @@ def admin_required(user):
     return user.is_authenticated and (user.is_superuser or user.role == 'ADMIN')
 
 
+def get_paginated_queryset(request, queryset, default_per_page=30):
+    """Helper function to paginate querysets with customizable per_page."""
+    per_page = request.GET.get('per_page', default_per_page)
+    try:
+        per_page = int(per_page)
+        if per_page not in [30, 50, 100]:
+            per_page = default_per_page
+    except ValueError:
+        per_page = default_per_page
+    paginator = Paginator(queryset, per_page)
+    page = request.GET.get('page')
+    paginated = paginator.get_page(page)
+    return paginated, per_page
+
+
+
 @login_required
 def download_reports(request):
     report_type = request.GET.get('type')
@@ -89,6 +105,33 @@ def download_reports(request):
                 _('Yes') if worshiper.is_baptized else _('No')
             ])
 
+    
+    elif report_type == 'deceased_worshipers' and (request.user.is_superuser or request.user.role in ['ADMIN', 'MAIN_REVEREND', 'PASTOR']):
+        queryset = Worshiper.objects.select_related('church__district__province').filter(is_deceased=True)
+        if request.user.role == 'MAIN_REVEREND':
+            district = District.objects.filter(main_reverend=request.user).first()
+            queryset = queryset.filter(church__district=district) if district else queryset.none()
+        elif request.user.role == 'PASTOR':
+            church = Church.objects.filter(pastor=request.user).first()
+            queryset = queryset.filter(church=church) if church else queryset.none()
+        response = HttpResponse(content_type='text/csv')
+        response['Content-Disposition'] = 'attachment; filename="deceased_worshipers_list.csv"'
+        writer = csv.writer(response)
+        writer.writerow([_('First Name'), _('Last Name'), _('Church'), _('Gender'), _('Age'), _('Baptized'), _('Deceased')])
+        for worshiper in queryset:
+            writer.writerow([
+                worshiper.first_name,
+                worshiper.last_name,
+                worshiper.church.name,
+                worshiper.get_gender_display(),
+                worshiper.get_age() or _('Unknown'),
+                _('Yes') if worshiper.is_baptized else _('No'),
+                _('Yes'),  # All are deceased
+            ])
+
+    
+
+
     elif report_type == 'pastors' and (request.user.is_superuser or request.user.role in ['ADMIN', 'MAIN_REVEREND']):
         queryset = User.objects.filter(role='PASTOR').select_related('created_by').prefetch_related('churches')
         if request.user.role == 'MAIN_REVEREND':
@@ -97,7 +140,7 @@ def download_reports(request):
         response = HttpResponse(content_type='text/csv')
         response['Content-Disposition'] = 'attachment; filename="pastors_list.csv"'
         writer = csv.writer(response)
-        writer.writerow([_('First Name'), _('Last Name'), _('Username'), _('Gender'), _('Church')])
+        writer.writerow([_('First Name'), _('Last Name'), _('Username'), _('Gender'), _('Church'),_('Deceased')])
         for pastor in queryset:
             churches = ', '.join([church.name for church in pastor.churches.all()])
             writer.writerow([pastor.first_name, pastor.last_name, pastor.username, pastor.get_gender_display(), churches])
@@ -250,7 +293,58 @@ def get_full_report_data(user):
     return {}
 
 
+@login_required
+def mark_worshiper_deceased(request, worshiper_id):
+    worshiper = get_object_or_404(Worshiper, id=worshiper_id)
+    # Role-based access check
+    if request.user.role == 'MAIN_REVEREND':
+        district = District.objects.filter(main_reverend=request.user).first()
+        if not district or worshiper.church.district != district:
+            messages.error(request, _('You do not have permission to modify this worshiper.'))
+            return redirect('church:worshiper_list')
+    elif request.user.role == 'PASTOR':
+        church = Church.objects.filter(pastor=request.user).first()
+        if not church or worshiper.church != church:
+            messages.error(request, _('You do not have permission to modify this worshiper.'))
+            return redirect('church:worshiper_list')
+    elif not (request.user.is_superuser or request.user.role == 'ADMIN'):
+        messages.error(request, _('You do not have permission to modify this worshiper.'))
+        return redirect('church:worshiper_list')
 
+    if request.method == 'POST':
+        worshiper.is_deceased = not worshiper.is_deceased  # Toggle deceased status
+        worshiper.save()
+        status = _('deceased') if worshiper.is_deceased else _('alive')
+        messages.success(request, _(f'Worshiper {worshiper} marked as {status}.'))
+        logger.info(f"Worshiper {worshiper.id} marked as {status} by {request.user.username} ({request.user.role})")
+        return redirect('church:worshiper_list')
+    return render(request, 'church/worshiper_deceased_confirm.html', {'worshiper': worshiper})
+
+@login_required
+def delete_worshiper(request, worshiper_id):
+    worshiper = get_object_or_404(Worshiper, id=worshiper_id)
+    # Role-based access check
+    if request.user.role == 'MAIN_REVEREND':
+        district = District.objects.filter(main_reverend=request.user).first()
+        if not district or worshiper.church.district != district:
+            messages.error(request, _('You do not have permission to delete this worshiper.'))
+            return redirect('church:worshiper_list')
+    elif request.user.role == 'PASTOR':
+        church = Church.objects.filter(pastor=request.user).first()
+        if not church or worshiper.church != church:
+            messages.error(request, _('You do not have permission to delete this worshiper.'))
+            return redirect('church:worshiper_list')
+    elif not (request.user.is_superuser or request.user.role == 'ADMIN'):
+        messages.error(request, _('You do not have permission to delete this worshiper.'))
+        return redirect('church:worshiper_list')
+
+    if request.method == 'POST':
+        worshiper_name = str(worshiper)
+        worshiper.delete()
+        messages.success(request, _(f'Worshiper {worshiper_name} deleted successfully.'))
+        logger.info(f"Worshiper {worshiper_id} deleted by {request.user.username} ({request.user.role})")
+        return redirect('church:worshiper_list')
+    return render(request, 'church/worshiper_delete_confirm.html', {'worshiper': worshiper})
 
 @login_required
 def province_create(request):
@@ -296,6 +390,7 @@ def church_create(request):
             form.fields['district'].widget = forms.HiddenInput()
     
     return render(request, 'church/reverend/church_form.html', {'form': form})
+    
 
 @login_required
 def profile_view(request):
@@ -312,7 +407,7 @@ def profile_view(request):
 
 def login_view(request):
     if request.user.is_authenticated:
-        return redirect('dashboard')
+        return redirect('church:dashboard')
     
     if request.method == 'POST':
         username = request.POST.get('username')
@@ -411,8 +506,13 @@ def user_list(request):
         messages.error(request, _('You do not have permission to access this page.'))
         return redirect('dashboard')
     
-    users = User.objects.all().order_by('role', 'last_name', 'first_name')
-    return render(request, 'church/admin/user_list.html', {'users': users})
+    queryset = User.objects.all().order_by('role', 'last_name', 'first_name')
+    users, per_page = get_paginated_queryset(request, queryset)
+    context = {
+        'users': users,
+        'per_page': per_page,
+    }
+    return render(request, 'church/admin/user_list.html', context)
 
 @login_required
 def user_create(request):
@@ -445,22 +545,20 @@ def user_login(request):
     return render(request, 'church/login.html', {'form': form})
 
 
-@login_required
-def user_edit(request, pk):
-    if not request.user.is_superuser and request.user.role != 'ADMIN':
-        messages.error(request, _('You do not have permission to access this page.'))
-        return redirect('dashboard')
-    
-    user = get_object_or_404(User, pk=pk)
+@user_passes_test(admin_required)
+def user_edit(request, user_id):
+    user = get_object_or_404(User, id=user_id)
     if request.method == 'POST':
-        form = CustomUserChangeForm(request.POST, request.FILES, instance=user)
+        form = UserUpdateForm(request.POST, instance=user)
         if form.is_valid():
             form.save()
-            messages.success(request, _('User updated successfully!'))
+            messages.success(request, _(f'User {user} updated successfully.'))
+            logger.info(f"User {user.username} updated by {request.user.username} (ADMIN)")
             return redirect('church:user_list')
+        else:
+            messages.error(request, _('Please correct the errors below.'))
     else:
-        form = CustomUserChangeForm(instance=user)
-    
+        form = UserUpdateForm(instance=user)
     return render(request, 'church/admin/user_edit.html', {'form': form, 'user': user})
 
 @login_required
@@ -487,53 +585,80 @@ def pastor_list(request):
     district = None
     if request.user.role == 'MAIN_REVEREND':
         district = District.objects.get(main_reverend=request.user)
-        # Subquery to check if pastor has churches in the district
         has_district_churches = Exists(
             Church.objects.filter(pastor=OuterRef('pk'), district=district)
         )
-        pastors = User.objects.filter(
+        queryset = User.objects.filter(
             Q(role='PASTOR') & (Q(churches__district=district) | Q(created_by=request.user))
         ).annotate(
             has_district_churches=has_district_churches
         ).distinct()
-        logger.info(f"Main Reverend {request.user.username} pastor list: {pastors.count()} pastors, usernames: {[p.username for p in pastors]}")
+        logger.info(f"Main Reverend {request.user.username} pastor list: {queryset.count()} pastors, usernames: {[p.username for p in queryset]}")
     else:
-        pastors = User.objects.filter(role='PASTOR')
-        logger.info(f"Admin/Superuser {request.user.username} pastor list: {pastors.count()} pastors")
+        queryset = User.objects.filter(role='PASTOR')
+        logger.info(f"Admin/Superuser {request.user.username} pastor list: {queryset.count()} pastors")
     
-    return render(request, 'church/reverend/pastor_list.html', {
+    pastors, per_page = get_paginated_queryset(request, queryset)
+    context = {
         'pastors': pastors,
         'district': district,
-    })
+        'per_page': per_page,
+    }
+    return render(request, 'church/reverend/pastor_list.html', context)
 
-@login_required
-def pastor_assign_church(request, pastor_id):
-    if request.user.role not in ['MAIN_REVEREND'] and not request.user.is_superuser and request.user.role != 'ADMIN':
-        messages.error(request, _('Permission denied'))
-        return redirect('pastor_list')
-    
-    pastor = get_object_or_404(User, pk=pastor_id, role='PASTOR')
-    
-    # For Main Reverends, ensure the pastor is in their district or created by them
-    if request.user.role == 'MAIN_REVEREND':
-        district = District.objects.get(main_reverend=request.user)
-        if not (pastor.churches.filter(district=district).exists() or pastor.created_by == request.user):
-            messages.error(request, _('You can only assign churches to pastors in your district'))
-            return redirect('pastor_list')
-    
+@user_passes_test(admin_required)
+def pastor_assign_church(request, pastor_id=None):
+       initial = {}
+       if pastor_id:
+           try:
+               initial['pastor'] = User.objects.get(id=pastor_id, role='PASTOR')
+           except User.DoesNotExist:
+               messages.warning(request, _('Selected pastor does not exist.'))
+       church_id = request.GET.get('church')
+       if church_id:
+           try:
+               initial['church'] = Church.objects.get(id=church_id).id
+           except Church.DoesNotExist:
+               messages.warning(request, _('Selected church does not exist.'))
+       if request.method == 'POST':
+           form = PastorAssignChurchForm(request.POST)
+           if form.is_valid():
+               pastor = form.cleaned_data['pastor']
+               church = form.cleaned_data['church']
+               # Clear any existing assignment for this pastor
+               pastor.churches.clear()
+               Church.objects.filter(pastor=pastor).update(pastor=None)
+               # Clear existing pastor for this church
+               if church.pastor:
+                   church.pastor.churches.remove(church)
+               # Assign new pastor
+               church.pastor = pastor
+               church.save()
+               pastor.churches.add(church)
+               messages.success(request, _(f'Pastor {pastor} assigned to {church}.'))
+               logger.info(f"Pastor {pastor.username} assigned to {church.name} by {request.user.username} (ADMIN)")
+               return redirect('church:church_list')
+           else:
+               messages.error(request, _('Please correct the errors below.'))
+       else:
+           form = PastorAssignChurchForm(initial=initial)
+       
+       context = {'form': form}
+       return render(request, 'church/reverend/pastor_assign_church.html', context)
+
+@user_passes_test(admin_required)
+def unassign_pastor(request, church_id):
+    church = get_object_or_404(Church, id=church_id)
     if request.method == 'POST':
-        form = PastorChurchAssignmentForm(request.POST, user=request.user)
-        if form.is_valid():
-            form.save(pastor)
-            messages.success(request, _('Pastor assigned to church successfully!'))
-            return redirect('pastor_list')
-    else:
-        form = PastorChurchAssignmentForm(user=request.user)
-    
-    return render(request, 'church/reverend/pastor_assign_church.html', {
-        'form': form,
-        'pastor': pastor,
-    })
+        pastor = church.pastor
+        if pastor:
+            church.pastor = None
+            church.save()
+            pastor.churches.remove()
+            messages.success(request, _(f'Pastor {pastor} unassigned from {church}.'))
+            logger.info(f"Pastor {pastor.username} unassigned from {church.name} by {request.user.username} (ADMIN)")
+        return redirect('church:church_list')
+    return render(request, 'church/reverend/pastor_unassign_confirm.html', {'church': church})
 
 @login_required
 def pastor_create(request):
@@ -602,7 +727,7 @@ def pastor_delete(request, pastor_id):
         pastor.churches.update(pastor=None)
         pastor.delete()
         messages.success(request, _('Pastor deleted successfully!'))
-        return redirect('pastor_list')
+        return redirect('church:pastor_list')
     
     return render(request, 'church/reverend/pastor_confirm_delete.html', {
         'pastor': pastor,
@@ -631,12 +756,12 @@ def worshiper_list(request):
         if name:
             queryset = queryset.filter(Q(first_name__icontains=name) | Q(last_name__icontains=name))
 
-    paginator = Paginator(queryset, 10)
-    worshipers = paginator.get_page(request.GET.get('page'))
+    worshipers, per_page = get_paginated_queryset(request, queryset)
     context = {
         'worshipers': worshipers,
         'form': form,
         'is_baptized': request.GET.get('is_baptized'),
+        'per_page': per_page,
     }
     logger.info(f"Worshiper list for {request.user.username} ({request.user.role}): {context}")
     return render(request, 'church/pastor/worshiper_list.html', context)
@@ -712,21 +837,20 @@ def attendance_list(request):
     
     if request.user.role == 'PASTOR':
         church = Church.objects.get(pastor=request.user)
-        records = AttendanceRecord.objects.filter(church=church)
+        queryset = AttendanceRecord.objects.filter(church=church)
     elif request.user.role == 'MAIN_REVEREND':
         district = District.objects.get(main_reverend=request.user)
-        records = AttendanceRecord.objects.filter(church__district=district)
+        queryset = AttendanceRecord.objects.filter(church__district=district)
     else:
-        records = AttendanceRecord.objects.all()
+        queryset = AttendanceRecord.objects.all()
     
-    records = records.order_by('-date')
-    
-    # Pagination
-    paginator = Paginator(records, 25)
-    page_number = request.GET.get('page')
-    page_obj = paginator.get_page(page_number)
-    
-    return render(request, 'church/attendance/list.html', {'page_obj': page_obj})
+    queryset = queryset.order_by('-date')
+    page_obj, per_page = get_paginated_queryset(request, queryset)
+    context = {
+        'page_obj': page_obj,
+        'per_page': per_page,
+    }
+    return render(request, 'church/attendance/list.html', context)
 
 @login_required
 def attendance_create(request):
@@ -799,29 +923,28 @@ def attendance_delete(request, pk):
 @login_required
 def news_list(request):
     if request.user.is_superuser or request.user.role == 'ADMIN':
-        news_items = News.objects.all()
+        queryset = News.objects.all()
     elif request.user.role == 'MAIN_REVEREND':
-        news_items = News.objects.filter(
-    is_published=True,
-    target_audience__in=['ALL', 'REVERENDS']
-)
+        queryset = News.objects.filter(
+            is_published=True,
+            target_audience__in=['ALL', 'REVERENDS']
+        )
     elif request.user.role == 'PASTOR':
-        news_items = News.objects.filter(
-    is_published=True,
-    target_audience__in=['ALL', 'REVERENDS', 'PASTORS']
-)
+        queryset = News.objects.filter(
+            is_published=True,
+            target_audience__in=['ALL', 'REVERENDS', 'PASTORS']
+        )
     else:
         messages.error(request, _('You do not have permission to access this page.'))
         return redirect('dashboard')
     
-    news_items = news_items.order_by('-created_at')
-    
-    # Pagination
-    paginator = Paginator(news_items, 10)
-    page_number = request.GET.get('page')
-    page_obj = paginator.get_page(page_number)
-    
-    return render(request, 'church/news/list.html', {'page_obj': page_obj})
+    queryset = queryset.order_by('-created_at')
+    page_obj, per_page = get_paginated_queryset(request, queryset)
+    context = {
+        'page_obj': page_obj,
+        'per_page': per_page,
+    }
+    return render(request, 'church/news/list.html', context)
 
 @login_required
 def news_create(request):
@@ -1194,7 +1317,7 @@ def pastor_create(request):
         if form.is_valid():
             pastor = form.save()
             messages.success(request, _('Pastor created successfully!'))
-            return redirect('pastor_list')
+            return redirect('church:pastor_list')
     else:
         form = PastorCreationForm(user=request.user)
     
@@ -1207,8 +1330,13 @@ def province_list(request):
         messages.error(request, _('You do not have permission to view this page.'))
         return redirect('dashboard')
     
-    provinces = Province.objects.all().order_by('name')
-    return render(request, 'church/location/province_list.html', {'provinces': provinces})
+    queryset = Province.objects.all().order_by('name')
+    provinces, per_page = get_paginated_queryset(request, queryset)
+    context = {
+        'provinces': provinces,
+        'per_page': per_page,
+    }
+    return render(request, 'church/location/province_list.html', context)
 
 @login_required
 def province_create(request):
@@ -1266,8 +1394,13 @@ def district_list(request):
         messages.error(request, _('You do not have permission to view this page.'))
         return redirect('dashboard')
     
-    districts = District.objects.all().order_by('province', 'name')
-    return render(request, 'church/location/district_list.html', {'districts': districts})
+    queryset = District.objects.all().order_by('province', 'name')
+    districts, per_page = get_paginated_queryset(request, queryset)
+    context = {
+        'districts': districts,
+        'per_page': per_page,
+    }
+    return render(request, 'church/location/district_list.html', context)
 
 @login_required
 def district_create(request):
@@ -1331,15 +1464,20 @@ def district_delete(request, pk):
 @login_required
 def church_list(request):
     if request.user.is_superuser or request.user.role == 'ADMIN':
-        churches = Church.objects.all().order_by('district', 'name')
+        queryset = Church.objects.all().order_by('district', 'name')
     elif request.user.role == 'MAIN_REVEREND':
         district = District.objects.get(main_reverend=request.user)
-        churches = Church.objects.filter(district=district).order_by('name')
+        queryset = Church.objects.filter(district=district).order_by('name')
     else:
         messages.error(request, _('You do not have permission to view this page.'))
         return redirect('dashboard')
     
-    return render(request, 'church/reverend/church_list.html', {'churches': churches})
+    churches, per_page = get_paginated_queryset(request, queryset)
+    context = {
+        'churches': churches,
+        'per_page': per_page,
+    }
+    return render(request, 'church/reverend/church_list.html', context)
 
 @login_required
 def church_create(request):
@@ -1453,9 +1591,9 @@ def church_delete(request, pk):
     if request.method == 'POST':
         church.delete()
         messages.success(request, _('Church deleted successfully!'))
-        return redirect('church_list')
+        return redirect('church:church_list')
     
-    return render(request, 'church/location/church_delete.html', {'church': church})
+    return render(request, 'church/location/church_delete_confirm.html', {'church': church})
 
 
 
@@ -1513,21 +1651,20 @@ def search(request):
         if name:
             worshipers = worshipers.filter(Q(first_name__icontains=name) | Q(last_name__icontains=name))
 
-    user_paginator = Paginator(users.order_by('id'), 10)
-    church_paginator = Paginator(churches.order_by('id'), 10)
-    worshiper_paginator = Paginator(worshipers.order_by('id'), 10)
-
-    user_page = user_paginator.get_page(request.GET.get('user_page'))
-    church_page = church_paginator.get_page(request.GET.get('church_page'))
-    worshiper_page = worshiper_paginator.get_page(request.GET.get('worshiper_page'))
+    users, user_per_page = get_paginated_queryset(request, users.order_by('id'), default_per_page=30)
+    churches, church_per_page = get_paginated_queryset(request, churches.order_by('id'), default_per_page=30)
+    worshipers, worshiper_per_page = get_paginated_queryset(request, worshipers.order_by('id'), default_per_page=30)
 
     context = {
         'user_form': user_form,
         'church_form': church_form,
         'worshiper_form': worshiper_form,
-        'users': user_page,
-        'churches': church_page,
-        'worshipers': worshiper_page,
+        'users': users,
+        'churches': churches,
+        'worshipers': worshipers,
+        'user_per_page': user_per_page,
+        'church_per_page': church_per_page,
+        'worshiper_per_page': worshiper_per_page,
     }
     logger.info(f"Admin search by {request.user.username}: {context}")
     return render(request, 'church/search.html', context)
@@ -1572,3 +1709,19 @@ def reverend_search(request):
     }
     logger.info(f"Reverend search by {request.user.username}: {context}")
     return render(request, 'church/reverend_search.html', context)
+
+
+@user_passes_test(admin_required)
+def user_create(request):
+    if request.method == 'POST':
+        form = UserCreationForm(request.POST)
+        if form.is_valid():
+            user = form.save()
+            messages.success(request, _(f'User {user} created successfully.'))
+            logger.info(f"User {user.username} created by {request.user.username} (ADMIN)")
+            return redirect('church:user_list')
+        else:
+            messages.error(request, _('Please correct the errors below.'))
+    else:
+        form = UserCreationForm()
+    return render(request, 'church/admin/user_create.html', {'form': form})

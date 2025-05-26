@@ -52,7 +52,7 @@ urlpatterns = [
     # Admin views
     path('users/', views.user_list, name='user_list'),
     path('users/create/', views.user_create, name='user_create'),
-    path('users/<int:pk>/edit/', views.user_edit, name='user_edit'),
+    path('users/<int:user_id>/edit/', views.user_edit, name='user_edit'),
     path('users/<int:pk>/delete/', views.user_delete, name='user_delete'),
     
     # Reverend views
@@ -60,13 +60,16 @@ urlpatterns = [
     path('pastors/create/', views.pastor_create, name='pastor_create'),
     path('pastors/add/', add_pastor, name='add_pastor'),
     path('pastors/<int:pastor_id>/delete/', views.pastor_delete, name='pastor_delete'),
-    path('pastors/<int:pastor_id>/assign-church/', views.pastor_assign_church, name='pastor_assign_church'),
+    path('pastors/assign-church/', views.pastor_assign_church, name='pastor_assign_church'),
+    path('churches/<int:church_id>/unassign/', views.unassign_pastor, name='unassign_pastor'),
     
     # Pastor views
     path('worshipers/', views.worshiper_list, name='worshiper_list'),
     path('worshipers/create/', views.worshiper_create, name='worshiper_create'),
     path('worshipers/<int:pk>/edit/', views.worshiper_edit, name='worshiper_edit'),
     path('worshipers/<int:pk>/delete/', views.worshiper_delete, name='worshiper_delete'),
+    path('worshipers/<int:worshiper_id>/deceased/', views.mark_worshiper_deceased, name='mark_worshiper_deceased'),
+    path('worshipers/<int:worshiper_id>/delete/', views.delete_worshiper, name='delete_worshiper'),
     
     
     # Attendance views

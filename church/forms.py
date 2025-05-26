@@ -321,3 +321,102 @@ class PastorWorshiperSearchForm(forms.Form):
             church = Church.objects.filter(pastor=user).first()
             self.church = church if church else None
 
+
+
+class PastorAssignChurchForm(forms.Form):
+    pastor = forms.ModelChoiceField(
+        queryset=User.objects.filter(role='PASTOR'),
+        label=_('Pastor'),
+        empty_label=_('Select Pastor'),
+        required=True
+    )
+    church = forms.ModelChoiceField(
+        queryset=Church.objects.all(),
+        label=_('Church'),
+        empty_label=_('Select Church'),
+        required=True
+    )
+
+    
+    def clean(self):
+        cleaned_data = super().clean()
+        pastor = cleaned_data.get('pastor')
+        church = cleaned_data.get('church')
+        if pastor and pastor.role != 'PASTOR':
+            raise forms.ValidationError(_('Selected user is not a pastor.'))
+        if church and church.pastor and church.pastor != pastor:
+            raise forms.ValidationError(_('This church is already assigned to another pastor.'))
+        if pastor and pastor.churches.exists():
+            raise forms.ValidationError(_('This pastor is already assigned to a church. A pastor can only be assigned to one church.'))
+        return cleaned_data
+
+
+
+class UserCreationForm(forms.ModelForm):
+    password1 = forms.CharField(label=_('Password'), widget=forms.PasswordInput)
+    password2 = forms.CharField(label=_('Password confirmation'), widget=forms.PasswordInput)
+
+    class Meta:
+        model = User
+        fields = ('username', 'first_name', 'last_name', 'email', 'gender', 'phone_number', 'role', 'pastor_category')
+        labels = {
+            'username': _('Username'),
+            'first_name': _('First Name'),
+            'last_name': _('Last Name'),
+            'email': _('Email'),
+            'gender': _('Gender'),
+            'phone_number': _('Phone Number'),
+            'role': _('Role'),
+            'pastor_category': _('Pastor Category'),
+        }
+
+    def clean_password2(self):
+        password1 = self.cleaned_data.get('password1')
+        password2 = self.cleaned_data.get('password2')
+        if password1 and password2 and password1 != password2:
+            raise forms.ValidationError(_('Passwords do not match.'))
+        return password2
+
+    def clean(self):
+        cleaned_data = super().clean()
+        role = cleaned_data.get('role')
+        pastor_category = cleaned_data.get('pastor_category')
+        if role == 'PASTOR' and not pastor_category:
+            raise forms.ValidationError(_('Pastor category is required for pastors.'))
+        if role != 'PASTOR' and pastor_category:
+            raise forms.ValidationError(_('Pastor category can only be set for pastors.'))
+        return cleaned_data
+
+    def save(self, commit=True):
+        user = super().save(commit=False)
+        user.set_password(self.cleaned_data['password1'])
+        if commit:
+            user.save()
+        return user
+
+
+
+class UserUpdateForm(forms.ModelForm):
+    class Meta:
+        model = User
+        fields = ('username', 'first_name', 'last_name', 'email', 'gender', 'phone_number', 'role', 'pastor_category')
+        labels = {
+            'username': _('Username'),
+            'first_name': _('First Name'),
+            'last_name': _('Last Name'),
+            'email': _('Email'),
+            'gender': _('Gender'),
+            'phone_number': _('Phone Number'),
+            'role': _('Role'),
+            'pastor_category': _('Pastor Category'),
+        }
+
+    def clean(self):
+        cleaned_data = super().clean()
+        role = cleaned_data.get('role')
+        pastor_category = cleaned_data.get('pastor_category')
+        if role == 'PASTOR' and not pastor_category:
+            raise forms.ValidationError(_('Pastor category is required for pastors.'))
+        if role != 'PASTOR' and pastor_category:
+            raise forms.ValidationError(_('Pastor category can only be set for pastors.'))
+        return cleaned_data

@@ -21,11 +21,25 @@
                 <i class="bi bi-plus-lg"></i> {% trans "Add Pastor" %}
             </a>
         </div>
+        
 
         <div class="mb-3">
             <a href="{% url 'church:download_reports' %}?type=pastors" class="btn btn-primary">{% trans "Download Pastors List" %}</a>
         </div>
         {% endif %}
+
+        <form class="d-flex">
+            <select name="per_page" class="form-select me-2" onchange="this.form.submit()">
+                <option value="30" {% if per_page == 30 %}selected{% endif %}>{% trans "30 per page" %}</option>
+                <option value="50" {% if per_page == 50 %}selected{% endif %}>{% trans "50 per page" %}</option>
+                <option value="100" {% if per_page == 100 %}selected{% endif %}>{% trans "100 per page" %}</option>
+            </select>
+            {% for key, value in request.GET.items %}
+                {% if key != "per_page" %}
+                    <input type="hidden" name="{{ key }}" value="{{ value }}">
+                {% endif %}
+            {% endfor %}
+        </form>
     </div>
 
     <div class="card shadow-sm">
@@ -63,6 +77,7 @@
                             <th>{% trans "Church" %}</th>
                             <th>{% trans "Contact" %}</th>
                             <th>{% trans "Actions" %}</th>
+                            <th>{% trans "Category" %}</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -112,9 +127,7 @@
                                     </a>
                                     {% if user.is_superuser or user.role == 'ADMIN' or user.role == 'MAIN_REVEREND' %}
                                         {% if not pastor.churches.exists and pastor.created_by == user or pastor.has_district_churches %}
-                                            <a href="{% url 'church:pastor_assign_church' pastor.pk %}" class="btn btn-outline-success" title="{% trans 'Assign Church' %}">
-                                                <i class="bi bi-house-add"></i>
-                                            </a>
+                                            
                                         {% endif %}
                                         <a href="{% url 'church:pastor_delete' pastor.pk %}" class="btn btn-outline-danger" title="{% trans 'Delete' %}">
                                             <i class="bi bi-trash"></i>
@@ -122,6 +135,7 @@
                                     {% endif %}
                                 </div>
                             </td>
+                            <td>{{ pastor.get_pastor_category_display|default:_("None") }}</td>
                         </tr>
                         {% endfor %}
                     </tbody>

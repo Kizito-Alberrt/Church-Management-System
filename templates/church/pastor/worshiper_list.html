@@ -21,25 +21,33 @@
                 {{ field }}
             </div>
             {% endfor %}
-            <!-- <div class="col-md-4 mb-3">
-                <label for="is_baptized" class="form-label">{% trans "Baptized" %}</label>
-                <select name="is_baptized" id="is_baptized" class="form-select">
-                    <option value="">{% trans "All" %}</option>
-                    <option value="true" {% if is_baptized == 'true' %}selected{% endif %}>{% trans "Yes" %}</option>
-                    <option value="false" {% if is_baptized == 'false' %}selected{% endif %}>{% trans "No" %}</option>
-                </select>
-            </div> -->
-            
-        </div>
-        <div class="col-md-4 mb-3 align-self-end">
-            <button type="submit" class="btn btn-primary">{% trans "Search" %}</button>
+           
+            <div class="col-md-4 mb-3 align-self-end">
+                <button type="submit" class="btn btn-primary">{% trans "Search" %}</button>
+            </div>
         </div>
     </form>
 
+    
+
     <div class="mb-3">
         <a href="{% url 'church:worshiper_create' %}" class="btn btn-success">{% trans "Add Worshiper" %}</a>
-        <a href="{% url 'church:download_reports' %}?type=worshipers" class="btn btn-primary">{% trans "Download Worshipers List" %}</a>
+        <a href="{% url 'church:download_reports' %}?type=worshipers" class="btn btn-primary" data-bs-toggle="tooltip" title="{% trans 'Download all worshipers as CSV' %}">{% trans "Download Worshipers List" %}</a>
+        <a href="{% url 'church:download_reports' %}?type=deceased_worshipers" class="btn btn-primary" data-bs-toggle="tooltip" title="{% trans 'Download deceased worshipers as CSV' %}">{% trans "Download Deceased Worshipers List" %}</a>
     </div>
+
+     <form class="d-flex">
+            <select name="per_page" class="form-select me-2" onchange="this.form.submit()">
+                <option value="30" {% if per_page == 30 %}selected{% endif %}>{% trans "30 per page" %}</option>
+                <option value="50" {% if per_page == 50 %}selected{% endif %}>{% trans "50 per page" %}</option>
+                <option value="100" {% if per_page == 100 %}selected{% endif %}>{% trans "100 per page" %}</option>
+            </select>
+            {% for key, value in request.GET.items %}
+                {% if key != "per_page" %}
+                    <input type="hidden" name="{{ key }}" value="{{ value }}">
+                {% endif %}
+            {% endfor %}
+        </form>
 
     <div class="table-responsive">
         <table class="table table-striped">
@@ -49,8 +57,10 @@
                     <th>{% trans "Last Name" %}</th>
                     <th>{% trans "Church" %}</th>
                     <th>{% trans "Baptized" %}</th>
+                    <th>{% trans "Deceased" %}</th>
                     <th>{% trans "Gender" %}</th>
                     <th>{% trans "Age" %}</th>
+                    <th>{% trans "Actions" %}</th>
                 </tr>
             </thead>
             <tbody>
@@ -60,12 +70,19 @@
                     <td>{{ worshiper.last_name }}</td>
                     <td>{{ worshiper.church }}</td>
                     <td>{{ worshiper.is_baptized|yesno:_("Yes,No") }}</td>
+                    <td>{{ worshiper.is_deceased|yesno:_("Yes,No") }}</td>
                     <td>{{ worshiper.get_gender_display }}</td>
                     <td>{{ worshiper.get_age|default:_("Unknown") }}</td>
+                    <td>
+                        <a href="{% url 'church:mark_worshiper_deceased' worshiper.id %}" class="btn btn-sm btn-warning" data-bs-toggle="tooltip" title="{% trans 'Toggle Deceased Status' %}">
+                            {% if worshiper.is_deceased %}{% trans "Mark Alive" %}{% else %}{% trans "Mark Deceased" %}{% endif %}
+                        </a>
+                        <a href="{% url 'church:delete_worshiper' worshiper.id %}" class="btn btn-sm btn-danger" data-bs-toggle="tooltip" title="{% trans 'Delete Worshiper' %}">{% trans "Delete" %}</a>
+                    </td>
                 </tr>
                 {% empty %}
                 <tr>
-                    <td colspan="6" class="text-center">{% trans "No worshipers found." %}</td>
+                    <td colspan="8" class="text-center">{% trans "No worshipers found." %}</td>
                 </tr>
                 {% endfor %}
             </tbody>
@@ -89,5 +106,12 @@
         </ul>
     </nav>
     {% endif %}
+
+    <script>
+        var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'));
+        tooltipTriggerList.forEach(function (tooltipTriggerEl) {
+            new bootstrap.Tooltip(tooltipTriggerEl);
+        });
+    </script>
 </div>
 {% endblock %}

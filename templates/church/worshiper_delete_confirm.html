@@ -1,0 +1,25 @@
+{% extends "church/base.html" %}
+{% load i18n %}
+
+{% block title %}{% trans "Confirm Delete Worshiper" %}{% endblock %}
+
+{% block content %}
+<div class="container-fluid">
+    <h1>{% trans "Confirm Delete Worshiper" %}</h1>
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="{% url 'church:dashboard' %}">{% trans "Dashboard" %}</a></li>
+            <li class="breadcrumb-item"><a href="{% url 'church:worshiper_list' %}">{% trans "Worshiper List" %}</a></li>
+            <li class="breadcrumb-item active">{% trans "Confirm Delete Worshiper" %}</li>
+        </ol>
+    </nav>
+
+    <p>{% trans "Are you sure you want to delete" %} {{ worshiper }}? {% trans "This action cannot be undone." %}</p>
+
+    <form method="post">
+        {% csrf_token %}
+        <button type="submit" class="btn btn-danger">{% trans "Delete" %}</button>
+        <a href="{% url 'church:worshiper_list' %}" class="btn btn-secondary">{% trans "Cancel" %}</a>
+    </form>
+</div>
+{% endblock %}

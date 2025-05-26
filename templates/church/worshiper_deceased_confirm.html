@@ -1,0 +1,31 @@
+{% extends "church/base.html" %}
+{% load i18n %}
+
+{% block title %}{% trans "Confirm Deceased Status" %}{% endblock %}
+
+{% block content %}
+<div class="container-fluid">
+    <h1>{% trans "Confirm Deceased Status" %}</h1>
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="{% url 'church:dashboard' %}">{% trans "Dashboard" %}</a></li>
+            <li class="breadcrumb-item"><a href="{% url 'church:worshiper_list' %}">{% trans "Worshiper List" %}</a></li>
+            <li class="breadcrumb-item active">{% trans "Confirm Deceased Status" %}</li>
+        </ol>
+    </nav>
+
+    <p>
+        {% if worshiper.is_deceased %}
+            {% trans "Are you sure you want to mark" %} {{ worshiper }} {% trans "as alive?" %}
+        {% else %}
+            {% trans "Are you sure you want to mark" %} {{ worshiper }} {% trans "as deceased?" %}
+        {% endif %}
+    </p>
+
+    <form method="post">
+        {% csrf_token %}
+        <button type="submit" class="btn btn-warning">{% trans "Confirm" %}</button>
+        <a href="{% url 'church:worshiper_list' %}" class="btn btn-secondary">{% trans "Cancel" %}</a>
+    </form>
+</div>
+{% endblock %}

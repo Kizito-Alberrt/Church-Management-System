@@ -1,98 +1,99 @@
-# SOME DESCRIPTIVE TITLE.
-# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
-# This file is distributed under the same license as the PACKAGE package.
-# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+# Portuguese translations for Church Management System
+# Copyright (C) 2025 Church Management System
+# This file is distributed under the same license as the Church Management System package.
 #
-#, fuzzy
 msgid ""
 msgstr ""
-"Project-Id-Version: PACKAGE VERSION\n"
-"Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-04-21 13:21+0200\n"
-"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
-"Language-Team: LANGUAGE <LL@li.org>\n"
-"Language: \n"
+"Project-Id-Version: Church Management System 1.0\n"
+"Report-Msgid-Bugs-To: support@churchms.org\n"
+"POT-Creation-Date: 2025-05-16 14:20+0200\n"
+"PO-Revision-Date: 2025-05-16 14:20+0200\n"
+"Last-Translator: Grok Translator <grok@x.ai>\n"
+"Language-Team: Portuguese <pt@churchms.org>\n"
+"Language: pt\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
 #: .\church\admin.py:23
 msgid "Personal info"
-msgstr ""
+msgstr "Informações pessoais"
 
 #: .\church\admin.py:25
 msgid "Permissions"
-msgstr ""
+msgstr "Permissões"
 
 #: .\church\admin.py:28
 msgid "Important dates"
-msgstr ""
+msgstr "Datas importantes"
 
 #: .\church\forms.py:67
 msgid "Send email notification to users"
-msgstr ""
+msgstr "Enviar notificação por e-mail aos usuários"
 
 #: .\church\forms.py:68
 msgid "Uncheck if you don't want to send emails about this news"
-msgstr ""
+msgstr "Desmarque se não deseja enviar e-mails sobre esta notícia"
 
 #: .\church\forms.py:101 .\templates\church\admin\user_list.html:36
 msgid "Email"
-msgstr ""
+msgstr "E-mail"
 
 #: .\church\forms.py:108 .\templates\church\auth\password_reset_confirm.html:22
 msgid "New password"
-msgstr ""
+msgstr "Nova senha"
 
 #: .\church\forms.py:113
 msgid "New password confirmation"
-msgstr ""
+msgstr "Confirmação da nova senha"
 
 #: .\church\models.py:8
 msgid "Admin"
-msgstr ""
+msgstr "Administrador"
 
 #: .\church\models.py:9 .\templates\church\location\district_form.html:38
 #: .\templates\church\location\district_list.html:42
 msgid "Main Reverend"
-msgstr ""
+msgstr "Reverendo Principal"
 
 #: .\church\models.py:10 .\templates\church\location\church_form.html:38
 #: .\templates\church\location\church_list.html:65
 msgid "Pastor"
-msgstr ""
+msgstr "Pastor"
 
 #: .\church\models.py:22
 msgid "groups"
-msgstr ""
+msgstr "Grupos"
 
 #: .\church\models.py:25
 msgid ""
 "The groups this user belongs to. A user will get all permissions granted to "
 "each of their groups."
 msgstr ""
+"Os grupos aos quais este usuário pertence. Um usuário receberá todas as "
+"permissões concedidas a cada um de seus grupos."
 
 #: .\church\models.py:33
 msgid "user permissions"
-msgstr ""
+msgstr "Permissões do usuário"
 
 #: .\church\models.py:35
 msgid "Specific permissions for this user."
-msgstr ""
+msgstr "Permissões específicas para este usuário."
 
 #: .\church\models.py:41
 msgid "user"
-msgstr ""
+msgstr "Usuário"
 
 #: .\church\models.py:42
 msgid "users"
-msgstr ""
+msgstr "Usuários"
 
 #: .\church\models.py:52 .\templates\church\location\district_form.html:34
 #: .\templates\church\location\district_list.html:41
 msgid "Province"
-msgstr ""
+msgstr "Província"
 
 #: .\church\models.py:53 .\templates\church\dashboard.html:47
 #: .\templates\church\dashboard.html:69
@@ -100,13 +101,13 @@ msgstr ""
 #: .\templates\church\location\province_list.html:10
 #: .\templates\church\location\province_list.html:14
 msgid "Provinces"
-msgstr ""
+msgstr "Províncias"
 
 #: .\church\models.py:66 .\templates\church\dashboard.html:146
 #: .\templates\church\location\church_form.html:34
 #: .\templates\church\location\church_list.html:64
 msgid "District"
-msgstr ""
+msgstr "Distrito"
 
 #: .\church\models.py:67 .\templates\church\dashboard.html:50
 #: .\templates\church\dashboard.html:83
@@ -115,13 +116,13 @@ msgstr ""
 #: .\templates\church\location\district_list.html:10
 #: .\templates\church\location\district_list.html:14
 msgid "Districts"
-msgstr ""
+msgstr "Distritos"
 
 #: .\church\models.py:83 .\templates\church\attendance\list.html:36
 #: .\templates\church\dashboard.html:196
 #: .\templates\church\reverend\pastor_list.html:60
 msgid "Church"
-msgstr ""
+msgstr "Igreja"
 
 #: .\church\models.py:84 .\templates\church\dashboard.html:53
 #: .\templates\church\dashboard.html:96 .\templates\church\dashboard.html:158
@@ -129,29 +130,29 @@ msgstr ""
 #: .\templates\church\location\church_list.html:24
 #: .\templates\church\location\district_list.html:43
 msgid "Churches"
-msgstr ""
+msgstr "Igrejas"
 
 #: .\church\models.py:92 .\church\views.py:871 .\church\views.py:911
 #: .\templates\church\pastor\worshiper_delete.html:48
 #: .\templates\church\pastor\worshiper_list.html:79
 msgid "Male"
-msgstr ""
+msgstr "Masculino"
 
 #: .\church\models.py:93 .\church\views.py:871 .\church\views.py:911
 #: .\templates\church\pastor\worshiper_delete.html:50
 #: .\templates\church\pastor\worshiper_list.html:81
 msgid "Female"
-msgstr ""
+msgstr "Feminino"
 
 #: .\church\models.py:94 .\church\models.py:124 .\church\views.py:871
 #: .\church\views.py:911 .\templates\church\pastor\worshiper_delete.html:52
 #: .\templates\church\pastor\worshiper_list.html:83
 msgid "Other"
-msgstr ""
+msgstr "Outro"
 
 #: .\church\models.py:111
 msgid "Worshiper"
-msgstr ""
+msgstr "Fiel"
 
 #: .\church\models.py:112 .\templates\church\base.html:35
 #: .\templates\church\dashboard.html:132 .\templates\church\dashboard.html:182
@@ -162,56 +163,56 @@ msgstr ""
 #: .\templates\church\pastor\worshiper_edit.html:14
 #: .\templates\church\pastor\worshiper_list.html:14
 msgid "Worshipers"
-msgstr ""
+msgstr "Fiéis"
 
 #: .\church\models.py:120
 msgid "Spouse"
-msgstr ""
+msgstr "Cônjuge"
 
 #: .\church\models.py:121
 msgid "Parent"
-msgstr ""
+msgstr "Pai/Mãe"
 
 #: .\church\models.py:122
 msgid "Child"
-msgstr ""
+msgstr "Filho/Filha"
 
 #: .\church\models.py:123
 msgid "Sibling"
-msgstr ""
+msgstr "Irmão/Irmã"
 
 #: .\church\models.py:135 .\church\models.py:136
 msgid "Next of Kin"
-msgstr ""
+msgstr "Parente mais próximo"
 
 #: .\church\models.py:149
 msgid "Medical History"
-msgstr ""
+msgstr "Histórico médico"
 
 #: .\church\models.py:150
 msgid "Medical Histories"
-msgstr ""
+msgstr "Históricos médicos"
 
 #: .\church\models.py:166
 msgid "Attendance Record"
-msgstr ""
+msgstr "Registro de presença"
 
 #: .\church\models.py:167 .\templates\church\attendance\list.html:4
 #: .\templates\church\attendance\list.html:10
 msgid "Attendance Records"
-msgstr ""
+msgstr "Registros de presença"
 
 #: .\church\models.py:187 .\templates\church\news\news_detail.html:59
 msgid "All Users"
-msgstr ""
+msgstr "Todos os usuários"
 
 #: .\church\models.py:188 .\templates\church\news\news_detail.html:61
 msgid "Main Reverends and Pastors"
-msgstr ""
+msgstr "Reverendos Principais e Pastores"
 
 #: .\church\models.py:189 .\templates\church\news\news_detail.html:63
 msgid "Pastors Only"
-msgstr ""
+msgstr "Apenas Pastores"
 
 #: .\church\models.py:193 .\church\models.py:194
 #: .\templates\church\base.html:42 .\templates\church\news\create.html:14
@@ -220,7 +221,7 @@ msgstr ""
 #: .\templates\church\news\list.html:14
 #: .\templates\church\news\news_detail.html:14
 msgid "News"
-msgstr ""
+msgstr "Notícias"
 
 #: .\church\views.py:32 .\church\views.py:57 .\church\views.py:359
 #: .\church\views.py:368 .\church\views.py:385 .\church\views.py:403
@@ -230,231 +231,231 @@ msgstr ""
 #: .\church\views.py:644 .\church\views.py:680 .\church\views.py:723
 #: .\church\views.py:798 .\church\views.py:836
 msgid "You do not have permission to access this page."
-msgstr ""
+msgstr "Você não tem permissão para acessar esta página."
 
 #: .\church\views.py:51 .\church\views.py:79
 msgid "Invalid format requested"
-msgstr ""
+msgstr "Formato solicitado inválido"
 
 #: .\church\views.py:217
 msgid "Profile updated successfully!"
-msgstr ""
+msgstr "Perfil atualizado com sucesso!"
 
 #: .\church\views.py:235
 #, python-format
 msgid "Welcome back, %(name)s!"
-msgstr ""
+msgstr "Bem-vindo de volta, %(name)s!"
 
 #: .\church\views.py:238
 msgid "Invalid username or password."
-msgstr ""
+msgstr "Nome de usuário ou senha inválidos."
 
 #: .\church\views.py:245
 msgid "You have been logged out successfully."
-msgstr ""
+msgstr "Você saiu do sistema com sucesso."
 
 #: .\church\views.py:304
 msgid "You are not assigned to any district. Please contact the administrator."
-msgstr ""
+msgstr "Você não está atribuído a nenhum distrito. Contate o administrador."
 
 #: .\church\views.py:324
 msgid ""
 "You are not assigned to any church. Please contact your district reverend."
-msgstr ""
+msgstr "Você não está atribuído a nenhuma igreja. Contate o reverendo do distrito."
 
 #: .\church\views.py:328
 msgid "An error occurred while loading the dashboard."
-msgstr ""
+msgstr "Ocorreu um erro ao carregar o painel."
 
 #: .\church\views.py:375
 msgid "User created successfully!"
-msgstr ""
+msgstr "Usuário criado com sucesso!"
 
 #: .\church\views.py:393
 msgid "User updated successfully!"
-msgstr ""
+msgstr "Usuário atualizado com sucesso!"
 
 #: .\church\views.py:409
 msgid "User deleted successfully!"
-msgstr ""
+msgstr "Usuário excluído com sucesso!"
 
 #: .\church\views.py:426
 msgid "You are not assigned to any district."
-msgstr ""
+msgstr "Você não está atribuído a nenhum distrito."
 
 #: .\church\views.py:445
 msgid "An error occurred while loading pastors."
-msgstr ""
+msgstr "Ocorreu um erro ao carregar os pastores."
 
 #: .\church\views.py:471 .\church\views.py:992 .\church\views.py:1212
 msgid "Pastor created successfully!"
-msgstr ""
+msgstr "Pastor criado com sucesso!"
 
 #: .\church\views.py:514
 msgid "Worshiper added successfully!"
-msgstr ""
+msgstr "Fiel adicionado com sucesso!"
 
 #: .\church\views.py:535
 msgid "You can only edit worshipers in your church."
-msgstr ""
+msgstr "Você só pode editar fiéis da sua igreja."
 
 #: .\church\views.py:542
 msgid "Worshiper updated successfully!"
-msgstr ""
+msgstr "Fiel atualizado com sucesso!"
 
 #: .\church\views.py:562
 msgid "You can only delete worshipers in your church."
-msgstr ""
+msgstr "Você só pode excluir fiéis da sua igreja."
 
 #: .\church\views.py:567
 msgid "Worshiper deleted successfully!"
-msgstr ""
+msgstr "Fiel excluído com sucesso!"
 
 #: .\church\views.py:607
 msgid "Attendance record created successfully!"
-msgstr ""
+msgstr "Registro de presença criado com sucesso!"
 
 #: .\church\views.py:624
 msgid "You can only edit records from your church."
-msgstr ""
+msgstr "Você só pode editar registros da sua igreja."
 
 #: .\church\views.py:627
 msgid "You can only edit records from your district."
-msgstr ""
+msgstr "Você só pode editar registros do seu distrito."
 
 #: .\church\views.py:634
 msgid "Attendance record updated successfully!"
-msgstr ""
+msgstr "Registro de presença atualizado com sucesso!"
 
 #: .\church\views.py:651
 msgid "You can only delete records from your church."
-msgstr ""
+msgstr "Você só pode excluir registros da sua igreja."
 
 #: .\church\views.py:654
 msgid "You can only delete records from your district."
-msgstr ""
+msgstr "Você só pode excluir registros do seu distrito."
 
 #: .\church\views.py:659
 msgid "Attendance record deleted successfully!"
-msgstr ""
+msgstr "Registro de presença excluído com sucesso!"
 
 #: .\church\views.py:695 .\templates\church\news\create.html:47
 msgid "You don't have permission to create news."
-msgstr ""
+msgstr "Você não tem permissão para criar notícias."
 
 #: .\church\views.py:710
 msgid "News created successfully!"
-msgstr ""
+msgstr "Notícia criada com sucesso!"
 
 #: .\church\views.py:714
 msgid "An error occurred while creating the news."
-msgstr ""
+msgstr "Ocorreu um erro ao criar a notícia."
 
 #: .\church\views.py:729
 msgid "You can only edit your own news items."
-msgstr ""
+msgstr "Você só pode editar suas próprias notícias."
 
 #: .\church\views.py:742
 msgid "News item updated successfully!"
-msgstr ""
+msgstr "Notícia atualizada com sucesso!"
 
 #: .\church\views.py:805
 msgid "You can only delete your own news items."
-msgstr ""
+msgstr "Você só pode excluir suas próprias notícias."
 
 #: .\church\views.py:810
 msgid "News item deleted successfully!"
-msgstr ""
+msgstr "Notícia excluída com sucesso!"
 
 #: .\church\views.py:821 .\church\views.py:824
 msgid "You do not have permission to view this news item."
-msgstr ""
+msgstr "Você não tem permissão para visualizar esta notícia."
 
 #: .\church\views.py:862 .\church\views.py:902
 #: .\templates\church\reports\dashboard.html:53
 msgid "Baptized"
-msgstr ""
+msgstr "Batizado"
 
 #: .\church\views.py:862 .\church\views.py:902
 msgid "Not Baptized"
-msgstr ""
+msgstr "Não batizado"
 
 #: .\church\views.py:968 .\church\views.py:985 .\church\views.py:1205
 msgid "Permission denied"
-msgstr ""
+msgstr "Permissão negada"
 
 #: .\church\views.py:975
 msgid "Main Reverend created successfully!"
-msgstr ""
+msgstr "Reverendo Principal criado com sucesso!"
 
 #: .\church\views.py:1003 .\church\views.py:1062 .\church\views.py:1126
 msgid "You do not have permission to view this page."
-msgstr ""
+msgstr "Você não tem permissão para visualizar esta página."
 
 #: .\church\views.py:1012 .\church\views.py:1029 .\church\views.py:1047
 #: .\church\views.py:1071 .\church\views.py:1088 .\church\views.py:1106
 #: .\church\views.py:1140 .\church\views.py:1165 .\church\views.py:1188
 msgid "You do not have permission to perform this action."
-msgstr ""
+msgstr "Você não tem permissão para realizar esta ação."
 
 #: .\church\views.py:1019
 msgid "Province created successfully!"
-msgstr ""
+msgstr "Província criada com sucesso!"
 
 #: .\church\views.py:1037
 msgid "Province updated successfully!"
-msgstr ""
+msgstr "Província atualizada com sucesso!"
 
 #: .\church\views.py:1053
 msgid "Province deleted successfully!"
-msgstr ""
+msgstr "Província excluída com sucesso!"
 
 #: .\church\views.py:1078
 msgid "District created successfully!"
-msgstr ""
+msgstr "Distrito criado com sucesso!"
 
 #: .\church\views.py:1096
 msgid "District updated successfully!"
-msgstr ""
+msgstr "Distrito atualizado com sucesso!"
 
 #: .\church\views.py:1112
 msgid "District deleted successfully!"
-msgstr ""
+msgstr "Distrito excluído com sucesso!"
 
 #: .\church\views.py:1147
 msgid "Church created successfully!"
-msgstr ""
+msgstr "Igreja criada com sucesso!"
 
 #: .\church\views.py:1160
 msgid "You can only edit churches in your district."
-msgstr ""
+msgstr "Você só pode editar igrejas do seu distrito."
 
 #: .\church\views.py:1172
 msgid "Church updated successfully!"
-msgstr ""
+msgstr "Igreja atualizada com sucesso!"
 
 #: .\church\views.py:1185
 msgid "You can only delete churches in your district."
-msgstr ""
+msgstr "Você só pode excluir igrejas do seu distrito."
 
 #: .\church\views.py:1193
 msgid "Church deleted successfully!"
-msgstr ""
+msgstr "Igreja excluída com sucesso!"
 
 #: .\church_ms\settings.py:126
 msgid "English"
-msgstr ""
+msgstr "Inglês"
 
 #: .\church_ms\settings.py:127
 msgid "Portuguese"
-msgstr ""
+msgstr "Português"
 
 #: .\templates\church\admin\main_reverend_create.html:4
 #: .\templates\church\admin\main_reverend_create.html:10
 #: .\templates\church\admin\main_reverend_create.html:15
 #: .\templates\church\base.html:85
 msgid "Add Main Reverend"
-msgstr ""
+msgstr "Adicionar Reverendo Principal"
 
 #: .\templates\church\admin\main_reverend_create.html:13
 #: .\templates\church\admin\pastor_create.html:13
@@ -487,7 +488,7 @@ msgstr ""
 #: .\templates\church\reports\dashboard.html:13
 #: .\templates\church\reverend\pastor_list.html:13
 msgid "Dashboard"
-msgstr ""
+msgstr "Painel"
 
 #: .\templates\church\admin\main_reverend_create.html:14
 #: .\templates\church\admin\user_create.html:14
@@ -495,11 +496,11 @@ msgstr ""
 #: .\templates\church\admin\user_edit.html:14
 #: .\templates\church\admin\user_list.html:14 .\templates\church\base.html:25
 msgid "Users"
-msgstr ""
+msgstr "Usuários"
 
 #: .\templates\church\admin\main_reverend_create.html:25
 msgid "Main Reverend Information"
-msgstr ""
+msgstr "Informações do Reverendo Principal"
 
 #: .\templates\church\admin\main_reverend_create.html:34
 #: .\templates\church\admin\pastor_create.html:34
@@ -518,59 +519,59 @@ msgstr ""
 #: .\templates\church\pastor\worshiper_delete.html:65
 #: .\templates\church\pastor\worshiper_edit.html:59
 msgid "Cancel"
-msgstr ""
+msgstr "Cancelar"
 
 #: .\templates\church\admin\main_reverend_create.html:37
 msgid "Save Main Reverend"
-msgstr ""
+msgstr "Salvar Reverendo Principal"
 
 #: .\templates\church\admin\pastor_create.html:4
 #: .\templates\church\admin\pastor_create.html:10
 #: .\templates\church\admin\pastor_create.html:15
 #: .\templates\church\reverend\pastor_list.html:21
 msgid "Add Pastor"
-msgstr ""
+msgstr "Adicionar Pastor"
 
 #: .\templates\church\admin\pastor_create.html:14
 #: .\templates\church\base.html:30 .\templates\church\dashboard.html:120
 #: .\templates\church\dashboard.html:170
 #: .\templates\church\reverend\pastor_list.html:14
 msgid "Pastors"
-msgstr ""
+msgstr "Pastores"
 
 #: .\templates\church\admin\pastor_create.html:25
 msgid "Pastor Information"
-msgstr ""
+msgstr "Informações do Pastor"
 
 #: .\templates\church\admin\pastor_create.html:37
 msgid "Save Pastor"
-msgstr ""
+msgstr "Salvar Pastor"
 
 #: .\templates\church\admin\user_create.html:4
 msgid "Create User"
-msgstr ""
+msgstr "Criar Usuário"
 
 #: .\templates\church\admin\user_create.html:10
 msgid "Create New User"
-msgstr ""
+msgstr "Criar Novo Usuário"
 
 #: .\templates\church\admin\user_create.html:15
 #: .\templates\church\news\create.html:15
 msgid "Create"
-msgstr ""
+msgstr "Criar"
 
 #: .\templates\church\admin\user_create.html:25
 msgid "User Information"
-msgstr ""
+msgstr "Informações do Usuário"
 
 #: .\templates\church\admin\user_create.html:37
 msgid "Save User"
-msgstr ""
+msgstr "Salvar Usuário"
 
 #: .\templates\church\admin\user_delete.html:4
 #: .\templates\church\admin\user_delete.html:10
 msgid "Delete User"
-msgstr ""
+msgstr "Excluir Usuário"
 
 #: .\templates\church\admin\user_delete.html:15
 #: .\templates\church\admin\user_list.html:78
@@ -586,39 +587,41 @@ msgstr ""
 #: .\templates\church\pastor\worshiper_list.html:109
 #: .\templates\church\reverend\pastor_list.html:103
 msgid "Delete"
-msgstr ""
+msgstr "Excluir"
 
 #: .\templates\church\admin\user_delete.html:25
 #: .\templates\church\attendance\delete.html:25
 #: .\templates\church\news\delete.html:25
 #: .\templates\church\pastor\worshiper_delete.html:25
 msgid "Confirm Deletion"
-msgstr ""
+msgstr "Confirmar Exclusão"
 
 #: .\templates\church\admin\user_delete.html:30
 #: .\templates\church\attendance\delete.html:30
 #: .\templates\church\news\delete.html:30
 #: .\templates\church\pastor\worshiper_delete.html:30
 msgid "Warning!"
-msgstr ""
+msgstr "Atenção!"
 
 #: .\templates\church\admin\user_delete.html:31
 msgid ""
 "You are about to permanently delete this user account. This action cannot be "
 "undone."
 msgstr ""
+"Você está prestes a excluir permanentemente esta conta de usuário. Esta ação "
+"não pode ser desfeita."
 
 #: .\templates\church\admin\user_delete.html:66
 #: .\templates\church\attendance\delete.html:54
 #: .\templates\church\news\delete.html:52
 #: .\templates\church\pastor\worshiper_delete.html:68
 msgid "Confirm Delete"
-msgstr ""
+msgstr "Confirmar Exclusão"
 
 #: .\templates\church\admin\user_edit.html:4
 #: .\templates\church\admin\user_edit.html:10
 msgid "Edit User"
-msgstr ""
+msgstr "Editar Usuário"
 
 #: .\templates\church\admin\user_edit.html:15
 #: .\templates\church\admin\user_list.html:75
@@ -632,11 +635,11 @@ msgstr ""
 #: .\templates\church\pastor\worshiper_list.html:106
 #: .\templates\church\reverend\pastor_list.html:100
 msgid "Edit"
-msgstr ""
+msgstr "Editar"
 
 #: .\templates\church\admin\user_edit.html:25
 msgid "Edit User Information"
-msgstr ""
+msgstr "Editar Informações do Usuário"
 
 #: .\templates\church\admin\user_edit.html:61
 #: .\templates\church\attendance\edit.html:39
@@ -644,20 +647,20 @@ msgstr ""
 #: .\templates\church\pastor\worshiper_edit.html:62
 #: .\templates\church\profile.html:94
 msgid "Save Changes"
-msgstr ""
+msgstr "Salvar Alterações"
 
 #: .\templates\church\admin\user_list.html:4
 #: .\templates\church\admin\user_list.html:10
 msgid "User Management"
-msgstr ""
+msgstr "Gerenciamento de Usuários"
 
 #: .\templates\church\admin\user_list.html:20
 msgid "Add User"
-msgstr ""
+msgstr "Adicionar Usuário"
 
 #: .\templates\church\admin\user_list.html:27
 msgid "User List"
-msgstr ""
+msgstr "Lista de Usuários"
 
 #: .\templates\church\admin\user_list.html:34
 #: .\templates\church\location\church_list.html:63
@@ -666,20 +669,20 @@ msgstr ""
 #: .\templates\church\pastor\worshiper_list.html:53
 #: .\templates\church\reverend\pastor_list.html:59
 msgid "Name"
-msgstr ""
+msgstr "Nome"
 
 #: .\templates\church\admin\user_list.html:35
 #: .\templates\church\auth\login.html:38
 msgid "Username"
-msgstr ""
+msgstr "Nome de usuário"
 
 #: .\templates\church\admin\user_list.html:37
 msgid "Role"
-msgstr ""
+msgstr "Função"
 
 #: .\templates\church\admin\user_list.html:38
 msgid "Status"
-msgstr ""
+msgstr "Status"
 
 #: .\templates\church\admin\user_list.html:39
 #: .\templates\church\attendance\list.html:41
@@ -689,112 +692,112 @@ msgstr ""
 #: .\templates\church\pastor\worshiper_list.html:58
 #: .\templates\church\reverend\pastor_list.html:62
 msgid "Actions"
-msgstr ""
+msgstr "Ações"
 
 #: .\templates\church\admin\user_list.html:68
 msgid "Active"
-msgstr ""
+msgstr "Ativo"
 
 #: .\templates\church\admin\user_list.html:70
 msgid "Inactive"
-msgstr ""
+msgstr "Inativo"
 
 #: .\templates\church\admin\user_list.html:86
 msgid "No users found"
-msgstr ""
+msgstr "Nenhum usuário encontrado"
 
 #: .\templates\church\attendance\create.html:4
 msgid "Create Attendance Record"
-msgstr ""
+msgstr "Criar Registro de Presença"
 
 #: .\templates\church\attendance\create.html:10
 msgid "New Attendance Record"
-msgstr ""
+msgstr "Novo Registro de Presença"
 
 #: .\templates\church\attendance\create.html:14
 #: .\templates\church\attendance\delete.html:14
 #: .\templates\church\attendance\edit.html:14
 #: .\templates\church\attendance\list.html:14 .\templates\church\base.html:38
 msgid "Attendance"
-msgstr ""
+msgstr "Presença"
 
 #: .\templates\church\attendance\create.html:15
 msgid "New"
-msgstr ""
+msgstr "Novo"
 
 #: .\templates\church\attendance\create.html:25
 msgid "Attendance Details"
-msgstr ""
+msgstr "Detalhes da Presença"
 
 #: .\templates\church\attendance\create.html:36
 msgid "Save Record"
-msgstr ""
+msgstr "Salvar Registro"
 
 #: .\templates\church\attendance\delete.html:4
 msgid "Delete Attendance Record"
-msgstr ""
+msgstr "Excluir Registro de Presença"
 
 #: .\templates\church\attendance\delete.html:10
 msgid "Delete Record"
-msgstr ""
+msgstr "Excluir Registro"
 
 #: .\templates\church\attendance\delete.html:31
 msgid "You are about to permanently delete this attendance record."
-msgstr ""
+msgstr "Você está prestes a excluir permanentemente este registro de presença."
 
 #: .\templates\church\attendance\delete.html:35
 msgid "Record Details"
-msgstr ""
+msgstr "Detalhes do Registro"
 
 #: .\templates\church\attendance\delete.html:37
 msgid "Date:"
-msgstr ""
+msgstr "Data:"
 
 #: .\templates\church\attendance\delete.html:40
 msgid "Church:"
-msgstr ""
+msgstr "Igreja:"
 
 #: .\templates\church\attendance\delete.html:43
 msgid "Total Attendance:"
-msgstr ""
+msgstr "Presença Total:"
 
 #: .\templates\church\attendance\edit.html:4
 msgid "Edit Attendance Record"
-msgstr ""
+msgstr "Editar Registro de Presença"
 
 #: .\templates\church\attendance\edit.html:10
 msgid "Edit Attendance"
-msgstr ""
+msgstr "Editar Presença"
 
 #: .\templates\church\attendance\edit.html:26
 msgid "Editing record for"
-msgstr ""
+msgstr "Editando registro para"
 
 #: .\templates\church\attendance\list.html:20
 msgid "New Record"
-msgstr ""
+msgstr "Novo Registro"
 
 #: .\templates\church\attendance\list.html:27
 msgid "Attendance History"
-msgstr ""
+msgstr "Histórico de Presença"
 
 #: .\templates\church\attendance\list.html:35
 #: .\templates\church\dashboard.html:306
 #: .\templates\church\reports\dashboard.html:144
 msgid "Date"
-msgstr ""
+msgstr "Data"
 
 #: .\templates\church\attendance\list.html:37
 msgid "Men"
-msgstr ""
+msgstr "Homens"
 
 #: .\templates\church\attendance\list.html:38
 msgid "Women"
-msgstr ""
+msgstr "Mulheres"
 
 #: .\templates\church\attendance\list.html:39
 msgid "Children"
-msgstr ""
+msgstr "Crianças"
 
 #: .\templates\church\attendance\list.html:40
 #: .\templates\church\location\church_list.html:53
@@ -803,207 +806,223 @@ msgstr ""
 #: .\templates\church\pastor\worshiper_list.html:43
 #: .\templates\church\reverend\pastor_list.html:39
 msgid "Total"
-msgstr ""
+msgstr "Total"
 
 #: .\templates\church\attendance\list.html:99
 msgid "No attendance records found"
-msgstr ""
+msgstr "Nenhum registro de presença encontrado"
 
 #: .\templates\church\attendance\list.html:101
 msgid "Create First Record"
-msgstr ""
+msgstr "Criar Primeiro Registro"
 
 #: .\templates\church\auth\login.html:4 .\templates\church\auth\login.html:58
 #: .\templates\church\base.html:72
 msgid "Login"
-msgstr ""
+msgstr "Entrar"
 
 #: .\templates\church\auth\login.html:12
 #: .\templates\church\auth\password_reset_email.html:27
 #: .\templates\church\base.html:116
 msgid "Church Management System"
-msgstr ""
+msgstr "Sistema de Gestão de Igrejas"
 
 #: .\templates\church\auth\login.html:13 .\templates\church\base.html:117
 msgid "Mozambique"
-msgstr ""
+msgstr "Moçambique"
 
 #: .\templates\church\auth\login.html:18
 msgid "Your username and password didn't match. Please try again."
-msgstr ""
+msgstr "Seu nome de usuário e senha não correspondem. Tente novamente."
 
 #: .\templates\church\auth\login.html:25
 msgid ""
 "Your account doesn't have access to this page. To proceed, please login with "
 "an account that has access."
 msgstr ""
+"Sua conta não tem acesso a esta página. Para prosseguir, faça login com uma "
+"conta que tenha acesso."
 
 #: .\templates\church\auth\login.html:29
 msgid "Please login to access the system."
-msgstr ""
+msgstr "Por favor, faça login para acessar o sistema."
 
 #: .\templates\church\auth\login.html:43
 msgid "Password"
-msgstr ""
+msgstr "Senha"
 
 #: .\templates\church\auth\login.html:50
 msgid "Remember me"
-msgstr ""
+msgstr "Lembrar-me"
 
 #: .\templates\church\auth\login.html:53
 msgid "Forgot password?"
-msgstr ""
+msgstr "Esqueceu a senha?"
 
 #: .\templates\church\auth\login.html:65
 msgid "Need help?"
-msgstr ""
+msgstr "Precisa de ajuda?"
 
 #: .\templates\church\auth\login.html:65
 msgid "Contact support"
-msgstr ""
+msgstr "Contatar suporte"
 
 #: .\templates\church\auth\password_reset.html:4
 msgid "Password Reset"
-msgstr ""
+msgstr "Redefinição de Senha"
 
 #: .\templates\church\auth\password_reset.html:12
 #: .\templates\church\auth\password_reset_email.html:39
 msgid "Reset Password"
-msgstr ""
+msgstr "Redefinir Senha"
 
 #: .\templates\church\auth\password_reset.html:16
 msgid ""
 "Forgotten your password? Enter your email address below, and we'll email "
 "instructions for setting a new one."
 msgstr ""
+"Esqueceu sua senha? Insira seu endereço de e-mail abaixo, e enviaremos "
+"instruções para configurar uma nova."
 
 #: .\templates\church\auth\password_reset.html:23
 msgid "Email address"
-msgstr ""
+msgstr "Endereço de e-mail"
 
 #: .\templates\church\auth\password_reset.html:28
 msgid "Reset my password"
-msgstr ""
+msgstr "Redefinir minha senha"
 
 #: .\templates\church\auth\password_reset.html:34
 msgid "Back to login"
-msgstr ""
+msgstr "Voltar para o login"
 
 #: .\templates\church\auth\password_reset_complete.html:4
 #: .\templates\church\auth\password_reset_complete.html:12
 msgid "Password Reset Complete"
-msgstr ""
+msgstr "Redefinição de Senha Concluída"
 
 #: .\templates\church\auth\password_reset_complete.html:17
 msgid "Your password has been set. You may go ahead and log in now."
-msgstr ""
+msgstr "Sua senha foi definida. Você pode prosseguir e fazer login agora."
 
 #: .\templates\church\auth\password_reset_complete.html:22
 msgid "Log in"
-msgstr ""
+msgstr "Entrar"
 
 #: .\templates\church\auth\password_reset_confirm.html:4
 msgid "Enter New Password"
-msgstr ""
+msgstr "Inserir Nova Senha"
 
 #: .\templates\church\auth\password_reset_confirm.html:12
 msgid "Set New Password"
-msgstr ""
+msgstr "Definir Nova Senha"
 
 #: .\templates\church\auth\password_reset_confirm.html:16
 msgid ""
 "Please enter your new password twice so we can verify you typed it in "
 "correctly."
 msgstr ""
+"Por favor, insira sua nova senha duas vezes para que possamos verificar se foi "
+"digitada corretamente."
 
 #: .\templates\church\auth\password_reset_confirm.html:26
 msgid ""
 "Your password must contain at least 8 characters and can't be entirely "
 "numeric."
 msgstr ""
+"Sua senha deve conter pelo menos 8 caracteres e não pode ser inteiramente "
+"numérica."
 
 #: .\templates\church\auth\password_reset_confirm.html:32
 msgid "Confirm password"
-msgstr ""
+msgstr "Confirmar senha"
 
 #: .\templates\church\auth\password_reset_confirm.html:37
 msgid "Change my password"
-msgstr ""
+msgstr "Alterar minha senha"
 
 #: .\templates\church\auth\password_reset_confirm.html:43
 msgid ""
 "The password reset link was invalid, possibly because it has already been "
 "used. Please request a new password reset."
 msgstr ""
+"O link de redefinição de senha era inválido, possivelmente porque já foi usado. "
+"Solicite uma nova redefinição de senha."
 
 #: .\templates\church\auth\password_reset_confirm.html:48
 msgid "Request new reset"
-msgstr ""
+msgstr "Solicitar nova redefinição"
 
 #: .\templates\church\auth\password_reset_done.html:4
 #: .\templates\church\auth\password_reset_done.html:12
 msgid "Password Reset Sent"
-msgstr ""
+msgstr "Redefinição de Senha Enviada"
 
 #: .\templates\church\auth\password_reset_done.html:17
 msgid ""
 "We've emailed you instructions for setting your password, if an account "
 "exists with the email you entered. You should receive them shortly."
 msgstr ""
+"Enviamos por e-mail as instruções para definir sua senha, se existir uma conta "
+"com o e-mail que você inseriu. Você deve recebê-las em breve."
 
 #: .\templates\church\auth\password_reset_done.html:21
 msgid ""
 "If you don't receive an email, please make sure you've entered the address "
 "you registered with, and check your spam folder."
 msgstr ""
+"Se você não receber um e-mail, verifique se inseriu o endereço com o qual se "
+"registrou e confira sua pasta de spam."
 
 #: .\templates\church\auth\password_reset_done.html:26
 msgid "Return to login"
-msgstr ""
+msgstr "Voltar para o login"
 
 #: .\templates\church\auth\password_reset_email.html:31
 msgid "Hello,"
-msgstr ""
+msgstr "Olá,"
 
 #: .\templates\church\auth\password_reset_email.html:33
 msgid ""
 "You're receiving this email because you requested a password reset for your "
 "account at Church Management System - Mozambique."
 msgstr ""
+"Você está recebendo este e-mail porque solicitou uma redefinição de senha para "
+"sua conta no Sistema de Gestão de Igrejas - Moçambique."
 
 #: .\templates\church\auth\password_reset_email.html:35
 msgid "Please go to the following page and choose a new password:"
-msgstr ""
+msgstr "Acesse a página a seguir e escolha uma nova senha:"
 
 #: .\templates\church\auth\password_reset_email.html:43
 msgid "Your username, in case you've forgotten:"
-msgstr ""
+msgstr "Seu nome de usuário, caso tenha esquecido:"
 
 #: .\templates\church\auth\password_reset_email.html:45
 msgid "If you didn't request this password reset, please ignore this email."
-msgstr ""
+msgstr "Se você não solicitou esta redefinição de senha, ignore este e-mail."
 
 #: .\templates\church\auth\password_reset_email.html:47
 msgid "Thanks for using our system!"
-msgstr ""
+msgstr "Obrigado por usar nosso sistema!"
 
 #: .\templates\church\auth\password_reset_email.html:51
 #: .\templates\church\news\email_notification.html:53
 msgid "This is an automated message, please do not reply."
-msgstr ""
+msgstr "Esta é uma mensagem automática, por favor, não responda."
 
 #: .\templates\church\auth\password_reset_email.html:52
 msgid "Church Management System - Mozambique"
-msgstr ""
+msgstr "Sistema de Gestão de Igrejas - Moçambique"
 
 #: .\templates\church\auth\password_reset_subject.txt:2
 msgid "Password reset on Church Management System"
-msgstr ""
+msgstr "Redefinição de senha no Sistema de Gestão de Igrejas"
 
 #: .\templates\church\base.html:45 .\templates\church\dashboard.html:18
 #: .\templates\church\reports\dashboard.html:14
 msgid "Reports"
-msgstr ""
+msgstr "Relatórios"
 
 #: .\templates\church\base.html:56 .\templates\church\profile.html:15
 msgid "Profile"
@@ -1052,7 +1071,7 @@ msgstr "Relatórios da Igreja"
 
 #: .\templates\church\dashboard.html:25
 msgid "Download Reports"
-msgstr "Baixar relatórios"
+msgstr "Baixar Relatórios"
 
 #: .\templates\church\dashboard.html:28
 msgid "PDF Report"
@@ -1060,15 +1079,15 @@ msgstr "Relatório em PDF"
 
 #: .\templates\church\dashboard.html:29
 msgid "Word Report"
-msgstr "Relatório de palavras"
+msgstr "Relatório em Word"
 
 #: .\templates\church\dashboard.html:31
 msgid "Attendance PDF"
-msgstr "PDF de comparência"
+msgstr "PDF de Presença"
 
 #: .\templates\church\dashboard.html:32
 msgid "Attendance Word"
-msgstr "Palavra de Presença"
+msgstr "Word de Presença"
 
 #: .\templates\church\dashboard.html:42
 msgid "Locations Management"
@@ -1088,11 +1107,11 @@ msgstr "Total de igrejas"
 
 #: .\templates\church\dashboard.html:108
 msgid "Main Reverends"
-msgstr ""
+msgstr "Reverendos Principais"
 
 #: .\templates\church\dashboard.html:112
 msgid "Total main reverends"
-msgstr ""
+msgstr "Total de reverendos principais"
 
 #: .\templates\church\dashboard.html:124
 msgid "Total pastors"
@@ -1100,7 +1119,7 @@ msgstr "Total de pastores"
 
 #: .\templates\church\dashboard.html:136
 msgid "Total worshipers"
-msgstr "Total de adoradores"
+msgstr "Total de fiéis"
 
 #: .\templates\church\dashboard.html:162
 msgid "Total churches in district"
@@ -1120,11 +1139,11 @@ msgstr "Total de fiéis na igreja"
 
 #: .\templates\church\dashboard.html:223
 msgid "Attendance Trend"
-msgstr "Tendência de comparecimento"
+msgstr "Tendência de Presença"
 
 #: .\templates\church\dashboard.html:233 .\templates\church\news\list.html:30
 msgid "Latest News"
-msgstr "Últimas notícias"
+msgstr "Últimas Notícias"
 
 #: .\templates\church\dashboard.html:245
 msgid "By"
@@ -1132,458 +1151,472 @@ msgstr "Por"
 
 #: .\templates\church\dashboard.html:249
 msgid "View All News"
-msgstr "Ver todas as notícias"
+msgstr "Ver Todas as Notícias"
 
 #: .\templates\church\dashboard.html:251
 msgid "No news available."
-msgstr "Sem notícia disponível."
+msgstr "Nenhuma notícia disponível."
 
 #: .\templates\church\dashboard.html:272
 #: .\templates\church\reports\dashboard.html:118
 msgid "Total Attendance"
-msgstr "Presença total"
+msgstr "Presença Total"
 
 #: .\templates\church\dashboard.html:300
 #: .\templates\church\reports\dashboard.html:138
 msgid "Number of People"
-msgstr "Número de pessoas"
+msgstr "Número de Pessoas"
 
 #: .\templates\church\location\church_form.html:10
 msgid "Add New Church"
-msgstr "Adicionar nova igreja"
+msgstr "Adicionar Nova Igreja"
 
 #: .\templates\church\location\church_form.html:24
 msgid "Church Details"
-msgstr ""
+msgstr "Detalhes da Igreja"
 
 #: .\templates\church\location\church_form.html:30
 msgid "Church Name"
-msgstr ""
+msgstr "Nome da Igreja"
 
 #: .\templates\church\location\church_form.html:40
 #: .\templates\church\location\district_form.html:40
 msgid "Leave blank if not assigned yet"
-msgstr ""
+msgstr "Deixe em branco se ainda não atribuído"
 
 #: .\templates\church\location\church_form.html:43
 msgid "Address"
-msgstr ""
+msgstr "Endereço"
 
 #: .\templates\church\location\church_form.html:47
 msgid "Established Date"
-msgstr ""
+msgstr "Data de Estabelecimento"
 
 #: .\templates\church\location\church_form.html:55
 msgid "Save Church"
-msgstr ""
+msgstr "Salvar Igreja"
 
 #: .\templates\church\location\church_list.html:12
 #: .\templates\church\location\church_list.html:47
 msgid "Churches in"
-msgstr ""
+msgstr "Igrejas em"
 
 #: .\templates\church\location\church_list.html:14
 #: .\templates\church\location\church_list.html:49
 msgid "All Churches"
-msgstr ""
+msgstr "Todas as Igrejas"
 
 #: .\templates\church\location\church_list.html:66
 msgid "Established"
-msgstr ""
+msgstr "Estabelecida"
 
 #: .\templates\church\location\church_list.html:80
 #: .\templates\church\location\district_list.html:56
 #: .\templates\church\reverend\pastor_list.html:87
 msgid "Not assigned"
-msgstr ""
+msgstr "Não atribuído"
 
 #: .\templates\church\location\church_list.html:93
 msgid "View Worshipers"
-msgstr ""
+msgstr "Ver Fiéis"
 
 #: .\templates\church\location\church_list.html:108
 msgid "No churches found in this district"
-msgstr ""
+msgstr "Nenhuma igreja encontrada neste distrito"
 
 #: .\templates\church\location\church_list.html:110
 msgid "No churches found"
-msgstr ""
+msgstr "Nenhuma igreja encontrada"
 
 #: .\templates\church\location\district_form.html:10
 msgid "Add New District"
-msgstr ""
+msgstr "Adicionar Novo Distrito"
 
 #: .\templates\church\location\district_form.html:24
 msgid "District Details"
-msgstr ""
+msgstr "Detalhes do Distrito"
 
 #: .\templates\church\location\district_form.html:30
 msgid "District Name"
-msgstr ""
+msgstr "Nome do Distrito"
 
 #: .\templates\church\location\district_form.html:47
 msgid "Save District"
-msgstr ""
+msgstr "Salvar Distrito"
 
 #: .\templates\church\location\district_list.html:28
 msgid "District List"
-msgstr ""
+msgstr "Lista de Distritos"
 
 #: .\templates\church\location\district_list.html:68
 msgid "View Churches"
-msgstr ""
+msgstr "Ver Igrejas"
 
 #: .\templates\church\location\district_list.html:81
 msgid "No districts found"
-msgstr ""
+msgstr "Nenhum distrito encontrado"
 
 #: .\templates\church\location\district_list.html:82
 msgid "Start by adding your first district"
-msgstr ""
+msgstr "Comece adicionando seu primeiro distrito"
 
 #: .\templates\church\location\province_form.html:10
 msgid "Add New Province"
-msgstr ""
+msgstr "Adicionar Nova Província"
 
 #: .\templates\church\location\province_form.html:24
 msgid "Province Details"
-msgstr ""
+msgstr "Detalhes da Província"
 
 #: .\templates\church\location\province_form.html:30
 msgid "Province Name"
-msgstr ""
+msgstr "Nome da Província"
 
 #: .\templates\church\location\province_form.html:34
 msgid "Province Code"
-msgstr ""
+msgstr "Código da Província"
 
 #: .\templates\church\location\province_form.html:42
 msgid "Save Province"
-msgstr ""
+msgstr "Salvar Província"
 
 #: .\templates\church\location\province_list.html:27
 msgid "Province List"
-msgstr ""
+msgstr "Lista de Províncias"
 
 #: .\templates\church\location\province_list.html:36
 msgid "Code"
-msgstr ""
+msgstr "Código"
 
 #: .\templates\church\location\province_list.html:63
 msgid "No provinces found"
-msgstr ""
+msgstr "Nenhuma província encontrada"
 
 #: .\templates\church\location\province_list.html:65
 msgid "Add First Province"
-msgstr ""
+msgstr "Adicionar Primeira Província"
 
 #: .\templates\church\news\create.html:4 .\templates\church\news\create.html:10
 msgid "Create News"
-msgstr ""
+msgstr "Criar Notícia"
 
 #: .\templates\church\news\create.html:26
 msgid "New Announcement"
-msgstr ""
+msgstr "Novo Anúncio"
 
 #: .\templates\church\news\create.html:38
 msgid "Publish News"
-msgstr ""
+msgstr "Publicar Notícia"
 
 #: .\templates\church\news\delete.html:4 .\templates\church\news\delete.html:10
 msgid "Delete News"
-msgstr ""
+msgstr "Excluir Notícia"
 
 #: .\templates\church\news\delete.html:31
 msgid ""
 "You are about to permanently delete this news item. This action cannot be "
 "undone."
 msgstr ""
+"Você está prestes a excluir permanentemente esta notícia. Esta ação não pode "
+"ser desfeita."
 
 #: .\templates\church\news\delete.html:38
 msgid "Published on"
-msgstr ""
+msgstr "Publicado em"
 
 #: .\templates\church\news\delete.html:40
 msgid "updated"
-msgstr ""
+msgstr "atualizado"
 
 #: .\templates\church\news\detail.html:15
 msgid "Details"
-msgstr ""
+msgstr "Detalhes"
 
 #: .\templates\church\news\detail.html:57
 msgid "Updated"
-msgstr ""
+msgstr "Atualizado"
 
 #: .\templates\church\news\detail.html:69
 #: .\templates\church\news\news_detail.html:76
 msgid "Back to News"
-msgstr ""
+msgstr "Voltar para Notícias"
 
 #: .\templates\church\news\edit.html:4 .\templates\church\news\edit.html:10
 msgid "Edit News"
-msgstr ""
+msgstr "Editar Notícia"
 
 #: .\templates\church\news\edit.html:25
 msgid "Edit Announcement"
-msgstr ""
+msgstr "Editar Anúncio"
 
 #: .\templates\church\news\edit.html:29
 msgid "Created on"
-msgstr ""
+msgstr "Criado em"
 
 #: .\templates\church\news\edit.html:32
 msgid "Last updated on"
-msgstr ""
+msgstr "Última atualização em"
 
 #: .\templates\church\news\email_notification.html:32
 msgid "Published:"
-msgstr ""
+msgstr "Publicado:"
 
 #: .\templates\church\news\email_notification.html:40
 #: .\templates\church\news\email_notification.html:45
 msgid "View Full Announcement"
-msgstr ""
+msgstr "Ver Anúncio Completo"
 
 #: .\templates\church\news\email_notification.html:52
 msgid ""
 "You're receiving this email because you're subscribed to announcements from"
 msgstr ""
+"Você está recebendo este e-mail porque está inscrito para receber anúncios de"
 
 #: .\templates\church\news\list.html:4 .\templates\church\news\list.html:10
 msgid "News & Announcements"
-msgstr ""
+msgstr "Notícias e Anúncios"
 
 #: .\templates\church\news\list.html:21 .\templates\church\news\list.html:98
 msgid "Add News"
-msgstr ""
+msgstr "Adicionar Notícia"
 
 #: .\templates\church\news\list.html:94
 msgid "No news available"
-msgstr ""
+msgstr "Nenhuma notícia disponível"
 
 #: .\templates\church\news\news_detail.html:15
 msgid "Detail"
-msgstr ""
+msgstr "Detalhe"
 
 #: .\templates\church\news\news_detail.html:28
 msgid "Published"
-msgstr ""
+msgstr "Publicado"
 
 #: .\templates\church\news\news_detail.html:30
 msgid "Draft"
-msgstr ""
+msgstr "Rascunho"
 
 #: .\templates\church\news\news_detail.html:38
 msgid "Author"
-msgstr ""
+msgstr "Autor"
 
 #: .\templates\church\news\news_detail.html:48
 msgid "Notification sent to users on"
-msgstr ""
+msgstr "Notificação enviada aos usuários em"
 
 #: .\templates\church\pastor\worshiper_create.html:4
 #: .\templates\church\pastor\worshiper_create.html:10
 msgid "Add New Worshiper"
-msgstr ""
+msgstr "Adicionar Novo Fiel"
 
 #: .\templates\church\pastor\worshiper_create.html:15
 msgid "Add New"
-msgstr ""
+msgstr "Adicionar Novo"
 
 #: .\templates\church\pastor\worshiper_create.html:25
 msgid "Worshiper Information"
-msgstr ""
+msgstr "Informações do Fiel"
 
 #: .\templates\church\pastor\worshiper_create.html:37
 msgid "Save Worshiper"
-msgstr ""
+msgstr "Salvar Fiel"
 
 #: .\templates\church\pastor\worshiper_delete.html:4
 #: .\templates\church\pastor\worshiper_delete.html:10
 msgid "Delete Worshiper"
-msgstr ""
+msgstr "Excluir Fiel"
 
 #: .\templates\church\pastor\worshiper_delete.html:31
 msgid ""
 "You are about to permanently delete this worshiper record. This action "
 "cannot be undone."
 msgstr ""
+"Você está prestes a excluir permanentemente este registro de fiel. Esta ação "
+"não pode ser desfeita."
 
 #: .\templates\church\pastor\worshiper_delete.html:56
 #: .\templates\church\pastor\worshiper_edit.html:48
 msgid "Member since"
-msgstr ""
+msgstr "Membro desde"
 
 #: .\templates\church\pastor\worshiper_edit.html:4
 #: .\templates\church\pastor\worshiper_edit.html:10
 msgid "Edit Worshiper"
-msgstr ""
+msgstr "Editar Fiel"
 
 #: .\templates\church\pastor\worshiper_edit.html:25
 msgid "Edit Worshiper Information"
-msgstr ""
+msgstr "Editar Informações do Fiel"
 
 #: .\templates\church\pastor\worshiper_list.html:4
 #: .\templates\church\pastor\worshiper_list.html:10
 msgid "Worshipers Management"
-msgstr ""
+msgstr "Gerenciamento de Fiéis"
 
 #: .\templates\church\pastor\worshiper_list.html:20
 msgid "Add Worshiper"
-msgstr ""
+msgstr "Adicionar Fiel"
 
 #: .\templates\church\pastor\worshiper_list.html:26
 msgid "Download"
-msgstr ""
+msgstr "Baixar"
 
 #: .\templates\church\pastor\worshiper_list.html:29
 msgid "PDF"
-msgstr ""
+msgstr "PDF"
 
 #: .\templates\church\pastor\worshiper_list.html:30
 msgid "Word"
-msgstr ""
+msgstr "Word"
 
 #: .\templates\church\pastor\worshiper_list.html:31
 msgid "CSV"
-msgstr ""
+msgstr "CSV"
 
 #: .\templates\church\pastor\worshiper_list.html:41
 msgid "Worshipers List"
-msgstr ""
+msgstr "Lista de Fiéis"
 
 #: .\templates\church\pastor\worshiper_list.html:52
 #: .\templates\church\reverend\pastor_list.html:58
 msgid "Photo"
-msgstr ""
+msgstr "Foto"
 
 #: .\templates\church\pastor\worshiper_list.html:54
 msgid "Gender"
-msgstr ""
+msgstr "Gênero"
 
 #: .\templates\church\pastor\worshiper_list.html:55
 msgid "Age"
-msgstr ""
+msgstr "Idade"
 
 #: .\templates\church\pastor\worshiper_list.html:56
 msgid "Baptism"
-msgstr ""
+msgstr "Batismo"
 
 #: .\templates\church\pastor\worshiper_list.html:57
 msgid "Joined"
-msgstr ""
+msgstr "Ingressou"
 
 #: .\templates\church\pastor\worshiper_list.html:95
 msgid "Yes"
-msgstr ""
+msgstr "Sim"
 
 #: .\templates\church\pastor\worshiper_list.html:98
 msgid "No"
-msgstr ""
+msgstr "Não"
 
 #: .\templates\church\pastor\worshiper_list.html:119
 msgid "No worshipers found"
-msgstr ""
+msgstr "Nenhum fiel encontrado"
 
 #: .\templates\church\pastor\worshiper_list.html:121
 msgid "Add First Worshiper"
-msgstr ""
+msgstr "Adicionar Primeiro Fiel"
 
 #: .\templates\church\profile.html:5 .\templates\church\profile.html:11
 msgid "My Profile"
-msgstr ""
+msgstr "Meu Perfil"
 
 #: .\templates\church\profile.html:25
 msgid "Profile Information"
-msgstr ""
+msgstr "Informações do Perfil"
 
 #: .\templates\church\profile.html:91
 msgid "Back to Dashboard"
-msgstr ""
+msgstr "Voltar para o Painel"
 
 #: .\templates\church\profile.html:106 .\templates\church\profile.html:110
 msgid "Change Password"
-msgstr ""
+msgstr "Alterar Senha"
 
 #: .\templates\church\reports\dashboard.html:4
 msgid "Reports Dashboard"
-msgstr ""
+msgstr "Painel de Relatórios"
 
 #: .\templates\church\reports\dashboard.html:25
 msgid "Attendance Trends"
-msgstr ""
+msgstr "Tendências de Presença"
 
 #: .\templates\church\reports\dashboard.html:37
 msgid "Quick Stats"
-msgstr ""
+msgstr "Estatísticas Rápidas"
 
 #: .\templates\church\reports\dashboard.html:45
 msgid "Total Worshipers"
-msgstr ""
+msgstr "Total de Fiéis"
 
 #: .\templates\church\reports\dashboard.html:61
 msgid "Avg. Attendance"
-msgstr ""
+msgstr "Presença Média"
 
 #: .\templates\church\reports\dashboard.html:69
 msgid "New Members"
-msgstr ""
+msgstr "Novos Membros"
 
 #: .\templates\church\reports\dashboard.html:84
 msgid "Gender Distribution"
-msgstr ""
+msgstr "Distribuição por Gênero"
 
 #: .\templates\church\reports\dashboard.html:96
 msgid "Baptism Status"
-msgstr ""
+msgstr "Status de Batismo"
 
 #: .\templates\church\reverend\pastor_list.html:4
 #: .\templates\church\reverend\pastor_list.html:10
 msgid "Pastor Management"
-msgstr ""
+msgstr "Gerenciamento de Pastores"
 
 #: .\templates\church\reverend\pastor_list.html:33
 msgid "Pastors in"
-msgstr ""
+msgstr "Pastores em"
 
 #: .\templates\church\reverend\pastor_list.html:35
 msgid "All Pastors"
-msgstr ""
+msgstr "Todos os Pastores"
 
 #: .\templates\church\reverend\pastor_list.html:61
 msgid "Contact"
-msgstr ""
+msgstr "Contato"
 
 #: .\templates\church\reverend\pastor_list.html:118
 msgid "No pastors found in your district"
-msgstr ""
+msgstr "Nenhum pastor encontrado no seu distrito"
 
 #: .\templates\church\reverend\pastor_list.html:120
 msgid "No pastors found"
-msgstr ""
+msgstr "Nenhum pastor encontrado"
 
 #: .\templates\church\reverend\pastor_list.html:125
 msgid "Add First Pastor"
-msgstr ""
-
+msgstr "Adicionar Primeiro Pastor"
 
 #: church/templates/church/location/district_delete.html:5
 msgid "Delete District"
-msgstr ""
+msgstr "Excluir Distrito"
 
 #: church/templates/church/location/district_delete.html:24
 msgid "Warning!"
-msgstr ""
+msgstr "Atenção!"
 
 #: church/templates/church/location/district_delete.html:25
 msgid "You are about to permanently delete this district. This action cannot be undone."
-msgstr ""
+msgstr "Você está prestes a excluir permanentemente este distrito. Esta ação não pode ser desfeita."
 
 #: church/templates/church/location/district_delete.html:45
 msgid "Cancel"
-msgstr ""
+msgstr "Cancelar"
 
 #: church/templates/church/location/district_delete.html:48
 msgid "Confirm Delete"
-msgstr ""
+msgstr "Confirmar Exclusão"
+
+# Pagination strings from updated views.py
+msgid "30 per page"
+msgstr "30 por página"
+
+msgid "50 per page"
+msgstr "50 por página"
+
+msgid "100 per page"
+msgstr "100 por página"

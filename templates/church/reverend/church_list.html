@@ -24,6 +24,19 @@
         <div class="mb-3">
             <a href="{% url 'church:download_reports' %}?type=churches" class="btn btn-primary">{% trans "Download Churches List" %}</a>
         </div>
+
+         <form class="d-flex">
+            <select name="per_page" class="form-select me-2" onchange="this.form.submit()">
+                <option value="30" {% if per_page == 30 %}selected{% endif %}>{% trans "30 per page" %}</option>
+                <option value="50" {% if per_page == 50 %}selected{% endif %}>{% trans "50 per page" %}</option>
+                <option value="100" {% if per_page == 100 %}selected{% endif %}>{% trans "100 per page" %}</option>
+            </select>
+            {% for key, value in request.GET.items %}
+                {% if key != "per_page" %}
+                    <input type="hidden" name="{{ key }}" value="{{ value }}">
+                {% endif %}
+            {% endfor %}
+        </form>
     </div>
 
     <div class="card shadow-sm">
@@ -77,11 +90,22 @@
                                     <a href="{% url 'church:church_edit' church.pk %}" class="btn btn-outline-primary" title="{% trans 'Edit' %}">
                                         <i class="bi bi-pencil"></i>
                                     </a>
-                                    {% if not church.pastor %}
-                                    <a href="{% url 'church:assign_church' church_id=church.pk %}" 
-   class="btn btn-outline-success" title="{% trans 'Assign Pastor' %}">
-    <i class="bi bi-person-plus"></i>
-</a>
+                                    <a href="{% url 'church:church_delete' church.id %}" class="btn btn-sm btn-outline-danger" title="{% trans 'Delete Church' %}">
+                            <i class="bi bi-trash"></i>
+                        </a>
+                                    {% if user.is_superuser or user.role == 'ADMIN' %}
+                                        {% if not church.pastor %}
+                                        <a href="{% url 'church:pastor_assign_church' %}?church={{ church.pk }}" 
+                                           class="btn btn-outline-success" title="{% trans 'Assign Pastor' %}">
+                                            <i class="bi bi-person-plus"></i>
+                                        </a>
+                                        {% else %}
+                                        <a href="{% url 'church:unassign_pastor' church.pk %}" 
+                                           class="btn btn-outline-warning" title="{% trans 'Unassign Pastor' %}">
+                                            <i class="bi bi-person-dash"></i>
+                                        </a>
+                                        
+                                        {% endif %}
                                     {% endif %}
                                 </div>
                             </td>

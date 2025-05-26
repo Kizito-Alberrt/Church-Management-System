@@ -1,0 +1,27 @@
+{% extends "church/base.html" %}
+{% load i18n %}
+
+{% block title %}{% trans "Delete Church" %}{% endblock %}
+
+{% block content %}
+<div class="container-fluid">
+    <h1>{% trans "Delete Church" %}</h1>
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="{% url 'church:dashboard' %}">{% trans "Dashboard" %}</a></li>
+            <li class="breadcrumb-item"><a href="{% url 'church:church_list' %}">{% trans "Churches" %}</a></li>
+            <li class="breadcrumb-item active">{% trans "Delete Church" %}</li>
+        </ol>
+    </nav>
+    <div class="alert alert-warning">
+        {% blocktrans with church_name=church.name %}
+        Are you sure you want to delete the church "{{ church_name }}"? This action cannot be undone and will also delete all associated worshipers.
+        {% endblocktrans %}
+    </div>
+    <form method="post">
+        {% csrf_token %}
+        <button type="submit" class="btn btn-danger">{% trans "Confirm Delete" %}</button>
+        <a href="{% url 'church:church_list' %}" class="btn btn-secondary">{% trans "Cancel" %}</a>
+    </form>
+</div>
+{% endblock %}
